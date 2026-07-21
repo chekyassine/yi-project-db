@@ -1,0 +1,5120 @@
+[
+ {
+  "id": "P001",
+  "title": "Affiliate price-comparison site",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "affiliate",
+   "comparison",
+   "web",
+   "online"
+  ],
+  "summary": "Idea: build an affiliate price-comparison website.",
+  "date": "2020-03-02",
+  "source_note": "2023-12-12T14_44_14.147+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P002",
+  "title": "AI music-creation workshop",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "music",
+   "workshop",
+   "offline"
+  ],
+  "summary": "Project idea (tagged Projects): a workshop/atelier for AI-assisted music creation.",
+  "date": "2025-12-23",
+  "source_note": "2025-12-23T15_15_28.710+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P003",
+  "title": "Automated delivery/transport platform",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "delivery",
+   "logistics",
+   "platform",
+   "offline"
+  ],
+  "summary": "Idea 'Adom': a fully automated transport/delivery platform (bicycle, tricycle, moto, car). Open question on model: commission from supplier or consumer; look at examples online.",
+  "date": "2018-08-13",
+  "source_note": "2025-12-09T11_52_03.437+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P004",
+  "title": "Automated meme/joke posting",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "automation",
+   "tiktok",
+   "memes",
+   "content",
+   "online"
+  ],
+  "summary": "Idea: fully automated funny-content pipeline - idea -> Telegram voice message -> post on TikTok (Morocco memes).",
+  "date": "2025-10-27",
+  "source_note": "Funny joke to post _ full automated.json",
+  "from": ""
+ },
+ {
+  "id": "P005",
+  "title": "Bakhoor/incense (3oud) project",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "bakhoor",
+   "product",
+   "niche",
+   "offline"
+  ],
+  "summary": "Project idea around seeds / oud bkhour (incense) - links to a related Keep note.",
+  "date": "2025-09-30",
+  "source_note": "seeds (3oud bkhor).json",
+  "from": ""
+ },
+ {
+  "id": "P006",
+  "title": "Bookmark aggregator idea",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "bookmarks",
+   "aggregator",
+   "productivity",
+   "app",
+   "online"
+  ],
+  "summary": "App/tool idea: a bookmark aggregator pulling from WhatsApp, browser bookmarks and Keep, that surfaces where you look for info (Google, ChatGPT, etc).",
+  "date": "2026-03-11",
+  "source_note": "2026-03-17T13_07_54.836Z.json",
+  "from": ""
+ },
+ {
+  "id": "P007",
+  "title": "CAN/World Cup -> sell physical products",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "ecommerce",
+   "morocco",
+   "merch",
+   "events",
+   "offline"
+  ],
+  "summary": "Idea: leverage CAN/World Cup Morocco notoriety to sell physical products.",
+  "date": "2025-10-21",
+  "source_note": "CAN_worldcup Morocco sell physical.json",
+  "from": ""
+ },
+ {
+  "id": "P008",
+  "title": "Commute traffic alert app",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "app",
+   "traffic",
+   "commute",
+   "online"
+  ],
+  "summary": "App idea: background alert on traffic for your work commute.",
+  "date": "2018-09-24",
+  "source_note": "2023-12-12T14_34_58.898+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P009",
+  "title": "Crowdfunding website idea",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "crowdfunding",
+   "web",
+   "fintech",
+   "online"
+  ],
+  "summary": "Idea: build a crowdfunding website (example: alifinvest).",
+  "date": "2025-09-30",
+  "source_note": "crowdfunding website.json",
+  "from": ""
+ },
+ {
+  "id": "P010",
+  "title": "Gaming Sekai (Morocco)",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "gaming",
+   "morocco",
+   "contact"
+  ],
+  "summary": "Tagged Projects: Gaming Sekai (gamingsekai.ma) - a Moroccan gaming business/site to contact (potential partner/reference).",
+  "date": "2025-10-10",
+  "source_note": "Contact - Gaming Sekai.json",
+  "from": ""
+ },
+ {
+  "id": "P011",
+  "title": "Insider-stock tracker clone",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "stocks",
+   "clone",
+   "fintech",
+   "project",
+   "online"
+  ],
+  "summary": "Project idea: clone an insider-stock (insider trading tracker) site.",
+  "date": "2025-11-30",
+  "source_note": "Insider stock clone.json",
+  "from": ""
+ },
+ {
+  "id": "P012",
+  "title": "Lists app (WhatsApp x Keep)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "app",
+   "lists",
+   "productivity",
+   "online"
+  ],
+  "summary": "App idea: a lists app combining WhatsApp and Keep, with the ability to share directly to a list.",
+  "date": "2025-09-30",
+  "source_note": "A lists app born from whatsapp x keep.json",
+  "from": ""
+ },
+ {
+  "id": "P013",
+  "title": "NFT project checklist",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "nft",
+   "web3",
+   "crypto",
+   "execution",
+   "online"
+  ],
+  "summary": "Execution checklist for an NFT project (metacovid: covid Greek-alphabet art, 50% to healthcare): create gmail+twitter, build community, do the drawings, set rules on new variants, build a site, run ads; plus reading list (on-chain NFT tutorials, minting with web3.js, deploying NFT smart contracts, Python NFT collection, Picrew).",
+  "date": "2022-01-04",
+  "source_note": "NFT checklist.json",
+  "from": ""
+ },
+ {
+  "id": "P014",
+  "title": "Ongoing automations",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "automation",
+   "productivity",
+   "reporting"
+  ],
+  "summary": "Ongoing personal automation projects: weekly-report generator; project-dispatching to Google Keep.",
+  "date": "2025-09-30",
+  "source_note": "Ongoing work.json",
+  "from": ""
+ },
+ {
+  "id": "P015",
+  "title": "Promote squarepack.info with free tools",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "marketing",
+   "squarepack",
+   "content",
+   "automations"
+  ],
+  "summary": "Marketing idea: promote squarepack.info by adding free content/tools (his own automations) to the site.",
+  "date": "2025-10-08",
+  "source_note": "Promote squarepack.finfo.json",
+  "from": ""
+ },
+ {
+  "id": "P016",
+  "title": "Smart logistics / last-km idea",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "logistics",
+   "delivery",
+   "mvp",
+   "offline"
+  ],
+  "summary": "Logistics idea: last-kilometer delivery; MVP for smart logistics available online; references Ali Bensouda, Marjane/Glovo.",
+  "date": "2023-01-14",
+  "source_note": "2023-12-12T15_01_37.687+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P017",
+  "title": "Tampermonkey scripts -> paid extensions",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "chrome-extension",
+   "tampermonkey",
+   "product",
+   "online"
+  ],
+  "summary": "Idea: find top Tampermonkey userscripts and turn them into ready-to-use paid Chrome extensions.",
+  "date": "2025-09-30",
+  "source_note": "Tampermonkey usefull scripts.json",
+  "from": ""
+ },
+ {
+  "id": "P018",
+  "title": "3D body scanner for clothes making/modelling",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "games",
+   "blockchain",
+   "dropshipping",
+   "unity",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2018-07-29",
+  "source_note": "2025-12-09T11_51_53.311+01_00.json",
+  "from": "Automated income / games ideas"
+ },
+ {
+  "id": "P019",
+  "title": "3D NFT marketplace",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P020",
+  "title": "a baby-alarm clothing watch",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "app",
+   "directory",
+   "iot",
+   "ideas",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2014-01-31",
+  "source_note": "Ideas.json",
+  "from": "Early business/app ideas"
+ },
+ {
+  "id": "P021",
+  "title": "a big network of complementary accounts around one goal (song-ID community, FB page, YouTube, NFT)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P022",
+  "title": "a Paytm-style payment gateway with rewards",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "marketplace",
+   "payments",
+   "delivery",
+   "carpooling",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-02-05",
+  "source_note": "2025-12-09T11_51_50.687+01_00.json",
+  "from": "Facades / copy-US-sites-for-Morocco ideas"
+ },
+ {
+  "id": "P023",
+  "title": "AI copywriting",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P024",
+  "title": "AI hypnosis videos",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "online"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P025",
+  "title": "AI-generated apps",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "automation",
+   "apps",
+   "games",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-08-12",
+  "source_note": "2025-12-09T11_51_58.340+01_00.json",
+  "from": "App/YouTube automation ideas"
+ },
+ {
+  "id": "P026",
+  "title": "AI-generated content site with AutoGPT focused on dogs/cats (product comparison, reviews, amazon finds)",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "online"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P027",
+  "title": "alert on Avito",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P028",
+  "title": "all-AI-tools directory (futurepedia.io)",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "online"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P029",
+  "title": "all-inclusive code bootcamp",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P030",
+  "title": "apps for groups you belong to (father/husband/guitarist/muslim)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "apps",
+   "whatsapp",
+   "niche",
+   "mobile",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-08-14",
+  "source_note": "niches.json",
+  "from": "App niches brainstorm"
+ },
+ {
+  "id": "P031",
+  "title": "apps over public APIs",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P032",
+  "title": "auto USB-tether app (no root)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P033",
+  "title": "automated YouTube (text+audio+images -> video, e.g. blueocean)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "automation",
+   "apps",
+   "games",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-08-12",
+  "source_note": "2025-12-09T11_51_58.340+01_00.json",
+  "from": "App/YouTube automation ideas"
+ },
+ {
+  "id": "P034",
+  "title": "automated YouTube videos",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P035",
+  "title": "bni.ma-style directory of construction/decoration pros",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "app",
+   "directory",
+   "iot",
+   "ideas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2014-01-31",
+  "source_note": "Ideas.json",
+  "from": "Early business/app ideas"
+ },
+ {
+  "id": "P036",
+  "title": "build & sell websites to local businesses (dentists)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P037",
+  "title": "build and sell an API without coding",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "online"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P038",
+  "title": "build one low-maintenance automated income stream",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "games",
+   "blockchain",
+   "dropshipping",
+   "unity"
+  ],
+  "summary": "",
+  "date": "2018-07-29",
+  "source_note": "2025-12-09T11_51_53.311+01_00.json",
+  "from": "Automated income / games ideas"
+ },
+ {
+  "id": "P039",
+  "title": "Buildbox",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "automation",
+   "apps",
+   "games"
+  ],
+  "summary": "",
+  "date": "2018-08-12",
+  "source_note": "2025-12-09T11_51_58.340+01_00.json",
+  "from": "App/YouTube automation ideas"
+ },
+ {
+  "id": "P040",
+  "title": "business-review QR-code sticker + app + website (blanee-style) scraping info from PJ for big cities",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "online"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P041",
+  "title": "buy list (carpet glue)",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "tufting",
+   "rugs",
+   "craft",
+   "suppliers"
+  ],
+  "summary": "",
+  "date": "2023-11-20",
+  "source_note": "TAPIS.json",
+  "from": "Tufting rug business (suppliers/tools)"
+ },
+ {
+  "id": "P042",
+  "title": "cash-cow YouTube channel",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "online"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P043",
+  "title": "Clonnify",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P044",
+  "title": "CNC (3D-printer-to-tufting-CNC)",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "tufting",
+   "rugs",
+   "craft",
+   "suppliers",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2023-11-20",
+  "source_note": "TAPIS.json",
+  "from": "Tufting rug business (suppliers/tools)"
+ },
+ {
+  "id": "P045",
+  "title": "Codecanyon",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "automation",
+   "apps",
+   "games"
+  ],
+  "summary": "",
+  "date": "2018-08-12",
+  "source_note": "2025-12-09T11_51_58.340+01_00.json",
+  "from": "App/YouTube automation ideas"
+ },
+ {
+  "id": "P046",
+  "title": "coffee-machine counter",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P047",
+  "title": "collect videos from Telegram",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P048",
+  "title": "comute-share carpooling for Morocco",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "marketplace",
+   "payments",
+   "delivery",
+   "carpooling",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-02-05",
+  "source_note": "2025-12-09T11_51_50.687+01_00.json",
+  "from": "Facades / copy-US-sites-for-Morocco ideas"
+ },
+ {
+  "id": "P049",
+  "title": "connect real businesses to online services (printing)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P050",
+  "title": "covid crypto index NFTs",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P051",
+  "title": "crypto tools (Lunar Crush, WallStreetOdds)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P052",
+  "title": "DeepL",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P053",
+  "title": "drop-servicing",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P054",
+  "title": "dropshipping Maroc",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "games",
+   "blockchain",
+   "dropshipping",
+   "unity",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-07-29",
+  "source_note": "2025-12-09T11_51_53.311+01_00.json",
+  "from": "Automated income / games ideas"
+ },
+ {
+  "id": "P055",
+  "title": "evening-courses site",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "app",
+   "directory",
+   "iot",
+   "ideas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2014-01-31",
+  "source_note": "Ideas.json",
+  "from": "Early business/app ideas"
+ },
+ {
+  "id": "P056",
+  "title": "explore people's hobbies (birds)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "automation",
+   "apps",
+   "games"
+  ],
+  "summary": "",
+  "date": "2018-08-12",
+  "source_note": "2025-12-09T11_51_58.340+01_00.json",
+  "from": "App/YouTube automation ideas"
+ },
+ {
+  "id": "P057",
+  "title": "expose github command-line APIs to web/apps",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "automation",
+   "apps",
+   "games",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-08-12",
+  "source_note": "2025-12-09T11_51_58.340+01_00.json",
+  "from": "App/YouTube automation ideas"
+ },
+ {
+  "id": "P058",
+  "title": "face finder",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "games",
+   "blockchain",
+   "dropshipping",
+   "unity",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-07-29",
+  "source_note": "2025-12-09T11_51_53.311+01_00.json",
+  "from": "Automated income / games ideas"
+ },
+ {
+  "id": "P059",
+  "title": "Facebook mass friend delete",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "apps",
+   "whatsapp",
+   "niche",
+   "mobile",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-08-14",
+  "source_note": "niches.json",
+  "from": "App niches brainstorm"
+ },
+ {
+  "id": "P060",
+  "title": "find most-used github tools",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P061",
+  "title": "find niche from comments -> build better app",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "automation",
+   "apps",
+   "games"
+  ],
+  "summary": "",
+  "date": "2018-08-12",
+  "source_note": "2025-12-09T11_51_58.340+01_00.json",
+  "from": "App/YouTube automation ideas"
+ },
+ {
+  "id": "P062",
+  "title": "find trends -> build game -> Codecanyon",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "automation",
+   "apps",
+   "games"
+  ],
+  "summary": "",
+  "date": "2018-08-12",
+  "source_note": "2025-12-09T11_51_58.340+01_00.json",
+  "from": "App/YouTube automation ideas"
+ },
+ {
+  "id": "P063",
+  "title": "Flatworld",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P064",
+  "title": "frame/grippers",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "tufting",
+   "rugs",
+   "craft",
+   "suppliers"
+  ],
+  "summary": "",
+  "date": "2023-11-20",
+  "source_note": "TAPIS.json",
+  "from": "Tufting rug business (suppliers/tools)"
+ },
+ {
+  "id": "P065",
+  "title": "free Fiverr-like AI micro-services (bg removal, AI speech from github)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P066",
+  "title": "freelancing (Upwork, Remoteok, digital nomad)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P067",
+  "title": "from developer to project manager",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P068",
+  "title": "funny-audio game clips",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P069",
+  "title": "generally build facades in Morocco for foreign websites/services",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "marketplace",
+   "payments",
+   "delivery",
+   "carpooling",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-02-05",
+  "source_note": "2025-12-09T11_51_50.687+01_00.json",
+  "from": "Facades / copy-US-sites-for-Morocco ideas"
+ },
+ {
+  "id": "P070",
+  "title": "hanout (corner-shop) neighbourhood delivery with a catalog of common items",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "marketplace",
+   "payments",
+   "delivery",
+   "carpooling",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2018-02-05",
+  "source_note": "2025-12-09T11_51_50.687+01_00.json",
+  "from": "Facades / copy-US-sites-for-Morocco ideas"
+ },
+ {
+  "id": "P071",
+  "title": "hourly PC rental service",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P072",
+  "title": "hum-a-song title finder",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P073",
+  "title": "image sources (Pixabay low-poly, zellige, vintage Maroc)",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "tufting",
+   "rugs",
+   "craft",
+   "suppliers"
+  ],
+  "summary": "",
+  "date": "2023-11-20",
+  "source_note": "TAPIS.json",
+  "from": "Tufting rug business (suppliers/tools)"
+ },
+ {
+  "id": "P074",
+  "title": "image tools (posterize, color extractor, photo-to-outline)",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "tufting",
+   "rugs",
+   "craft",
+   "suppliers"
+  ],
+  "summary": "",
+  "date": "2023-11-20",
+  "source_note": "TAPIS.json",
+  "from": "Tufting rug business (suppliers/tools)"
+ },
+ {
+  "id": "P075",
+  "title": "IMDb movie downloads",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "automation",
+   "apps",
+   "games"
+  ],
+  "summary": "",
+  "date": "2018-08-12",
+  "source_note": "2025-12-09T11_51_58.340+01_00.json",
+  "from": "App/YouTube automation ideas"
+ },
+ {
+  "id": "P076",
+  "title": "joke database",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P077",
+  "title": "KDP scan old books",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P078",
+  "title": "learn a topic and sell a course",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P079",
+  "title": "learn blockchain",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "games",
+   "blockchain",
+   "dropshipping",
+   "unity"
+  ],
+  "summary": "",
+  "date": "2018-07-29",
+  "source_note": "2025-12-09T11_51_53.311+01_00.json",
+  "from": "Automated income / games ideas"
+ },
+ {
+  "id": "P080",
+  "title": "learn blockchain/crypto mining as monetizable skill",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P081",
+  "title": "look for master/PhD in Switzerland",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P082",
+  "title": "Lovo voiceover",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P083",
+  "title": "make your first game",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "games",
+   "blockchain",
+   "dropshipping",
+   "unity"
+  ],
+  "summary": "",
+  "date": "2018-07-29",
+  "source_note": "2025-12-09T11_51_53.311+01_00.json",
+  "from": "Automated income / games ideas"
+ },
+ {
+  "id": "P084",
+  "title": "many small apps",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "apps",
+   "whatsapp",
+   "niche",
+   "mobile"
+  ],
+  "summary": "",
+  "date": "2018-08-14",
+  "source_note": "niches.json",
+  "from": "App niches brainstorm"
+ },
+ {
+  "id": "P085",
+  "title": "Maps-to-Waze share",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "apps",
+   "whatsapp",
+   "niche",
+   "mobile"
+  ],
+  "summary": "",
+  "date": "2018-08-14",
+  "source_note": "niches.json",
+  "from": "App niches brainstorm"
+ },
+ {
+  "id": "P086",
+  "title": "Matterport 3D visits",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P087",
+  "title": "Merch/KDP",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "online"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P088",
+  "title": "Moroccan wool suppliers (softgroup, sefita, mercerie_youssef in Derb Ghelef ~150dh/kg acrylic, kompass, telecontact)",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "tufting",
+   "rugs",
+   "craft",
+   "suppliers"
+  ],
+  "summary": "",
+  "date": "2023-11-20",
+  "source_note": "TAPIS.json",
+  "from": "Tufting rug business (suppliers/tools)"
+ },
+ {
+  "id": "P089",
+  "title": "NFT concept-proofing (covid/memes/ascii on OpenSea)",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "online"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P090",
+  "title": "NFT generator via hashlips",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P091",
+  "title": "niche enterprise website solutions",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P092",
+  "title": "OpenAI content generator",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P093",
+  "title": "opensource text+edge read-aloud to YouTube",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P094",
+  "title": "personalized rugs",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P095",
+  "title": "Pinterest-to-YouTube",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P096",
+  "title": "port flash games to Android",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "games",
+   "blockchain",
+   "dropshipping",
+   "unity",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-07-29",
+  "source_note": "2025-12-09T11_51_53.311+01_00.json",
+  "from": "Automated income / games ideas"
+ },
+ {
+  "id": "P097",
+  "title": "prices (canvas 85dh/m2)",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "tufting",
+   "rugs",
+   "craft",
+   "suppliers"
+  ],
+  "summary": "",
+  "date": "2023-11-20",
+  "source_note": "TAPIS.json",
+  "from": "Tufting rug business (suppliers/tools)"
+ },
+ {
+  "id": "P098",
+  "title": "public WhatsApp groups (find niche inside)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "apps",
+   "whatsapp",
+   "niche",
+   "mobile"
+  ],
+  "summary": "",
+  "date": "2018-08-14",
+  "source_note": "niches.json",
+  "from": "App niches brainstorm"
+ },
+ {
+  "id": "P099",
+  "title": "publish open-source games to market",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "games",
+   "blockchain",
+   "dropshipping",
+   "unity",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-07-29",
+  "source_note": "2025-12-09T11_51_53.311+01_00.json",
+  "from": "Automated income / games ideas"
+ },
+ {
+  "id": "P100",
+  "title": "refurbished second-hand toys",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P101",
+  "title": "reskin apps",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "online"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P102",
+  "title": "Royal invest",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P103",
+  "title": "safe shows for kids",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "apps",
+   "whatsapp",
+   "niche",
+   "mobile",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-08-14",
+  "source_note": "niches.json",
+  "from": "App niches brainstorm"
+ },
+ {
+  "id": "P104",
+  "title": "save Google Maps location to contact",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P105",
+  "title": "scan top-100 US/India sites and clone what doesn't yet exist in Morocco/France",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "marketplace",
+   "payments",
+   "delivery",
+   "carpooling"
+  ],
+  "summary": "",
+  "date": "2018-02-05",
+  "source_note": "2025-12-09T11_51_50.687+01_00.json",
+  "from": "Facades / copy-US-sites-for-Morocco ideas"
+ },
+ {
+  "id": "P106",
+  "title": "search-trends -> classification -> menu -> apk -> store pipeline",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "automation",
+   "apps",
+   "games"
+  ],
+  "summary": "",
+  "date": "2018-08-12",
+  "source_note": "2025-12-09T11_51_58.340+01_00.json",
+  "from": "App/YouTube automation ideas"
+ },
+ {
+  "id": "P107",
+  "title": "sell Canva templates",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api",
+   "online"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P108",
+  "title": "sell your skills",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "app",
+   "directory",
+   "iot",
+   "ideas"
+  ],
+  "summary": "",
+  "date": "2014-01-31",
+  "source_note": "Ideas.json",
+  "from": "Early business/app ideas"
+ },
+ {
+  "id": "P109",
+  "title": "solve local Rabat problems",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P110",
+  "title": "subscription services",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P111",
+  "title": "Synthesia.io",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P112",
+  "title": "targeted Insta ads for high-end products (sushi kit)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P113",
+  "title": "time-tracking (Harvest) / pomodoro tools",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P114",
+  "title": "top sites by country -> build app where none exists (e.g. egybest). Criteria: automatable + replicable + using existing online tools",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "apps",
+   "whatsapp",
+   "niche",
+   "mobile"
+  ],
+  "summary": "",
+  "date": "2018-08-14",
+  "source_note": "niches.json",
+  "from": "App niches brainstorm"
+ },
+ {
+  "id": "P115",
+  "title": "try crypto/continue learning trading",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P116",
+  "title": "tuktuk.ma/allomoto.ma",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P117",
+  "title": "tutorials (general + clean-lines YouTube)",
+  "category": "Project Idea",
+  "phase": "Execution",
+  "tags": [
+   "tufting",
+   "rugs",
+   "craft",
+   "suppliers"
+  ],
+  "summary": "",
+  "date": "2023-11-20",
+  "source_note": "TAPIS.json",
+  "from": "Tufting rug business (suppliers/tools)"
+ },
+ {
+  "id": "P118",
+  "title": "Unity 3D demo to market",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "games",
+   "blockchain",
+   "dropshipping",
+   "unity",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-07-29",
+  "source_note": "2025-12-09T11_51_53.311+01_00.json",
+  "from": "Automated income / games ideas"
+ },
+ {
+  "id": "P119",
+  "title": "update Upwork profile",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P120",
+  "title": "Upwork facade for Morocco",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "marketplace",
+   "payments",
+   "delivery",
+   "carpooling",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-02-05",
+  "source_note": "2025-12-09T11_51_50.687+01_00.json",
+  "from": "Facades / copy-US-sites-for-Morocco ideas"
+ },
+ {
+  "id": "P121",
+  "title": "Vidiq",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P122",
+  "title": "Vinted Maroc",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P123",
+  "title": "virtual restaurant",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P124",
+  "title": "WhatsApp cloud API",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P125",
+  "title": "WhatsApp EN->Hindi translator, recorder, updater, dual account",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "apps",
+   "whatsapp",
+   "niche",
+   "mobile",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-08-14",
+  "source_note": "niches.json",
+  "from": "App niches brainstorm"
+ },
+ {
+  "id": "P126",
+  "title": "WhatsApp virtual queue (nouba)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P127",
+  "title": "WiFi-controlled curtains/lamps",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "app",
+   "directory",
+   "iot",
+   "ideas",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2014-01-31",
+  "source_note": "Ideas.json",
+  "from": "Early business/app ideas"
+ },
+ {
+  "id": "P128",
+  "title": "Woxo.tech",
+  "category": "Project Idea",
+  "phase": "Research",
+  "tags": [
+   "youtube",
+   "nft",
+   "kdp",
+   "api"
+  ],
+  "summary": "",
+  "date": "2021-12-02",
+  "source_note": "PROJECTS _.json",
+  "from": "PROJECTS dump (AI/cash-cow/NFT)"
+ },
+ {
+  "id": "P129",
+  "title": "wrap interesting content websites",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "games",
+   "blockchain",
+   "dropshipping",
+   "unity",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-07-29",
+  "source_note": "2025-12-09T11_51_53.311+01_00.json",
+  "from": "Automated income / games ideas"
+ },
+ {
+  "id": "P130",
+  "title": "x-face changer (replicable/infinite)",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "apps",
+   "whatsapp",
+   "niche",
+   "mobile",
+   "online"
+  ],
+  "summary": "",
+  "date": "2018-08-14",
+  "source_note": "niches.json",
+  "from": "App niches brainstorm"
+ },
+ {
+  "id": "P131",
+  "title": "Yandex/foreign-language search arbitrage",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P132",
+  "title": "YouTube transcript / dictation-to-blog",
+  "category": "Project Idea",
+  "phase": "Idea",
+  "tags": [
+   "freelancing",
+   "nft",
+   "youtube",
+   "saas",
+   "online"
+  ],
+  "summary": "",
+  "date": "2017-05-21",
+  "source_note": "Project ideas.json",
+  "from": "Project ideas"
+ },
+ {
+  "id": "P133",
+  "title": "Alibaba Maroc / startup contests / whatsapp wrapper",
+  "category": "Business/Money",
+  "phase": "Idea",
+  "tags": [
+   "alibaba",
+   "startups",
+   "whatsapp"
+  ],
+  "summary": "Ideas: Alibaba Maroc; an observatory of startup contests; WhatsApp wrapper.",
+  "date": "2025-02-21",
+  "source_note": "2025-08-26T12_25_04.855+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P134",
+  "title": "Buying accounts (e-money)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "accounts",
+   "emoney",
+   "reselling",
+   "online"
+  ],
+  "summary": "E-money note: Wow-sale.club for buying accounts.",
+  "date": "2024-01-22",
+  "source_note": "E money_.json",
+  "from": ""
+ },
+ {
+  "id": "P135",
+  "title": "Domain portfolio (by registrar)",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "domains",
+   "web",
+   "assets"
+  ],
+  "summary": "Domain portfolio grouped by registrar - Nindohost: iptele.fr, learnmssql.com, loop.ma, fatimaalfihryafoundation, badil212.ma, mizaniya.ma; Porkbun: bettana.space; Namecheap: squarepack.info.",
+  "date": "2025-08-14",
+  "source_note": "domains.json",
+  "from": ""
+ },
+ {
+  "id": "P136",
+  "title": "Dropship armchairs",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "dropshipping",
+   "furniture",
+   "ecommerce",
+   "online"
+  ],
+  "summary": "Dropshipping idea: dropship armchairs/fauteuils.",
+  "date": "2026-02-16",
+  "source_note": "2026-02-16T08_33_30.424Z.json",
+  "from": ""
+ },
+ {
+  "id": "P137",
+  "title": "Earn $50/day from CPA (video)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "cpa",
+   "affiliate",
+   "income"
+  ],
+  "summary": "YouTube resource on earning ~$50/day from CPA marketing (easy/free method).",
+  "date": "2021-08-15",
+  "source_note": "Watch _اربح 50$ يومياً من cpa...json",
+  "from": ""
+ },
+ {
+  "id": "P138",
+  "title": "Import cars (business)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "import",
+   "cars",
+   "business",
+   "offline"
+  ],
+  "summary": "Business reference: importing cars.",
+  "date": "2026-02-15",
+  "source_note": "2026-02-15T13_04_49.751Z.json",
+  "from": ""
+ },
+ {
+  "id": "P139",
+  "title": "Import goods from China (video)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "import",
+   "china",
+   "ecommerce"
+  ],
+  "summary": "Resource on importing merchandise from China.",
+  "date": "2023-12-18",
+  "source_note": "importer marchandise chine_.json",
+  "from": ""
+ },
+ {
+  "id": "P140",
+  "title": "Import merchandise (Yetti)",
+  "category": "Business/Money",
+  "phase": "Idea",
+  "tags": [
+   "import",
+   "trade",
+   "business",
+   "offline"
+  ],
+  "summary": "Import business note: import merchandise (Yetti/coolers).",
+  "date": "2023-06-07",
+  "source_note": "import marchandise.json",
+  "from": ""
+ },
+ {
+  "id": "P141",
+  "title": "Index fund investing plan",
+  "category": "Business/Money",
+  "phase": "Idea",
+  "tags": [
+   "investing",
+   "index-funds",
+   "finance"
+  ],
+  "summary": "Investing intention: index funds and an investing plan.",
+  "date": "2019-09-06",
+  "source_note": "2023-12-12T14_38_21.457+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P142",
+  "title": "New crypto token article",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "crypto",
+   "investing"
+  ],
+  "summary": "Crypto resource: article on a new token making crypto millionaires.",
+  "date": "2021-09-09",
+  "source_note": "Le nouveau jeton qui fait des millionnaires en cry.json",
+  "from": ""
+ },
+ {
+  "id": "P143",
+  "title": "Owned domains / web properties",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "domains",
+   "web",
+   "assets"
+  ],
+  "summary": "His domains / web properties: squarepack.info, loop.ma, dumb.ai, iptele.fr, learnmssql.com.",
+  "date": "2025-06-25",
+  "source_note": "domains(1).json",
+  "from": ""
+ },
+ {
+  "id": "P144",
+  "title": "Resell IPTV from China",
+  "category": "Business/Money",
+  "phase": "Idea",
+  "tags": [
+   "iptv",
+   "reselling",
+   "business",
+   "online"
+  ],
+  "summary": "Money-making idea: reselling IPTV subscriptions sourced from China.",
+  "date": "2019-06-04",
+  "source_note": "2023-11-01T07_26_48.072+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P145",
+  "title": "Reward-app script video (TikTok)",
+  "category": "Business/Money",
+  "phase": "Idea",
+  "tags": [
+   "tiktok",
+   "rewards",
+   "income",
+   "online"
+  ],
+  "summary": "Money idea: reward-app script promoted via TikTok video.",
+  "date": "2021-08-14",
+  "source_note": "2023-12-12T14_57_34.352+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P146",
+  "title": "SquarePack Ltd (UK company)",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "company",
+   "uk",
+   "ecommerce",
+   "wholesale",
+   "online"
+  ],
+  "summary": "His UK private limited company SquarePack Ltd (company no. 12845594) - business activities: wholesale of household goods, non-specialised wholesale, retail via mail order/internet, and IT consultancy. (Note contains Companies House registration details.)",
+  "date": "2022-12-04",
+  "source_note": "squarepack ltd.json",
+  "from": ""
+ },
+ {
+  "id": "P147",
+  "title": "UserTesting (paid app testing)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "usertesting",
+   "gig",
+   "income",
+   "online"
+  ],
+  "summary": "Make money via UserTesting - tester tips page for getting paid to test apps/sites.",
+  "date": "2020-03-03",
+  "source_note": "todo(1).json",
+  "from": ""
+ },
+ {
+  "id": "P148",
+  "title": "3 ideas (animated jokes via GPT+ElevenLabs+Adobe Express, how-to-make-money videos, MCQs)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "online"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P149",
+  "title": "affiliate networks (cj.com, ewanetwork, monetizeit, clickbank)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P150",
+  "title": "AI agents / A2A server",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P151",
+  "title": "Airbnb concierge",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P152",
+  "title": "Alibaba affiliate / Alibaba Maroc",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "online"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P153",
+  "title": "avoid PooCoin/PancakeSwap",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "crypto",
+   "altcoins",
+   "trading"
+  ],
+  "summary": "",
+  "date": "2022-01-05",
+  "source_note": "Coin.json",
+  "from": "Crypto coins watchlist"
+ },
+ {
+  "id": "P154",
+  "title": "Binance launchpad IEO/IDO/BNB",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "crypto",
+   "altcoins",
+   "trading"
+  ],
+  "summary": "",
+  "date": "2022-01-05",
+  "source_note": "Coin.json",
+  "from": "Crypto coins watchlist"
+ },
+ {
+  "id": "P155",
+  "title": "blogging & web entrepreneurship",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "affiliate",
+   "cpa",
+   "forex",
+   "blogging",
+   "copywriting",
+   "online"
+  ],
+  "summary": "",
+  "date": "2014-11-22",
+  "source_note": "Business.json",
+  "from": "Online business / affiliate marketing dump"
+ },
+ {
+  "id": "P156",
+  "title": "Botasaurus scraper",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P157",
+  "title": "build a checklist of criteria to select a panel provider",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "reselling",
+   "benchmark",
+   "execution"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Zineb.json",
+  "from": "IPTV business - supplier selection"
+ },
+ {
+  "id": "P158",
+  "title": "cj.com, ewanetwork, monetizeit, clickbank",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "affiliate",
+   "cpa",
+   "forex",
+   "blogging",
+   "copywriting"
+  ],
+  "summary": "",
+  "date": "2014-11-22",
+  "source_note": "Business.json",
+  "from": "Online business / affiliate marketing dump"
+ },
+ {
+  "id": "P159",
+  "title": "complete cloaking sites (learnmssql.com, codarab.com), stealth Stripe with cloaking",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "stripe",
+   "payments",
+   "ads",
+   "cloaking"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Yassine.json",
+  "from": "IPTV business - payments & ads"
+ },
+ {
+  "id": "P160",
+  "title": "complete IPTV site iptele.fr",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "stripe",
+   "payments",
+   "ads",
+   "cloaking",
+   "online"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Yassine.json",
+  "from": "IPTV business - payments & ads"
+ },
+ {
+  "id": "P161",
+  "title": "Contabo arbitrage (sell Win10 desktops via cloudpc.one)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "online"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P162",
+  "title": "current work (Tufting, Alervito, Glutenlife, Matterport)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P163",
+  "title": "define strategy (budget, KPIs, scaling criteria)",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "stripe",
+   "payments",
+   "ads",
+   "cloaking"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Yassine.json",
+  "from": "IPTV business - payments & ads"
+ },
+ {
+  "id": "P164",
+  "title": "document FB/Insta/Google ads",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "stripe",
+   "payments",
+   "ads",
+   "cloaking"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Yassine.json",
+  "from": "IPTV business - payments & ads"
+ },
+ {
+  "id": "P165",
+  "title": "English stories -> Egyptian audio/video",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "online"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P166",
+  "title": "forex trading & brokers/leverage",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "affiliate",
+   "cpa",
+   "forex",
+   "blogging",
+   "copywriting",
+   "online"
+  ],
+  "summary": "",
+  "date": "2014-11-22",
+  "source_note": "Business.json",
+  "from": "Online business / affiliate marketing dump"
+ },
+ {
+  "id": "P167",
+  "title": "Google Maps review scraper (github)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P168",
+  "title": "grow niche site (gluten products comparison/reviews)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "online"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P169",
+  "title": "Hacksnation.com",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P170",
+  "title": "investing books (Collins Simple Investing, Simple Path to Wealth)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "amazon",
+   "fba",
+   "ecommerce",
+   "arbitrage"
+  ],
+  "summary": "",
+  "date": "2019-09-12",
+  "source_note": "Fba.json",
+  "from": "Amazon FBA / selling"
+ },
+ {
+  "id": "P171",
+  "title": "JungleScout, retail arbitrage, private label, Lean Startup, Keepa vs Camel, RevSeller, Replens, Inventory Lab, Payoneer, eBay starter store",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "amazon",
+   "fba",
+   "ecommerce",
+   "arbitrage"
+  ],
+  "summary": "",
+  "date": "2019-09-12",
+  "source_note": "Fba.json",
+  "from": "Amazon FBA / selling"
+ },
+ {
+  "id": "P172",
+  "title": "launch ads",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "stripe",
+   "payments",
+   "ads",
+   "cloaking"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Yassine.json",
+  "from": "IPTV business - payments & ads"
+ },
+ {
+  "id": "P173",
+  "title": "Liam Ottley",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P174",
+  "title": "Lightricks video generation",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P175",
+  "title": "list and benchmark providers with 72h tests from a Friday",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "reselling",
+   "benchmark",
+   "execution"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Zineb.json",
+  "from": "IPTV business - supplier selection"
+ },
+ {
+  "id": "P176",
+  "title": "MCP Figma",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P177",
+  "title": "note on repeating success via Keepa and coaching",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "amazon",
+   "fba",
+   "ecommerce",
+   "arbitrage"
+  ],
+  "summary": "",
+  "date": "2019-09-12",
+  "source_note": "Fba.json",
+  "from": "Amazon FBA / selling"
+ },
+ {
+  "id": "P178",
+  "title": "online freelancing (4dayweek, Upwork, Flatworld)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "online"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P179",
+  "title": "own products (guitar courses, IT/productivity, programming, copywriting)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "affiliate",
+   "cpa",
+   "forex",
+   "blogging",
+   "copywriting",
+   "online"
+  ],
+  "summary": "",
+  "date": "2014-11-22",
+  "source_note": "Business.json",
+  "from": "Online business / affiliate marketing dump"
+ },
+ {
+  "id": "P180",
+  "title": "payment processors/Stripe alternatives (checkout.com, 2checkout, TransactionCloud, Gumroad, Zelle, CashApp, Venmo, Perfect Money, WebMoney, PeerWallet, CopeCart, mpay, PayKings, MoneyCollect, Payeer crypto)",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "stripe",
+   "payments",
+   "ads",
+   "cloaking"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Yassine.json",
+  "from": "IPTV business - payments & ads"
+ },
+ {
+  "id": "P181",
+  "title": "pick top 3 providers and negotiate pricing for 10/50/100/500/1000",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "reselling",
+   "benchmark",
+   "execution"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Zineb.json",
+  "from": "IPTV business - supplier selection"
+ },
+ {
+  "id": "P182",
+  "title": "Promptefy",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P183",
+  "title": "Quran learning app",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "online"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P184",
+  "title": "SaaS DMBOK online training/certs",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "online"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P185",
+  "title": "sell AI agents",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "online"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P186",
+  "title": "sell automations (Reddit -> Gumroad)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate",
+   "online"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P187",
+  "title": "selling Moroccan products immigrants want / that tourists like",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "amazon",
+   "fba",
+   "ecommerce",
+   "arbitrage",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2019-09-12",
+  "source_note": "Fba.json",
+  "from": "Amazon FBA / selling"
+ },
+ {
+  "id": "P188",
+  "title": "set up Wise",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "stripe",
+   "payments",
+   "ads",
+   "cloaking"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Yassine.json",
+  "from": "IPTV business - payments & ads"
+ },
+ {
+  "id": "P189",
+  "title": "startup programs (GMIS, Station F, YCombinator)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P190",
+  "title": "sync prices across sites",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "stripe",
+   "payments",
+   "ads",
+   "cloaking"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Yassine.json",
+  "from": "IPTV business - payments & ads"
+ },
+ {
+  "id": "P191",
+  "title": "test each m3u quality (iptvtee github)",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "reselling",
+   "benchmark",
+   "execution"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Zineb.json",
+  "from": "IPTV business - supplier selection"
+ },
+ {
+  "id": "P192",
+  "title": "tools (futurepedia, Woxo, AutoGPT)",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P193",
+  "title": "traffic channels (SEO, SEM, content, email, social) and ClickBank niche categories",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "affiliate",
+   "cpa",
+   "forex",
+   "blogging",
+   "copywriting"
+  ],
+  "summary": "",
+  "date": "2014-11-22",
+  "source_note": "Business.json",
+  "from": "Online business / affiliate marketing dump"
+ },
+ {
+  "id": "P194",
+  "title": "use Watcher Guru",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "crypto",
+   "altcoins",
+   "trading"
+  ],
+  "summary": "",
+  "date": "2022-01-05",
+  "source_note": "Coin.json",
+  "from": "Crypto coins watchlist"
+ },
+ {
+  "id": "P195",
+  "title": "watch YouTube tutorials (try Arabic for Moroccan content)",
+  "category": "Business/Money",
+  "phase": "Execution",
+  "tags": [
+   "iptv",
+   "reselling",
+   "benchmark",
+   "execution"
+  ],
+  "summary": "",
+  "date": "2024-09-25",
+  "source_note": "IPTV todo list Zineb.json",
+  "from": "IPTV business - supplier selection"
+ },
+ {
+  "id": "P196",
+  "title": "WhatsApp contact extractor",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P197",
+  "title": "WhatsApp wrapper SMS",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P198",
+  "title": "Working Nomads",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P199",
+  "title": "Xander.ai",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P200",
+  "title": "XRP, HBAR, ADA, Evereth, Zengo, GLMR, ImpactXP, BombCrypto, Saitama, SFM, Floki, Mina, Lbank",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "crypto",
+   "altcoins",
+   "trading"
+  ],
+  "summary": "",
+  "date": "2022-01-05",
+  "source_note": "Coin.json",
+  "from": "Crypto coins watchlist"
+ },
+ {
+  "id": "P201",
+  "title": "Youglish",
+  "category": "Business/Money",
+  "phase": "Research",
+  "tags": [
+   "automation",
+   "scraping",
+   "saas",
+   "affiliate"
+  ],
+  "summary": "",
+  "date": "2023-12-12",
+  "source_note": "Business(1).json",
+  "from": "AI automation business dump"
+ },
+ {
+  "id": "P202",
+  "title": "AI agent tools (n8n, Opal, Suna)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "ai-agents",
+   "n8n",
+   "automation"
+  ],
+  "summary": "AI agent/automation tools: n8n.io, Opal (opal.withgoogle.com), suna.so; plus how to use the n8n github library via Claude.",
+  "date": "2025-09-30",
+  "source_note": "Agents.json",
+  "from": ""
+ },
+ {
+  "id": "P203",
+  "title": "AI animated-graphics tool (Dora)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "animation",
+   "tool"
+  ],
+  "summary": "AI tool for animated graphics: trydorastudio.com.",
+  "date": "2025-06-25",
+  "source_note": "Ai tools_.json",
+  "from": ""
+ },
+ {
+  "id": "P204",
+  "title": "AI book writer",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "writing",
+   "books",
+   "tool"
+  ],
+  "summary": "Tool: an AI book writer.",
+  "date": "2026-02-13",
+  "source_note": "2026-02-13T20_52_35.826+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P205",
+  "title": "AI character animation / mirroring",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "animation",
+   "character"
+  ],
+  "summary": "AI tool/technique for character animation mirroring.",
+  "date": "2025-09-27",
+  "source_note": "2025-09-27T17_42_02.890+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P206",
+  "title": "AI: copy an app from GitHub",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "github",
+   "apps"
+  ],
+  "summary": "Tool/technique to copy/replicate an app using AI from GitHub (Facebook video).",
+  "date": "2025-08-27",
+  "source_note": "Ai app copy github.json",
+  "from": ""
+ },
+ {
+  "id": "P207",
+  "title": "AIs to try (agents/gen/tools)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "agents",
+   "tools",
+   "video-gen"
+  ],
+  "summary": "AI tools to try, by category. Agents: MCP AI agent, n8n, Manus AI. Video gen: Wan; consistent-character tool. AI browser: Fellou. Offline/standalone: Llama 4. App generators: Clark AI, Antigravity. PKM: Affine (free self-hosted Notion alternative).",
+  "date": "2025-10-16",
+  "source_note": "_AIs to try.json",
+  "from": ""
+ },
+ {
+  "id": "P208",
+  "title": "AnyCrawl (web crawler)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "crawler",
+   "scraping",
+   "tool"
+  ],
+  "summary": "Web crawler tool: AnyCrawl (github any4ai/AnyCrawl).",
+  "date": "2025-09-30",
+  "source_note": "crawler.json",
+  "from": ""
+ },
+ {
+  "id": "P209",
+  "title": "Awesome Nano Banana templates",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "image",
+   "templates",
+   "nano-banana"
+  ],
+  "summary": "AI image templates: awesome-nano-banana (github JimmyLv/awesome-nano-banana).",
+  "date": "2025-10-03",
+  "source_note": "Template nano banana.json",
+  "from": ""
+ },
+ {
+  "id": "P210",
+  "title": "BetterPic AI headshots",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "headshot",
+   "tool"
+  ],
+  "summary": "AI headshot generator: BetterPic.",
+  "date": "2025-09-16",
+  "source_note": "2025-10-29T13_07_50.207+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P211",
+  "title": "CAD/engineering software",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "cad",
+   "engineering",
+   "software"
+  ],
+  "summary": "Engineering/CAD software references: Descartes, Bentley, MicroStation.",
+  "date": "2019-03-30",
+  "source_note": "2023-12-12T14_36_45.653+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P212",
+  "title": "Contabo VPS setup (desktop reselling)",
+  "category": "Tool",
+  "phase": "Execution",
+  "tags": [
+   "vps",
+   "contabo",
+   "windows",
+   "reselling"
+  ],
+  "summary": "Contabo VPS setup for the Windows-desktop reselling/arbitrage idea, using the Windows-Server-Contabo-VPS github project. (Contains credentials.)",
+  "date": "2024-08-31",
+  "source_note": "2024-11-11T14_35_40.971+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P213",
+  "title": "Emergent.sh (AI coder)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "coding",
+   "nocode"
+  ],
+  "summary": "AI coding/app-builder tool: emergent.sh.",
+  "date": "2025-09-30",
+  "source_note": "Ai coder emergent.sh.json",
+  "from": ""
+ },
+ {
+  "id": "P214",
+  "title": "File-sharing tool: ProjectSend",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "filesharing",
+   "selfhosted",
+   "tool"
+  ],
+  "summary": "Self-hosted file-sharing tool ProjectSend.",
+  "date": "2019-06-19",
+  "source_note": "2023-12-12T14_38_06.451+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P215",
+  "title": "Flutter / Hummingbird",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "flutter",
+   "dev",
+   "framework"
+  ],
+  "summary": "Dev framework note: Flutter and Hummingbird (Flutter for web).",
+  "date": "2018-12-10",
+  "source_note": "2023-12-12T14_36_10.598+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P216",
+  "title": "Free RDP (Oracle Cloud)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "rdp",
+   "oracle-cloud",
+   "free"
+  ],
+  "summary": "Get a free RDP / remote desktop via Oracle Cloud.",
+  "date": "2025-09-30",
+  "source_note": "Free rdp.json",
+  "from": ""
+ },
+ {
+  "id": "P217",
+  "title": "Gemini VS Code app generator",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "gemini",
+   "vscode",
+   "codegen"
+  ],
+  "summary": "Tool: Gemini VS Code app generator.",
+  "date": "2025-09-30",
+  "source_note": "Gemini vscode app generator_.json",
+  "from": ""
+ },
+ {
+  "id": "P218",
+  "title": "Google Veo (AI video)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "video",
+   "google"
+  ],
+  "summary": "AI video generation tool: Google Veo.",
+  "date": "2025-05-26",
+  "source_note": "2025-08-26T12_25_05.045+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P219",
+  "title": "Higgsfield MCP 3D visit for Airbnb",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "3d",
+   "airbnb",
+   "matterport",
+   "tool"
+  ],
+  "summary": "Tool/technique for creating 3D virtual visits for Airbnb using Higgsfield MCP (ties to his Matterport/3D-visit idea).",
+  "date": "2026-06-08",
+  "source_note": "Higgsfield Mcp 3d visit airbnb.json",
+  "from": ""
+ },
+ {
+  "id": "P220",
+  "title": "Internet-marketing tools",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "internet-marketing",
+   "adsense",
+   "tools"
+  ],
+  "summary": "Internet-marketing notes: Clonnify (adsense/clone tool) and coopsclub.org.",
+  "date": "2021-08-25",
+  "source_note": "IM Notes.json",
+  "from": ""
+ },
+ {
+  "id": "P221",
+  "title": "Let's Enhance (AI image upscaler)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "image",
+   "tool"
+  ],
+  "summary": "AI image enhancement/upscaling tool: letsenhance.io.",
+  "date": "2021-03-21",
+  "source_note": "2023-12-12T14_57_34.483+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P222",
+  "title": "Luma Dream Machine (AI video)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "video",
+   "tool"
+  ],
+  "summary": "AI video generation tool: Luma Labs Dream Machine.",
+  "date": "2024-09-25",
+  "source_note": "2024-11-11T14_35_40.860+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P223",
+  "title": "Maxon Cinema 4D",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "3d",
+   "design",
+   "software"
+  ],
+  "summary": "3D software tool: Maxon Cinema 4D.",
+  "date": "2020-06-01",
+  "source_note": "2023-12-12T14_57_34.424+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P224",
+  "title": "Mobile dev frameworks",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "mobile",
+   "dev",
+   "framework"
+  ],
+  "summary": "Cross-platform mobile development frameworks to explore: Telerik and NativeScript.",
+  "date": "2016-12-15",
+  "source_note": "2023-12-12T14_30_46.696+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P225",
+  "title": "Operator.ai",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "tool",
+   "agent"
+  ],
+  "summary": "AI tool reference: Operator.ai.",
+  "date": "2025-12-03",
+  "source_note": "2025-12-03T22_25_51.330+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P226",
+  "title": "Payment gateway alternative",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "payments",
+   "gateway",
+   "tool"
+  ],
+  "summary": "Tool/resource: a payment-gateway alternative (Facebook video).",
+  "date": "2025-09-30",
+  "source_note": "2025-11-26T13_43_23.933+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P227",
+  "title": "Prompt reverse engineering",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "prompting",
+   "technique"
+  ],
+  "summary": "Technique/tool for prompt reverse-engineering (Facebook video).",
+  "date": "2025-10-10",
+  "source_note": "Prompt reverse engineering.json",
+  "from": ""
+ },
+ {
+  "id": "P228",
+  "title": "Promptefy (prompt builder)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "prompting",
+   "tool"
+  ],
+  "summary": "Prompt-crafting tool: promptefy.online.",
+  "date": "2025-09-30",
+  "source_note": "Make good prompts.json",
+  "from": ""
+ },
+ {
+  "id": "P229",
+  "title": "SEO tools",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "seo",
+   "analytics",
+   "tools"
+  ],
+  "summary": "SEO utilities: Google CTR rate, Histats analytics, Reverso, plagiarism detector.",
+  "date": "2015-02-14",
+  "source_note": "seo.json",
+  "from": ""
+ },
+ {
+  "id": "P230",
+  "title": "Sketch animation tool (MetaDemoLab)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "animation",
+   "tool"
+  ],
+  "summary": "AI tool that animates hand-drawn sketches: sketch.metademolab.com.",
+  "date": "2022-06-09",
+  "source_note": "2023-12-12T14_57_19.746+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P231",
+  "title": "Social media monitoring tools",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "monitoring",
+   "social-media",
+   "seo",
+   "tools"
+  ],
+  "summary": "Social-media / web monitoring toolset: Google Alerts, Twitter lists, Netvibes, Feedly, Mention, Hashtagify, Tropes, Gephi.",
+  "date": "2018-11-07",
+  "source_note": "2023-12-12T15_01_47.010+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P232",
+  "title": "SpacetimeDB",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "database",
+   "dev",
+   "tool"
+  ],
+  "summary": "Dev tool reference: SpacetimeDB (space-time database).",
+  "date": "2026-03-17",
+  "source_note": "2026-03-17T13_00_46.064Z.json",
+  "from": ""
+ },
+ {
+  "id": "P233",
+  "title": "Telegram bots & channels directory",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "telegram",
+   "bots",
+   "tools",
+   "crypto"
+  ],
+  "summary": "Large directory of Telegram channels and utility bots: channels for free courses, wholesale/instalment products, books, AliExpress coupons, forex/crypto trading and crypto signals; bots for downloading from Insta/FB/Twitter/TikTok/SoundCloud/Spotify, subtitles, PDF/Word creation, crypto price, user-info, URL uploaders, RSS/YouTube notifications.",
+  "date": "2022-06-07",
+  "source_note": "telegram bots.json",
+  "from": ""
+ },
+ {
+  "id": "P234",
+  "title": "WordPress e-commerce stack",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "wordpress",
+   "woocommerce",
+   "web"
+  ],
+  "summary": "Web build stack: WordPress, King Composer, WooCommerce.",
+  "date": "2019-01-08",
+  "source_note": "2023-12-12T14_36_35.701+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P235",
+  "title": "AI infographic animation",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "video-gen",
+   "hosting",
+   "n8n",
+   "tools"
+  ],
+  "summary": "",
+  "date": "2025-10-30",
+  "source_note": "Tools.json",
+  "from": "AI/free tools list"
+ },
+ {
+  "id": "P236",
+  "title": "free Google AI Pro for students",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "video-gen",
+   "hosting",
+   "n8n",
+   "tools"
+  ],
+  "summary": "",
+  "date": "2025-10-30",
+  "source_note": "Tools.json",
+  "from": "AI/free tools list"
+ },
+ {
+  "id": "P237",
+  "title": "free hosting",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "video-gen",
+   "hosting",
+   "n8n",
+   "tools"
+  ],
+  "summary": "",
+  "date": "2025-10-30",
+  "source_note": "Tools.json",
+  "from": "AI/free tools list"
+ },
+ {
+  "id": "P238",
+  "title": "lifetime-free n8n",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "video-gen",
+   "hosting",
+   "n8n",
+   "tools"
+  ],
+  "summary": "",
+  "date": "2025-10-30",
+  "source_note": "Tools.json",
+  "from": "AI/free tools list"
+ },
+ {
+  "id": "P239",
+  "title": "text-to-video generator (Stepvideo T2V, yuewen.cn/videos)",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "video-gen",
+   "hosting",
+   "n8n",
+   "tools"
+  ],
+  "summary": "",
+  "date": "2025-10-30",
+  "source_note": "Tools.json",
+  "from": "AI/free tools list"
+ },
+ {
+  "id": "P240",
+  "title": "vectorizer",
+  "category": "Tool",
+  "phase": "Research",
+  "tags": [
+   "video-gen",
+   "hosting",
+   "n8n",
+   "tools"
+  ],
+  "summary": "",
+  "date": "2025-10-30",
+  "source_note": "Tools.json",
+  "from": "AI/free tools list"
+ },
+ {
+  "id": "P241",
+  "title": "$1M AI-business planning prompt",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "business-plan",
+   "prompt",
+   "strategy"
+  ],
+  "summary": "Reusable ChatGPT prompt to design a $1M-in-6-months AI business with no startup cost: describe yourself, then ask for 3 tailored business models, a step-by-step 6-month roadmap for the best one, the AI tools/automations/outsourcing to run it on autopilot, growth/monetization/funnels/pricing/scaling strategy, and weekly KPIs; then iterate.",
+  "date": "2026-01-03",
+  "source_note": "2026-01-06T12_47_45.350+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P242",
+  "title": "AI 30-days-of-videos on autopilot",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "video",
+   "automation",
+   "content"
+  ],
+  "summary": "Method: use AI to generate 30 days of videos on autopilot.",
+  "date": "2025-11-17",
+  "source_note": "AI makes 30 days of videos on autopilot.json",
+  "from": ""
+ },
+ {
+  "id": "P243",
+  "title": "Beating procrastination method",
+  "category": "Method",
+  "phase": "Execution",
+  "tags": [
+   "productivity",
+   "focus",
+   "method"
+  ],
+  "summary": "Personal productivity method to overcome anxiety/procrastination: keep the flow, stay busy at work, dump brain to a to-do list, tackle the most urgent issue, park procrastination ideas on the list and keep working, find interesting angles to motivate yourself.",
+  "date": "2021-05-25",
+  "source_note": "How i overcame anxiety_procrastination thrust.json",
+  "from": ""
+ },
+ {
+  "id": "P244",
+  "title": "Belkhayate trading method",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "forex",
+   "trading",
+   "belkhayate"
+  ],
+  "summary": "Trading method notes: 1-minute trading using Belkhayate 'trend' and 'ressort' (spring) indicators.",
+  "date": "2021-11-26",
+  "source_note": "MbK.json",
+  "from": ""
+ },
+ {
+  "id": "P245",
+  "title": "Data warehouse design principles",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "data",
+   "datawarehouse",
+   "sql",
+   "modelling"
+  ],
+  "summary": "Technical how-to on data-warehouse/dimensional modelling: surrogate keys, star (not snowflake) schema, flatten hierarchies, junk dimensions, three fact-table types (transaction/periodic snapshot/accumulating), indexing, SCD type-2, store ingredients not ratios, fact-less fact tables, etc.",
+  "date": "2020-04-16",
+  "source_note": "2023-12-12T14_57_34.481+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P246",
+  "title": "Fermi thinking",
+  "category": "Method",
+  "phase": "Idea",
+  "tags": [
+   "thinking",
+   "estimation",
+   "method"
+  ],
+  "summary": "Thinking/estimation method to learn: Fermi estimation.",
+  "date": "2019-08-09",
+  "source_note": "2023-12-12T14_38_16.363+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P247",
+  "title": "Find winning product via ChatGPT",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "dropshipping",
+   "chatgpt",
+   "ecommerce"
+  ],
+  "summary": "Dropshipping/e-commerce method: use ChatGPT to find a winning product (Instagram reel).",
+  "date": "2023-12-19",
+  "source_note": "find winning product using chatgpt_.json",
+  "from": ""
+ },
+ {
+  "id": "P248",
+  "title": "Fiverr affiliate",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "fiverr",
+   "affiliate",
+   "income"
+  ],
+  "summary": "Money method: Fiverr affiliate program.",
+  "date": "2025-10-13",
+  "source_note": "Fiver affiliate.json",
+  "from": ""
+ },
+ {
+  "id": "P249",
+  "title": "Free .edu email perks",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "edu-email",
+   "github-student",
+   "coursera",
+   "free"
+  ],
+  "summary": "Method to get a free University of Colorado .edu email (using fake US-identity generators) to unlock Coursera Pro, GitHub Student and many free offers.",
+  "date": "2025-10-06",
+  "source_note": "edu accnt.json",
+  "from": ""
+ },
+ {
+  "id": "P250",
+  "title": "Get approved on AdSense (expired domains)",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "adsense",
+   "expired-domains",
+   "seo",
+   "blackhat"
+  ],
+  "summary": "Blackhat method to get fast AdSense approval: on expireddomains.net filter deleted domains with wikipedia links (min 1), SEMrush keyword 1, only-available .com/.net, sort by ABY, pick a short domain registered 2024-2025 with <100 backlinks; buy (~$12 at Namecheap/Hostinger), host WordPress, add your articles + legal/contact/about pages, index in Google, then submit to AdSense.",
+  "date": "2025-09-30",
+  "source_note": "get approved on Adsense.json",
+  "from": ""
+ },
+ {
+  "id": "P251",
+  "title": "Github -> landing -> email -> products funnel",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "funnel",
+   "marketing",
+   "email",
+   "github"
+  ],
+  "summary": "Marketing funnel method: GitHub -> landing page -> email list -> products.",
+  "date": "2025-11-01",
+  "source_note": "Github _ landing page _ email _ products.json",
+  "from": ""
+ },
+ {
+  "id": "P252",
+  "title": "Intent-based programming",
+  "category": "Method",
+  "phase": "Idea",
+  "tags": [
+   "dev",
+   "concept"
+  ],
+  "summary": "Tech concept to explore: intent-based programming.",
+  "date": "2017-11-22",
+  "source_note": "2023-12-12T14_30_34.216+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P253",
+  "title": "Kids YouTube channel",
+  "category": "Method",
+  "phase": "Idea",
+  "tags": [
+   "youtube",
+   "kids",
+   "content",
+   "online"
+  ],
+  "summary": "Content-money idea/method: a kids YouTube channel (Facebook reference).",
+  "date": "2025-10-30",
+  "source_note": "Kids youtube channel.json",
+  "from": ""
+ },
+ {
+  "id": "P254",
+  "title": "Mass affiliate method",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "affiliate",
+   "mass",
+   "income"
+  ],
+  "summary": "Money method: mass affiliate marketing (Facebook reference).",
+  "date": "2025-11-28",
+  "source_note": "Affiliate mass_.json",
+  "from": ""
+ },
+ {
+  "id": "P255",
+  "title": "Monetize viral news via AdSense",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "adsense",
+   "ezoic",
+   "wordpress",
+   "content",
+   "traffic",
+   "online"
+  ],
+  "summary": "Method to profit from viral news (e.g. the Coldplay-concert event): build a WordPress celebrity-news site, ride viral social stories, drive traffic (FB/TikTok), and earn from ads (Google AdSense ~$1-3/1000 views, Ezoic up to $10+/1000). Needs domain+hosting, WordPress+fast theme, timely trending content, social promotion.",
+  "date": "2025-09-30",
+  "source_note": "viral events =_ $$.json",
+  "from": ""
+ },
+ {
+  "id": "P256",
+  "title": "Moroccan FB video pages method",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "facebook",
+   "content",
+   "income",
+   "morocco",
+   "online"
+  ],
+  "summary": "Content-money method: simple Facebook pages with videos (Moroccan style).",
+  "date": "2025-11-09",
+  "source_note": "Stupid FB pages with videos (moroccan way).json",
+  "from": ""
+ },
+ {
+  "id": "P257",
+  "title": "Probabilistic programming language",
+  "category": "Method",
+  "phase": "Idea",
+  "tags": [
+   "dev",
+   "ml",
+   "concept"
+  ],
+  "summary": "Tech/concept to learn: probabilistic programming languages.",
+  "date": "2018-05-19",
+  "source_note": "2023-12-12T14_32_23.876+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P258",
+  "title": "Security by design",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "security",
+   "dev",
+   "rls",
+   "method"
+  ],
+  "summary": "Technical method note: how to integrate security by design from the conception stage - data protection, authentication, permissions/rights, row-level security (RLS).",
+  "date": "2026-04-15",
+  "source_note": "2026-04-15T18_12_50.446+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P259",
+  "title": "Sell AI-generated illustrations",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "illustration",
+   "income",
+   "online"
+  ],
+  "summary": "Money method: create and sell AI-generated illustrations.",
+  "date": "2025-10-14",
+  "source_note": "2025-10-14T08_21_18.302+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P260",
+  "title": "TikTok Japan (Mr Sushi) method",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "tiktok",
+   "content",
+   "income"
+  ],
+  "summary": "Content/money method references: TikTok Japan 'Mr Sushi' style videos.",
+  "date": "2025-11-01",
+  "source_note": "tiktok japan mr sushi.json",
+  "from": ""
+ },
+ {
+  "id": "P261",
+  "title": "TikTok Japan money method",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "tiktok",
+   "income",
+   "method"
+  ],
+  "summary": "Money method: a trustworthy guy explaining making ~70dh daily (TikTok Japan style).",
+  "date": "2025-09-30",
+  "source_note": "Tiktok japan.json",
+  "from": ""
+ },
+ {
+  "id": "P262",
+  "title": "Vibe-coding a SaaS (method)",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "saas",
+   "nocode",
+   "vibe-coding",
+   "emergent",
+   "claude"
+  ],
+  "summary": "No-code SaaS build method: 1) write a PRD (Product Requirement Document) with Claude for a structured spec; 2) generate the whole app (front, back, DB, auth, AI, automations) with Emergent - no coding; 3) deploy to Google Play ($25 once) / Apple Store ($100/yr) and iterate via prompts.",
+  "date": "2026-04-15",
+  "source_note": "2026-04-15T09_50_53.527+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P263",
+  "title": "Why Motivation Is Garbage (SUCCESS)",
+  "category": "Method",
+  "phase": "Idea",
+  "tags": [
+   "productivity",
+   "self-help",
+   "motivation"
+  ],
+  "summary": "Self-development/productivity resource: a SUCCESS video arguing motivation is unreliable (build discipline/systems instead).",
+  "date": "2017-02-04",
+  "source_note": "Why Motivation Is Garbage _ SUCCESS.json",
+  "from": ""
+ },
+ {
+  "id": "P264",
+  "title": "1) Commerce - dropshipping (AliExpress->store->FB ads, card payment) and local e-commerce/COD (cash on delivery)",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "dropshipping",
+   "affiliate",
+   "cpa",
+   "pod",
+   "freelancing"
+  ],
+  "summary": "",
+  "date": "2021-09-06",
+  "source_note": "2024-11-04T20_20_56.260+01_00.json",
+  "from": "Make-money-online master guide"
+ },
+ {
+  "id": "P265",
+  "title": "2) Internet Marketing - affiliate marketing (Amazon), CPA/cost-per-action with content-lockers (cpabuild/cpalead), Google AdSense and adsense arbitrage",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "dropshipping",
+   "affiliate",
+   "cpa",
+   "pod",
+   "freelancing"
+  ],
+  "summary": "",
+  "date": "2021-09-06",
+  "source_note": "2024-11-04T20_20_56.260+01_00.json",
+  "from": "Make-money-online master guide"
+ },
+ {
+  "id": "P266",
+  "title": "3) Trading - forex and crypto",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "dropshipping",
+   "affiliate",
+   "cpa",
+   "pod",
+   "freelancing"
+  ],
+  "summary": "",
+  "date": "2021-09-06",
+  "source_note": "2024-11-04T20_20_56.260+01_00.json",
+  "from": "Make-money-online master guide"
+ },
+ {
+  "id": "P267",
+  "title": "4) POD print-on-demand (Redbubble, Teespring, Merch by Amazon) and Amazon KDP low/no-content books",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "dropshipping",
+   "affiliate",
+   "cpa",
+   "pod",
+   "freelancing"
+  ],
+  "summary": "",
+  "date": "2021-09-06",
+  "source_note": "2024-11-04T20_20_56.260+01_00.json",
+  "from": "Make-money-online master guide"
+ },
+ {
+  "id": "P268",
+  "title": "5) Freelancing (Upwork, Skillshare, Fiverr, Khamsat)",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "dropshipping",
+   "affiliate",
+   "cpa",
+   "pod",
+   "freelancing"
+  ],
+  "summary": "",
+  "date": "2021-09-06",
+  "source_note": "2024-11-04T20_20_56.260+01_00.json",
+  "from": "Make-money-online master guide"
+ },
+ {
+  "id": "P269",
+  "title": "concepts of driving traffic (free/SEO vs paid/FB ads), conversion and arbitrage",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "dropshipping",
+   "affiliate",
+   "cpa",
+   "pod",
+   "freelancing"
+  ],
+  "summary": "",
+  "date": "2021-09-06",
+  "source_note": "2024-11-04T20_20_56.260+01_00.json",
+  "from": "Make-money-online master guide"
+ },
+ {
+  "id": "P270",
+  "title": "plus paid app/site testing (uTest, TesterWork, from $15/test)",
+  "category": "Method",
+  "phase": "Research",
+  "tags": [
+   "dropshipping",
+   "affiliate",
+   "cpa",
+   "pod",
+   "freelancing"
+  ],
+  "summary": "",
+  "date": "2021-09-06",
+  "source_note": "2024-11-04T20_20_56.260+01_00.json",
+  "from": "Make-money-online master guide"
+ },
+ {
+  "id": "P271",
+  "title": "Find online work plan",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "freelancing",
+   "income",
+   "plan"
+  ],
+  "summary": "Personal action item: find work, try online income methods one by one.",
+  "date": "2023-05-08",
+  "source_note": "DAILY_.json",
+  "from": ""
+ },
+ {
+  "id": "P272",
+  "title": "Freelance data-consulting day rate",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "freelancing",
+   "consulting",
+   "data-governance",
+   "rate"
+  ],
+  "summary": "Freelance rate negotiation: TJM (daily rate) of 4500 MAD justified by DAMA/MDM/data-governance expertise and 15+ years; willing to accept 4200 MAD HT/day if a 6-month firm renewable mission with rate-revision on renewal.",
+  "date": "2025-05-28",
+  "source_note": "2025-08-26T12_25_05.067+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P273",
+  "title": "Learn ML: Andrew Ng, TensorFlow",
+  "category": "Work/Skill",
+  "phase": "Research",
+  "tags": [
+   "ml",
+   "tensorflow",
+   "learning"
+  ],
+  "summary": "AI/ML learning resources: Andrew Ng, Google Cloud TensorFlow Codelabs.",
+  "date": "2017-02-24",
+  "source_note": "2023-11-01T07_25_58.376+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P274",
+  "title": "Microsoft Certified Trainer",
+  "category": "Work/Skill",
+  "phase": "Idea",
+  "tags": [
+   "certification",
+   "microsoft",
+   "career"
+  ],
+  "summary": "Certification to pursue: Microsoft Certified Trainer.",
+  "date": "2018-08-09",
+  "source_note": "2023-12-12T14_34_31.446+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P275",
+  "title": "Overemployment (multiple remote jobs)",
+  "category": "Work/Skill",
+  "phase": "Research",
+  "tags": [
+   "remote-work",
+   "overemployed",
+   "income"
+  ],
+  "summary": "Remote-work strategy: r/overemployed - work multiple jobs within the same 40 hours to reach financial freedom.",
+  "date": "2025-09-30",
+  "source_note": "r_overemployed.json",
+  "from": ""
+ },
+ {
+  "id": "P276",
+  "title": "15+ years IT experience",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P277",
+  "title": "admob/Google Play console verifications",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P278",
+  "title": "AI agent remote desktop",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P279",
+  "title": "AI school/lab, MAJAL SDL, startup incubation, open data",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "govtech",
+   "startups"
+  ],
+  "summary": "",
+  "date": "2023-11-15",
+  "source_note": "Berkane.json",
+  "from": "Berkane Smart City strategy"
+ },
+ {
+  "id": "P280",
+  "title": "Alibaba Maroc",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P281",
+  "title": "Anthropic prompt engineering",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P282",
+  "title": "benchmark lessons (Barcelona/Amsterdam/London)",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P283",
+  "title": "benchmark lessons from Barcelona/Amsterdam/London",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "govtech",
+   "startups"
+  ],
+  "summary": "",
+  "date": "2023-11-15",
+  "source_note": "Berkane.json",
+  "from": "Berkane Smart City strategy"
+ },
+ {
+  "id": "P284",
+  "title": "build app",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P285",
+  "title": "Companies House/SquarePack filings",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P286",
+  "title": "conciergerie airbnb",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P287",
+  "title": "Diana's site",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P288",
+  "title": "federate youth around solid initiatives vs easy-money lures",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P289",
+  "title": "GITEX contacts",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P290",
+  "title": "governance/KPIs",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P291",
+  "title": "invest in education (India model)",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P292",
+  "title": "mail->GPT automation (mailscape)",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P293",
+  "title": "maintain business sites squarepack & loop",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P294",
+  "title": "MAJAL/E-Moulouya proof points",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P295",
+  "title": "orange as brand of a sustainable, profitable tech hub",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P296",
+  "title": "organize project ideas across WhatsApp/Keep",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P297",
+  "title": "PNUD partnership on smart-urban solutions, digital twin, AI/IoT/Big Data, integrated digital governance, and youth start-up incubation",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "govtech",
+   "startups"
+  ],
+  "summary": "",
+  "date": "2023-11-15",
+  "source_note": "Berkane.json",
+  "from": "Berkane Smart City strategy"
+ },
+ {
+  "id": "P298",
+  "title": "PNUD partnership pillars",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P299",
+  "title": "product approach and ROI/financial sustainability",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P300",
+  "title": "product-approach for replicability and financial sustainability (autonomy then viability)",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "govtech",
+   "startups"
+  ],
+  "summary": "",
+  "date": "2023-11-15",
+  "source_note": "Berkane.json",
+  "from": "Berkane Smart City strategy"
+ },
+ {
+  "id": "P301",
+  "title": "sell tuft",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business",
+   "offline"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P302",
+  "title": "six SMART pillars (economy, mobility, environment, people, living, governance) plus smart commune and agriculture 4.0",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "govtech",
+   "startups"
+  ],
+  "summary": "",
+  "date": "2023-11-15",
+  "source_note": "Berkane.json",
+  "from": "Berkane Smart City strategy"
+ },
+ {
+  "id": "P303",
+  "title": "smart city + smart rural commune + agriculture 4.0",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P304",
+  "title": "smart-agriculture hub",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "smart-city",
+   "strategy",
+   "pitch",
+   "govtech"
+  ],
+  "summary": "",
+  "date": "2023-12-29",
+  "source_note": "2025-12-09T11_28_41.239+01_00.json",
+  "from": "Berkane Smart City pitch (personal)"
+ },
+ {
+  "id": "P305",
+  "title": "strategic/tool nuggets worth preserving: try Claude/Emergent, Intelbase, Obsidian, Notion/Notion AI, NotebookLM, Aider (VS Code), Firebase Studio, Napkin.ai, Compuser.ai, n8n",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P306",
+  "title": "Very large mixed to-do list",
+  "category": "Work/Skill",
+  "phase": "Execution",
+  "tags": [
+   "ai-tools",
+   "automation",
+   "productivity",
+   "business"
+  ],
+  "summary": "",
+  "date": "2023-04-23",
+  "source_note": "2025-11-26T13_15_00.578+01_00.json",
+  "from": "Mega to-do (AI tools & business nuggets)"
+ },
+ {
+  "id": "P307",
+  "title": "Business books to read",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "books",
+   "business",
+   "self-help"
+  ],
+  "summary": "Business/self-help reading list: Good to Great, Rich Dad Poor Dad, The Antidote, Reset (plus Al-Ghazali's Deliverance from Error).",
+  "date": "2019-09-05",
+  "source_note": "Books.json",
+  "from": ""
+ },
+ {
+  "id": "P308",
+  "title": "Claude 4 prompt guide",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "claude",
+   "prompting"
+  ],
+  "summary": "AI/prompting resource: Tom's Guide article on Claude 4 with 'the only prompt you'll ever need'.",
+  "date": "2025-06-13",
+  "source_note": "Claude 4 is one of the best chatbots.json",
+  "from": ""
+ },
+ {
+  "id": "P309",
+  "title": "CS Joseph personality-types course",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "personality",
+   "mbti",
+   "self-development"
+  ],
+  "summary": "Self-development resource: summary of CS Joseph's Personality Type course (MBTI, Jungian cognitive functions, Enneagram) for better communication and self-understanding.",
+  "date": "2023-05-02",
+  "source_note": "2023-12-12T14_57_19.740+01_00(1).json",
+  "from": ""
+ },
+ {
+  "id": "P310",
+  "title": "Data governance reference (LinkedIn)",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "data-governance",
+   "reference",
+   "professional"
+  ],
+  "summary": "Professional data-governance reference (LinkedIn post by Andreas Horn) kept for a president/committee meeting.",
+  "date": "2026-02-05",
+  "source_note": "Réunion president_.json",
+  "from": ""
+ },
+ {
+  "id": "P311",
+  "title": "Lifestyle-design blogs",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "lifestyle",
+   "entrepreneurship",
+   "blogs"
+  ],
+  "summary": "Lifestyle-design / escape-the-9-to-5 blogs: Raptitude and New Escapologist.",
+  "date": "2021-12-17",
+  "source_note": "2023-12-12T14_57_21.365+01_00.json",
+  "from": ""
+ },
+ {
+  "id": "P312",
+  "title": "Open-source software licenses",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "dev",
+   "licensing",
+   "opensource"
+  ],
+  "summary": "Reference list of open-source software licenses to know when building/releasing software: Apache, MIT, BSD, LGPL, EPL.",
+  "date": "2013-11-21",
+  "source_note": "Licences.json",
+  "from": ""
+ },
+ {
+  "id": "P313",
+  "title": "Reading list (business + philosophy)",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "books",
+   "business",
+   "self-help",
+   "entrepreneurship"
+  ],
+  "summary": "Mixed reading list; business/entrepreneurship portion worth keeping: Good to Great, Rich Dad Poor Dad, The Antidote, Reset, plus Mark Zuckerberg / Bill Gates / entrepreneur-CEO favorite-book lists from Business Insider. (Also contains Islamic/philosophy titles.)",
+  "date": "2017-02-04",
+  "source_note": "Reads_.json",
+  "from": ""
+ },
+ {
+  "id": "P314",
+  "title": "Remote work job boards",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "remote-work",
+   "jobs",
+   "boards"
+  ],
+  "summary": "Remote-work job boards: hiring.cafe, travailadistance.fr, remotefr.com.",
+  "date": "2025-09-30",
+  "source_note": "Remote work sites.json",
+  "from": ""
+ },
+ {
+  "id": "P315",
+  "title": "Russell Brunson lead/traffic books",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "marketing",
+   "leads",
+   "traffic",
+   "books"
+  ],
+  "summary": "Marketing resource: Russell Brunson's books on generating leads and selling products/services (split-testing secrets).",
+  "date": "2025-09-30",
+  "source_note": "book on _ get leads, generate traffic.json",
+  "from": ""
+ },
+ {
+  "id": "P316",
+  "title": "Segoe UI icon font reference",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "dev",
+   "icons",
+   "ui"
+  ],
+  "summary": "Dev/design reference: Microsoft Segoe UI Symbol icon font documentation.",
+  "date": "2025-09-15",
+  "source_note": "font icons_.json",
+  "from": ""
+ },
+ {
+  "id": "P317",
+  "title": "Web 3.0 trends for frontend devs",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "web3",
+   "frontend",
+   "dev"
+  ],
+  "summary": "Dev resource: article on top 18 Web 3.0 trends every frontend developer should follow.",
+  "date": "2022-01-15",
+  "source_note": "Web 3.0 Trends.json",
+  "from": ""
+ },
+ {
+  "id": "P318",
+  "title": "Windows Workflow Foundation tutorial",
+  "category": "Resource",
+  "phase": "Research",
+  "tags": [
+   "dev",
+   "dotnet",
+   "tutorial"
+  ],
+  "summary": "Dev learning resource: Microsoft Windows Workflow Foundation (WF45) getting-started tutorial on GitHub.",
+  "date": "2020-02-17",
+  "source_note": "2023-12-12T14_44_14.173+01_00.json",
+  "from": ""
+ }
+]

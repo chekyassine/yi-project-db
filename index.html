@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Database</title>
+<style>
+:root{
+ --bg:#0f1428; --bg2:#161d38; --card:#1c2444; --card2:#222c52;
+ --ink:#f2f5ff; --mut:#93a0c9; --line:#2b355e; --star:#ffcb45;
+ --pi:#3E7BFA; --bm:#E0A64B; --tl:#27B99A; --me:#9B6DE0; --ws:#E06D8B; --rs:#5AB2E0;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+header{padding:30px 40px 18px;background:linear-gradient(160deg,#131a34,#0f1428);border-bottom:1px solid var(--line)}
+.htop{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+h1{margin:0;font-size:32px;letter-spacing:.5px}
+.sub{color:var(--mut);margin-top:6px;font-size:14px}
+.io{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.btn{cursor:pointer;background:var(--bg2);border:1px solid var(--line);color:var(--mut);padding:8px 13px;border-radius:9px;font-size:13px}
+.btn:hover{color:var(--ink);border-color:#4a5788}
+.btn.primary{background:var(--pi);color:#fff;border-color:transparent}
+.stats{display:flex;gap:20px;margin-top:14px;flex-wrap:wrap}
+.stat{font-size:13px;color:var(--mut)} .stat b{color:var(--ink);font-size:16px}
+.bar{position:sticky;top:0;z-index:20;background:rgba(15,20,40,.93);backdrop-filter:blur(8px);padding:12px 40px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#q{flex:1;min-width:220px;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:11px 14px;border-radius:10px;font-size:15px;outline:none}
+#q:focus{border-color:var(--pi)}
+.chips{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.lbl{font-size:11px;color:#5f6b96;text-transform:uppercase;letter-spacing:1px;margin-right:2px}
+.chip{cursor:pointer;user-select:none;padding:6px 12px;border-radius:20px;font-size:13px;background:var(--bg2);border:1px solid var(--line);color:var(--mut);transition:.15s}
+.chip:hover{color:var(--ink)}
+.chip.on{color:#fff;border-color:transparent}
+.chip[data-c="all"].on{background:#4a5788}
+.chip[data-c="Project Idea"].on{background:var(--pi)} .chip[data-c="Business/Money"].on{background:var(--bm)}
+.chip[data-c="Tool"].on{background:var(--tl)} .chip[data-c="Method"].on{background:var(--me)}
+.chip[data-c="Work/Skill"].on{background:var(--ws)} .chip[data-c="Resource"].on{background:var(--rs)}
+.chip[data-p].on{background:#3a4780}
+.chip.fav.on{background:#ff5c7a;color:#3a0010;border-color:transparent}
+.chip.arch.on{background:#41506f;color:#fff;border-color:transparent}
+.chip.trash.on{background:#8a3a3a;color:#fff;border-color:transparent}
+.chip.rate.on{background:var(--star);color:#3a2c00;border-color:transparent}
+.chip.userlbl.on{background:#37507a}
+.chip.prio-f.on{background:#4a5788;color:#fff;border-color:transparent}
+.chip.pf-low.on{background:#3a7d5c;color:#fff}
+.chip.pf-mid.on{background:#c98a2b;color:#1a1200}
+.chip.pf-high.on{background:#c9453f;color:#fff}
+.count{color:var(--mut);font-size:13px;margin-left:auto}
+.wrap{padding:22px 40px 90px;max-width:1500px;margin:0 auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px 14px;display:flex;flex-direction:column;gap:9px;transition:background .15s;position:relative}
+.card:hover{background:var(--card2)}
+.card.starred{border-color:#7a2340}
+.card.archived{opacity:.55}.card.archived:hover{opacity:1}
+.card.trashed{opacity:.6}.card.trashed:hover{opacity:1}
+.card.prio-high{border-color:#7a2f2c}.card.prio-mid{border-color:#6e5320}.card.prio-low{border-color:#2f5a45}
+.card.editing{border-color:var(--pi);background:var(--card2)}
+.archbtn.on{color:var(--rs)}
+.delbtn:hover{color:#ff6b6b}
+.heartbtn.on{color:#ff5c7a}
+.ctop{display:flex;align-items:flex-start;gap:9px}
+.dot{width:11px;height:11px;border-radius:50%;margin-top:5px;flex:none}
+.ttl{font-weight:650;font-size:15.5px;line-height:1.3;flex:1;padding-right:4px;cursor:pointer}
+.badge{font-size:10px;font-weight:700;letter-spacing:.4px;padding:3px 8px;border-radius:20px;white-space:nowrap;align-self:flex-start}
+.icons{display:flex;gap:7px;flex:none;align-items:center}
+.ic{cursor:pointer;font-size:16px;line-height:1;color:#454f77;transition:.12s;user-select:none}
+.ic:hover{transform:scale(1.15);color:#aab6e0}
+.sum{color:#c4cdea;font-size:13px;line-height:1.5;max-height:4.5em;overflow:hidden;position:relative;cursor:pointer;white-space:pre-wrap}
+.card.open .sum{max-height:none}
+.sum.clip:after{content:"";position:absolute;bottom:0;left:0;right:0;height:1.4em;background:linear-gradient(transparent,var(--card))}
+.card:hover .sum.clip:after{background:linear-gradient(transparent,var(--card2))}
+.rate{display:flex;gap:2px;align-items:center;margin-top:3px}
+.rlab{font-size:10px;color:#7b87b3;text-transform:uppercase;letter-spacing:.6px;margin-right:6px;font-weight:600}
+.rstar{cursor:pointer;font-size:19px;line-height:1;color:#6b77a3;transition:.1s}
+.rstar:hover{color:var(--star);transform:scale(1.12)}
+.rstar.on{color:var(--star)}
+.dostar{cursor:pointer;font-size:19px;line-height:1;color:#6b77a3;transition:.1s}
+.dostar:hover{color:var(--tl);transform:scale(1.12)}
+.dostar.on{color:var(--tl)}
+.chip.dorate.on{background:var(--tl);color:#04241d;border-color:transparent}
+.rclear{font-size:10px;color:#7b87b3;cursor:pointer;margin-left:8px;text-decoration:underline}
+.rclear:hover{color:#c7d4f7}
+.prio{display:flex;gap:5px;align-items:center;margin-top:4px}
+.pbtn{cursor:pointer;font-size:10.5px;text-transform:capitalize;padding:2px 10px;border-radius:20px;border:1px solid var(--line);color:var(--mut);background:var(--bg2);transition:.1s}
+.pbtn:hover{color:var(--ink);border-color:#5a6795}
+.pbtn.p-low.on{background:#3a7d5c;color:#fff;border-color:transparent}
+.pbtn.p-mid.on{background:#c98a2b;color:#1a1200;border-color:transparent}
+.pbtn.p-high.on{background:#c9453f;color:#fff;border-color:transparent}
+.tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tag{font-size:11px;color:var(--mut)}
+.tg{cursor:pointer}.tg:hover{color:var(--pi)}
+.chip.tagc.on{background:#37507a;color:#fff;border-color:transparent}
+.tagq{background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:6px 12px;border-radius:20px;font-size:13px;outline:none;width:160px}
+.tagq:focus{border-color:var(--pi)}
+.tagac{position:absolute;top:112%;left:0;z-index:30;background:var(--bg2);border:1px solid var(--line);border-radius:10px;min-width:190px;max-height:260px;overflow:auto;display:none;box-shadow:0 10px 26px rgba(0,0,0,.45);padding:4px}
+.acitem{padding:7px 12px;font-size:13px;color:var(--ink);cursor:pointer;border-radius:7px}
+.acitem:hover{background:var(--card2)}
+.ulbls{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pill{font-size:11px;background:#2c3b63;color:#c7d4f7;padding:3px 8px;border-radius:20px;display:flex;align-items:center;gap:5px}
+.pill x{cursor:pointer;color:#8fa0d0;font-style:normal;font-weight:700}
+.pill x:hover{color:#fff}
+.addl{font-size:11px;color:#6b77a3;cursor:pointer;border:1px dashed #3a456e;padding:3px 9px;border-radius:20px}
+.addl:hover{color:var(--ink);border-color:#5a6795}
+.linp{font-size:11px;background:var(--bg2);border:1px solid #4a5788;color:var(--ink);padding:3px 8px;border-radius:20px;outline:none;width:110px}
+.meta{font-size:11px;color:#5f6b96}
+.revert{cursor:pointer;text-decoration:underline;color:#8a6b6b}.revert:hover{color:#ff9a9a}
+.edit-t{width:100%;font-weight:650;font-size:15.5px;background:var(--bg2);border:1px solid #4a5788;color:var(--ink);border-radius:8px;padding:7px 9px;outline:none}
+.edit-s{width:100%;font-size:13px;line-height:1.5;background:var(--bg2);border:1px solid #4a5788;color:var(--ink);border-radius:8px;padding:8px 9px;outline:none;resize:vertical;min-height:120px;font-family:inherit}
+.edit-t:focus,.edit-s:focus{border-color:var(--pi)}
+.ebtns{display:flex;gap:8px}
+.ebtn{cursor:pointer;font-size:12px;padding:6px 13px;border-radius:8px;border:1px solid var(--line);background:var(--bg2);color:var(--mut)}
+.ebtn.save{background:var(--pi);color:#fff;border-color:transparent}
+.ebtn:hover{filter:brightness(1.1)}
+.sec{grid-column:1/-1;margin:20px 0 2px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);font-weight:700;display:flex;align-items:center;gap:10px}
+.sec .ln{flex:1;height:1px;background:var(--line)}
+.empty{color:var(--mut);padding:40px;text-align:center;grid-column:1/-1}
+footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(--line)}
+#cloudlbl.ok{color:#27B99A} #cloudlbl.err{color:#E06D8B} #cloudlbl.busy{color:var(--star)}
+.overlay{position:fixed;inset:0;background:rgba(6,9,20,.66);z-index:60;display:none;align-items:center;justify-content:center;padding:20px}
+.overlay.show{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--line);border-radius:16px;max-width:560px;width:100%;padding:24px 26px;max-height:90vh;overflow:auto}
+.modal h2{margin:0 0 4px;font-size:20px}
+.modal label{display:block;font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin:12px 0 5px}
+.modal input[type=text],.modal select,.modal textarea{width:100%;background:var(--card);border:1px solid var(--line);color:var(--ink);padding:10px 12px;border-radius:9px;font-size:14px;outline:none;font-family:inherit}
+.modal textarea{min-height:90px;resize:vertical}
+.modal input:focus,.modal select:focus,.modal textarea:focus{border-color:var(--pi)}
+.mrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.mbtn{cursor:pointer;font-size:13px;padding:9px 15px;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.mbtn.primary{background:var(--pi);border-color:transparent;color:#fff}
+.mbtn:hover{filter:brightness(1.12)}
+.x{margin-left:auto;cursor:pointer;color:var(--mut);font-size:20px}
+.two{display:flex;gap:12px}.two>div{flex:1}
+</style>
+</head>
+<body>
+<header>
+ <div class="htop">
+  <div>
+   <h1>Project Database</h1>
+   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer</div>
+  </div>
+  <div class="io">
+   <span class="btn primary" id="newbtn">＋ New note</span>
+   <span class="btn" id="cloudbtn" title="Auto-synced — click to refresh from cloud">☁ <span id="cloudlbl">Cloud</span></span>
+   <span class="btn" id="exp">⬇ Export all</span>
+   <span class="btn" id="imp">⬆ Import</span>
+   <input type="file" id="impf" accept="application/json" style="display:none">
+  </div>
+ </div>
+ <div class="stats" id="stats"></div>
+</header>
+<div class="bar">
+ <div class="row"><input id="q" placeholder="Search titles, ideas, tags, labels…  (press / )"><span class="count" id="count"></span></div>
+ <div class="row"><span class="lbl">Category</span><div class="chips" id="cats"></div></div>
+ <div class="row"><span class="lbl">Phase</span><div class="chips" id="phases"></div><span class="lbl" style="margin-left:10px">Show</span><div class="chips" id="flagf"></div></div>
+ <div class="row"><span class="lbl">Interest</span><div class="chips" id="ratef"></div><span class="lbl" style="margin-left:10px">Doability</span><div class="chips" id="dof"></div></div>
+ <div class="row"><span class="lbl">Priority</span><div class="chips" id="priof"></div></div>
+ <div class="row"><span class="lbl">Tags</span><div class="chips" id="tagtop"></div><span style="position:relative;display:inline-block"><input id="tagq" class="tagq" placeholder="search tags…"><div id="tagac" class="tagac"></div></span></div>
+</div>
+<div class="wrap"><div class="grid" id="grid"></div></div>
+<div class="overlay" id="nov"><div class="modal">
+ <div style="display:flex;align-items:center"><h2>＋ New note</h2><span class="x" id="nclose">✕</span></div>
+ <label>Title</label><input type="text" id="n_title" placeholder="Short title">
+ <div class="two">
+  <div><label>Category</label><select id="n_cat"><option value="Project Idea">Project Idea</option><option value="Business/Money">Business/Money</option><option value="Tool">Tool</option><option value="Method">Method</option><option value="Work/Skill">Work/Skill</option><option value="Resource">Resource</option></select></div>
+  <div><label>Phase</label><select id="n_phase"><option value="Idea">Idea</option><option value="Research">Research</option><option value="Execution">Execution</option></select></div>
+ </div>
+ <label>Description</label><textarea id="n_sum" placeholder="Details, notes, links…"></textarea>
+ <label>Tags (comma-separated)</label><input type="text" id="n_tags" placeholder="ai, saas, side-hustle">
+ <div class="mrow"><span class="mbtn primary" id="nsave">Add note</span><span class="mbtn" onclick="document.getElementById('nov').classList.remove('show')">Cancel</span></div>
+</div></div>
+<footer>Data (notes + your annotations) is stored in one cloud store and loaded at page open — <b>this HTML holds no data</b>. ＋ add notes · ✎ edit · 🗃 archive · 🗑 trash · ♥ favorite · ★ Interest &amp; Doability · Priority · #tags (click to filter, ✕ to remove, + tag to add). <b>Export all</b> = full backup; <b>Import</b> = restore/replace. ☁ = sync status.</footer>
+<script>
+const DEFAULT_BIN="019f84a8-fd16-7c77-b353-1f177cbad91c";
+let BIN_ID=localStorage.getItem('pdb_binid')||DEFAULT_BIN;
+function binURL(){return 'https://jsonblob.com/api/jsonBlob/'+BIN_ID;}
+async function createBin(){try{const r=await fetch('https://jsonblob.com/api/jsonBlob',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(O)});const loc=r.headers.get('Location');const id=loc?loc.split('/').pop():null;if(id){BIN_ID=id;localStorage.setItem('pdb_binid',id);}return id;}catch(e){return null;}}
+/* ===== Supabase (durable store). Paste your Project URL + anon key below to switch from jsonblob. ===== */
+const SUPA={url:"https://xusrtrlwtwtkwmznmahd.supabase.co", key:"sb_publishable_saqnGeDV96Gyldrs4CFQjw_MI-Zqsr4"};
+function supaOn(){return SUPA.url&&SUPA.key&&!SUPA.url.includes("YOUR_");}
+function supaHdr(){return {apikey:SUPA.key,Authorization:"Bearer "+SUPA.key,"Content-Type":"application/json"};}
+async function supaGet(){try{const r=await fetch(SUPA.url+"/rest/v1/overlay?id=eq.main&select=data",{headers:supaHdr(),cache:"no-store"});if(!r.ok)return undefined;const a=await r.json();return a[0]?a[0].data:{ann:{},ed:{},add:[],del:[]};}catch(e){return undefined;}}
+async function supaPush(){setLbl("busy","Saving…");try{const r=await fetch(SUPA.url+"/rest/v1/overlay",{method:"POST",headers:Object.assign(supaHdr(),{Prefer:"resolution=merge-duplicates"}),body:JSON.stringify([{id:"main",data:O}])});if(!r.ok)throw 0;setLbl("ok","Synced");}catch(e){setLbl("err","Offline");}}
+const BASE_URL="./data.json";
+const B_CACHE="pdb_base_v1", O_CACHE="pdb_overlay_v1";
+const CATS=["Project Idea", "Business/Money", "Tool", "Method", "Work/Skill", "Resource"], COL={"Project Idea": "var(--pi)", "Business/Money": "var(--bm)", "Tool": "var(--tl)", "Method": "var(--me)", "Work/Skill": "var(--ws)", "Resource": "var(--rs)"}, LAB={"Project Idea": "Project Ideas", "Business/Money": "Business / Money", "Tool": "Tools", "Method": "Methods", "Work/Skill": "Work / Skills", "Resource": "Resources"}, CATDESC={"Project Idea": "App, website & service ideas", "Business/Money": "Monetization, trading, e-commerce", "Tool": "Software, libraries, APIs", "Method": "How-tos, tactics, processes", "Work/Skill": "Skills & career moves", "Resource": "Reference & leads"}, PHASES=["Idea", "Research", "Execution"];
+let BASE=[];               // immutable catalog (from data.json, served by Netlify)
+let O={ann:{},ed:{},add:[],del:[]};  // your changes only (tiny, synced to bin)
+let DB=[];                 // merged view = BASE + O
+let fc="all",fp="all",fstar=false,farch=false,ftrash=false,fmin=0,fdo=0,fprio="all",ftag="all",fq="";
+let editingId=null,syncTimer=null;
+const cloudLbl=document.getElementById('cloudlbl');
+function setLbl(cls,txt){cloudLbl.className=cls||'';cloudLbl.textContent=txt||'Cloud';}
+function esc(s){return (s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function enc(s){return encodeURIComponent(s);} function dec(s){return decodeURIComponent(s);}
+function byId(id){return DB.find(x=>x.id===id);}
+function uid(){return 'U'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
+function today(){return new Date().toISOString().slice(0,10);}
+function added(id){return O.add.some(a=>a.id===id);}
+function normO(o){o=o||{};return {ann:o.ann||{},ed:o.ed||{},add:o.add||[],del:o.del||[]};}
+
+/* ---- merge base + overlay into the DB view ---- */
+function rebuild(){
+ const del=new Set(O.del);DB=[];
+ BASE.forEach(b=>{if(del.has(b.id))return;const it=Object.assign({},b);const ed=O.ed[b.id];if(ed){if(ed.title)it.title=ed.title;if(ed.summary!=null)it.summary=ed.summary;}Object.assign(it,O.ann[b.id]||{});DB.push(it);});
+ O.add.forEach(a=>{if(del.has(a.id))return;DB.push(Object.assign({},a));});
+}
+
+/* ---- sync: base from Netlify, overlay (small) from bin ---- */
+async function grab(url){try{const r=await fetch(url,{headers:{'Accept':'application/json'},cache:'no-store'});if(!r.ok)return null;return await r.json();}catch(e){return null;}}
+async function pushBin(){if(supaOn())return supaPush();setLbl('busy','Saving…');try{let r=await fetch(binURL(),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(O)});if(r.status===404){const id=await createBin();if(id)r=await fetch(binURL(),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(O)});}if(!r.ok)throw new Error('HTTP '+r.status);setLbl('ok','Synced');}catch(e){setLbl('err','Offline');}}
+function scheduleSync(){setLbl('busy','…');clearTimeout(syncTimer);syncTimer=setTimeout(pushBin,1000);}
+function saveO(){localStorage.setItem(O_CACHE,JSON.stringify(O));scheduleSync();}
+async function pullNow(){setLbl('busy','Syncing…');if(supaOn()){const d=await supaGet();if(d!==undefined){O=normO(d);localStorage.setItem(O_CACHE,JSON.stringify(O));rebuild();render();setLbl('ok','Synced');}else setLbl('err','Offline');return;}const o=await grab(binURL());if(o&&typeof o==='object'&&!Array.isArray(o)){O=normO(o);localStorage.setItem(O_CACHE,JSON.stringify(O));rebuild();render();setLbl('ok','Synced');}else{await pushBin();}}
+
+/* ---- mutators: write to overlay, never to base ---- */
+function setAnn(id,ch){if(added(id)){Object.assign(O.add.find(x=>x.id===id),ch);}else{O.ann[id]=Object.assign(O.ann[id]||{},ch);}saveO();rebuild();render();}
+function setEdit(id,title,summary){if(added(id)){const a=O.add.find(x=>x.id===id);a.title=title;a.summary=summary;}else{O.ed[id]={title,summary};}saveO();rebuild();render();}
+function delForever(id){if(added(id))O.add=O.add.filter(x=>x.id!==id);else if(!O.del.includes(id))O.del.push(id);delete O.ann[id];delete O.ed[id];saveO();rebuild();render();}
+function addNote(it){O.add.unshift(it);saveO();rebuild();render();}
+function importFull(arr){
+ const bm={};BASE.forEach(b=>bm[b.id]=b);const seen=new Set();const O2={ann:{},ed:{},add:[],del:[]};
+ arr.forEach(it=>{seen.add(it.id);const b=bm[it.id];
+  if(!b){O2.add.push(it);return;}
+  if((it.title||'')!==(b.title||'')||(it.summary||'')!==(b.summary||''))O2.ed[it.id]={title:it.title,summary:it.summary};
+  const a={};['star','rating','doability','prio','arch','trash'].forEach(k=>{if(it[k])a[k]=it[k];});if((it.tags||[]).join('|')!==(b.tags||[]).join('|'))a.tags=it.tags||[];if(Object.keys(a).length)O2.ann[it.id]=a;});
+ BASE.forEach(b=>{if(!seen.has(b.id))O2.del.push(b.id);});
+ O=O2;saveO();rebuild();render();
+}
+
+async function boot(){
+ setLbl('busy','Loading…');
+ let base=await grab(BASE_URL);
+ if(!(Array.isArray(base)&&base.length)){const c=localStorage.getItem(B_CACHE);if(c){try{base=JSON.parse(c);}catch(e){}}}
+ BASE=Array.isArray(base)?base:[];
+ if(BASE.length)localStorage.setItem(B_CACHE,JSON.stringify(BASE));
+ let ov=null,reachable=false,missing=false;
+ if(supaOn()){const d=await supaGet();if(d!==undefined){reachable=true;ov=d;}}
+ else{try{const r=await fetch(binURL(),{headers:{'Accept':'application/json'},cache:'no-store'});reachable=true;if(r.status===404)missing=true;else if(r.ok){const j=await r.json();if(j&&typeof j==='object'&&!Array.isArray(j))ov=j;}}catch(e){reachable=false;}}
+ if(!ov){const c=localStorage.getItem(O_CACHE);if(c){try{ov=JSON.parse(c);}catch(e){}}}
+ O=normO(ov);
+ buildStaticChips(); rebuild(); render();
+ if(missing){await pushBin();}
+ else setLbl(reachable?'ok':'err', reachable?'Synced':'Offline');
+}
+
+/* ---- filter chips ---- */
+const catsEl=document.getElementById('cats'),phEl=document.getElementById('phases'),flagEl=document.getElementById('flagf'),rateEl=document.getElementById('ratef'),prioEl=document.getElementById('priof'),qEl=document.getElementById('q');
+function buildStaticChips(){
+ phEl.innerHTML=`<div class="chip on" data-p="all">Any</div>`+PHASES.map(p=>`<div class="chip" data-p="${p}">${p}</div>`).join('');
+ flagEl.innerHTML=`<div class="chip fav" data-f="star">♥ Favorites</div><div class="chip arch" data-f="arch">🗃 Archived</div><div class="chip trash" data-f="trash">🗑 Trash</div>`;
+ rateEl.innerHTML=`<div class="chip rate on" data-r="0">Any</div>`+[1,2,3,4,5].map(n=>`<div class="chip rate" data-r="${n}">${n===5?'5★':n+'★+'}</div>`).join('');
+ prioEl.innerHTML=`<div class="chip prio-f on" data-pr="all">Any</div>`+['high','mid','low'].map(pv=>`<div class="chip prio-f pf-${pv}" data-pr="${pv}">${pv[0].toUpperCase()+pv.slice(1)}</div>`).join('');
+ phEl.onclick=e=>{if(!e.target.dataset.p)return;fp=e.target.dataset.p;[...phEl.children].forEach(x=>x.classList.toggle('on',x.dataset.p===fp));render();};
+ flagEl.onclick=e=>{const f=e.target.dataset.f;if(!f)return;if(f==='star')fstar=!fstar;if(f==='arch')farch=!farch;if(f==='trash')ftrash=!ftrash;[...flagEl.children].forEach(x=>x.classList.toggle('on',(x.dataset.f==='star'&&fstar)||(x.dataset.f==='arch'&&farch)||(x.dataset.f==='trash'&&ftrash)));render();};
+ rateEl.onclick=e=>{const r=e.target.dataset.r;if(r===undefined)return;fmin=+r;[...rateEl.children].forEach(x=>x.classList.toggle('on',+x.dataset.r===fmin));render();};
+ const doEl=document.getElementById('dof');
+ doEl.innerHTML=`<div class="chip dorate on" data-d="0">Any</div>`+[1,2,3,4,5].map(n=>`<div class="chip dorate" data-d="${n}">${n===5?'5★':n+'★+'}</div>`).join('');
+ doEl.onclick=e=>{const d=e.target.dataset.d;if(d===undefined)return;fdo=+d;[...doEl.children].forEach(x=>x.classList.toggle('on',+x.dataset.d===fdo));render();};
+ prioEl.onclick=e=>{const pr=e.target.dataset.pr;if(pr===undefined)return;fprio=pr;[...prioEl.children].forEach(x=>x.classList.toggle('on',x.dataset.pr===fprio));render();};
+ catsEl.onclick=e=>{if(!e.target.dataset.c)return;fc=e.target.dataset.c;[...catsEl.children].forEach(x=>x.classList.toggle('on',x.dataset.c===fc));render();};
+ document.getElementById('tagtop').onclick=e=>{const el=e.target.closest('.tagc');if(!el)return;const v=el.dataset.tag;const nt=(v==='__all')?'all':dec(v);ftag=(ftag===nt)?'all':nt;render();};
+ const tq=document.getElementById('tagq'),ac=document.getElementById('tagac');
+ tq.oninput=()=>{const q=tq.value.toLowerCase().trim();if(!q){ac.style.display='none';return;}const m=ALLTAGS.filter(t=>t.toLowerCase().includes(q)).slice(0,12);ac.innerHTML=m.length?m.map(t=>`<div class="acitem" data-tag="${enc(t)}">#${esc(t)}</div>`).join(''):'<div class="acitem" style="color:#5f6b96;cursor:default">no match</div>';ac.style.display='block';};
+ ac.onclick=e=>{const el=e.target.closest('.acitem');if(!el||!el.dataset.tag)return;ftag=dec(el.dataset.tag);tq.value='';ac.style.display='none';render();};
+ tq.onkeydown=e=>{if(e.key==='Enter'){const f=ac.querySelector('.acitem[data-tag]');if(f){ftag=dec(f.dataset.tag);tq.value='';ac.style.display='none';render();}}else if(e.key==='Escape'){tq.value='';ac.style.display='none';}};
+ tq.onblur=()=>setTimeout(()=>{ac.style.display='none';},150);
+ qEl.oninput=()=>{fq=qEl.value.toLowerCase().trim();render();};
+ document.onkeydown=e=>{if(e.key==='/'&&document.activeElement.tagName!=='INPUT'&&document.activeElement.tagName!=='TEXTAREA'){e.preventDefault();qEl.focus();}};
+}
+function refreshCats(){
+ const cnt={};CATS.forEach(c=>cnt[c]=0);let live=0;DB.forEach(e=>{if(e.trash)return;live++;if(cnt[e.category]!==undefined)cnt[e.category]++;});
+ document.getElementById('stats').innerHTML=`<div class="stat"><b>${live}</b> notes</div>`+CATS.map(c=>`<div class="stat"><b>${cnt[c]}</b> ${LAB[c]}</div>`).join('');
+ catsEl.innerHTML=`<div class="chip ${fc==='all'?'on':''}" data-c="all">All</div>`+CATS.map(c=>`<div class="chip ${fc===c?'on':''}" data-c="${c}">${LAB[c]} ${cnt[c]}</div>`).join('');
+}
+let ALLTAGS=[];
+function renderTagBar(){
+ const freq={};DB.forEach(e=>{if(e.trash)return;(e.tags||[]).forEach(t=>freq[t]=(freq[t]||0)+1);});
+ ALLTAGS=Object.keys(freq).sort((a,b)=>freq[b]-freq[a]||a.localeCompare(b));
+ const top=ALLTAGS.slice(0,14);
+ let chips=[`<span class="chip tagc ${ftag==='all'?'on':''}" data-tag="__all">All</span>`];
+ if(ftag!=='all'&&!top.includes(ftag))chips.push(`<span class="chip tagc on" data-tag="${enc(ftag)}">#${esc(ftag)} ✕</span>`);
+ top.forEach(t=>chips.push(`<span class="chip tagc ${ftag===t?'on':''}" data-tag="${enc(t)}">#${esc(t)} <b style="opacity:.5;font-weight:600">${freq[t]}</b></span>`));
+ document.getElementById('tagtop').innerHTML=chips.join('');
+}
+
+function match(e){
+ if(fc!=='all'&&e.category!==fc)return false;
+ if(fp!=='all'&&e.phase!==fp)return false;
+ if(fstar&&!e.star)return false;
+ if(fmin>0&&(e.rating||0)<fmin)return false;
+ if(fdo>0&&(e.doability||0)<fdo)return false;
+ if(fprio!=='all'&&(e.prio||'')!==fprio)return false;
+ if(ftrash){if(!e.trash)return false;}else{if(e.trash)return false;if(farch){if(!e.arch)return false;}else{if(e.arch)return false;}}
+ if(ftag!=='all'&&!(e.tags||[]).includes(ftag))return false;
+ if(fq){const h=(e.title+' '+(e.summary||'')+' '+(e.from||'')+' '+(e.tags||[]).join(' ')+' '+(e.labels||[]).join(' ')).toLowerCase();if(!h.includes(fq))return false;}
+ return true;
+}
+const grid=document.getElementById('grid');
+function cardHTML(e,c){
+ const sum=e.summary||'';const clip=sum.length>160?'clip':'';
+ return `<div class="card ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''}" data-id="${e.id}">
+   <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
+    <span class="ttl" data-exp="1">${esc(e.title)}</span>
+    <span class="badge" style="background:${COL[c]||'#888'}22;color:${COL[c]||'#aaa'}">${(e.phase||'').toUpperCase()}</span>
+    <span class="icons">
+     <span class="ic" data-edit="${e.id}" title="Edit">✎</span>
+     <span class="ic archbtn ${e.arch?'on':''}" data-arch="${e.id}" title="${e.arch?'Unarchive':'Archive'}">🗃</span>
+     <span class="ic delbtn" data-trash="${e.id}" title="${e.trash?'Restore':'Move to trash'}">${e.trash?'♻':'🗑'}</span>
+     <span class="ic heartbtn ${e.star?'on':''}" data-star="${e.id}" title="${e.star?'Unfavorite':'Favorite'}">${e.star?'♥':'♡'}</span>
+    </span></div>
+   ${sum?`<div class="sum ${clip}" data-exp="1">${esc(sum)}</div>`:''}
+   <div class="rate"><span class="rlab">Interest</span>${[1,2,3,4,5].map(n=>`<span class="rstar ${(e.rating||0)>=n?'on':''}" data-rate="${e.id}:${n}">${(e.rating||0)>=n?'★':'☆'}</span>`).join('')}${e.rating?`<span class="rclear" data-rate="${e.id}:0">clear</span>`:''}</div>
+   <div class="rate"><span class="rlab">Doability</span>${[1,2,3,4,5].map(n=>`<span class="dostar ${(e.doability||0)>=n?'on':''}" data-do="${e.id}:${n}">${(e.doability||0)>=n?'★':'☆'}</span>`).join('')}${e.doability?`<span class="rclear" data-do="${e.id}:0">clear</span>`:''}</div>
+   <div class="prio"><span class="rlab">Priority</span>${['low','mid','high'].map(pv=>`<span class="pbtn p-${pv} ${e.prio===pv?'on':''}" data-prio="${e.id}:${pv}">${pv}</span>`).join('')}</div>
+   <div class="tags">${(e.tags||[]).map(t=>`<span class="pill"><span class="tg" data-tag="${enc(t)}">#${esc(t)}</span><x data-id="${e.id}" data-rt="${enc(t)}">✕</x></span>`).join('')}<span class="addl" data-add="${e.id}">+ tag</span></div>
+   <div class="meta">${e.from?'from &ldquo;'+esc(e.from)+'&rdquo; · ':''}${esc(e.date||'')}${e.trash?` · <span class="revert" data-del="${e.id}">delete forever</span>`:''}</div>
+  </div>`;
+}
+function render(){
+ refreshCats(); renderTagBar();
+ const list=DB.filter(match);
+ document.getElementById('count').textContent=list.length+' shown';
+ if(!DB.length){grid.innerHTML='<div class="empty">Loading… if this stays empty, the cloud store may be unreachable — try Import, or the ☁ refresh.</div>';return;}
+ if(!list.length){grid.innerHTML='<div class="empty">No matches. Adjust search or filters.</div>';return;}
+ const bycat={};CATS.forEach(c=>bycat[c]=[]);const other=[];
+ list.forEach(e=>{(bycat[e.category]||other).push(e);});
+ const order=fc==='all'?CATS:[fc];let html='';
+ order.forEach(c=>{const items=bycat[c];if(!items||!items.length)return;
+  html+=`<div class="sec"><span style="color:${COL[c]}">●</span> ${LAB[c]} <span class="ln"></span> <span style="color:var(--mut)">${items.length}</span></div>`;
+  items.forEach(e=>{html+=cardHTML(e,c);});});
+ if(fc==='all'&&other.length){html+=`<div class="sec">Other <span class="ln"></span> ${other.length}</div>`;other.forEach(e=>html+=cardHTML(e,e.category));}
+ grid.innerHTML=html;
+ if(editingId){const card=grid.querySelector(`.card[data-id="${editingId}"]`);if(card)openEditor(card,editingId);}
+}
+
+grid.onclick=e=>{
+ const t=e.target; if(t.closest('.editing'))return;
+ if(t.dataset.star){setAnn(t.dataset.star,{star:!byId(t.dataset.star).star});return;}
+ if(t.dataset.arch){setAnn(t.dataset.arch,{arch:!byId(t.dataset.arch).arch});return;}
+ if(t.dataset.trash){setAnn(t.dataset.trash,{trash:!byId(t.dataset.trash).trash});return;}
+ if(t.dataset.rate){const[id,n]=t.dataset.rate.split(':');const cur=byId(id).rating||0;setAnn(id,{rating:cur===+n?0:+n});return;}
+ if(t.dataset.do){const[id,n]=t.dataset.do.split(':');const cur=byId(id).doability||0;setAnn(id,{doability:cur===+n?0:+n});return;}
+ if(t.dataset.prio){const[id,pv]=t.dataset.prio.split(':');const cur=byId(id).prio||'';setAnn(id,{prio:cur===pv?'':pv});return;}
+ if(t.dataset.tag){ftag=dec(t.dataset.tag);render();return;}
+ if(t.dataset.rt){const id=t.dataset.id,tg=dec(t.dataset.rt);setAnn(id,{tags:(byId(id).tags||[]).filter(x=>x!==tg)});return;}
+ if(t.dataset.add){openInput(t,t.dataset.add);return;}
+ if(t.dataset.edit){editingId=t.dataset.edit;openEditor(t.closest('.card'),editingId);return;}
+ if(t.dataset.del){const o=byId(t.dataset.del);if(confirm('Permanently delete "'+o.title+'"? This cannot be undone.'))delForever(t.dataset.del);return;}
+ if(t.dataset.exp){const card=t.closest('.card');card.classList.toggle('open');const sm=card.querySelector('.sum');if(sm)sm.classList.toggle('clip');}
+};
+function openEditor(card,id){
+ const e=byId(id);editingId=id;card.classList.add('editing','open');
+ card.innerHTML=`<input class="edit-t" value="${esc(e.title)}"><textarea class="edit-s">${esc(e.summary||'')}</textarea>
+  <div class="ebtns"><span class="ebtn save" data-do="save">Save</span><span class="ebtn" data-do="cancel">Cancel</span></div>`;
+ const ti=card.querySelector('.edit-t'),su=card.querySelector('.edit-s');ti.focus();
+ card.querySelector('.ebtns').onclick=ev=>{const d=ev.target.dataset.do;if(!d)return;
+  if(d==='save'){editingId=null;setEdit(id,ti.value.trim()||e.title,su.value.trim());}
+  else{editingId=null;render();}};
+ ti.onkeydown=ev=>{if(ev.key==='Escape'){editingId=null;render();}};
+ su.onkeydown=ev=>{if(ev.key==='Escape'){editingId=null;render();}};
+}
+function openInput(anchor,id){
+ const inp=document.createElement('input');inp.className='linp';inp.placeholder='tag + Enter';
+ anchor.replaceWith(inp);inp.focus();
+ const done=commit=>{const v=inp.value.trim().replace(/^#/,'');if(commit&&v){const cur=[...(byId(id).tags||[])];if(!cur.includes(v))cur.push(v);setAnn(id,{tags:cur});}else render();};
+ inp.onkeydown=ev=>{if(ev.key==='Enter')done(true);else if(ev.key==='Escape')done(false);};
+ inp.onblur=()=>done(true);
+}
+
+/* ---- new note ---- */
+const ov=document.getElementById('nov');
+document.getElementById('newbtn').onclick=()=>{document.getElementById('n_title').value='';document.getElementById('n_sum').value='';document.getElementById('n_tags').value='';ov.classList.add('show');document.getElementById('n_title').focus();};
+document.getElementById('nclose').onclick=()=>ov.classList.remove('show');
+ov.onclick=e=>{if(e.target===ov)ov.classList.remove('show');};
+document.getElementById('nsave').onclick=()=>{
+ const title=document.getElementById('n_title').value.trim();if(!title){alert('Give it a title.');return;}
+ const it={id:uid(),title,category:document.getElementById('n_cat').value,phase:document.getElementById('n_phase').value,
+  summary:document.getElementById('n_sum').value.trim(),tags:document.getElementById('n_tags').value.split(',').map(s=>s.trim()).filter(Boolean),
+  from:'',date:today(),source_note:'(added by you)'};
+ addNote(it);ov.classList.remove('show');
+};
+
+/* ---- export / import (FULL database) ---- */
+document.getElementById('exp').onclick=()=>{
+ const blob=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='project_database_full.json';a.click();
+};
+document.getElementById('imp').onclick=()=>document.getElementById('impf').click();
+document.getElementById('impf').onchange=e=>{
+ const f=e.target.files[0];if(!f)return;const r=new FileReader();
+ r.onload=()=>{try{const a=JSON.parse(r.result);if(!Array.isArray(a))throw 0;
+   if(!confirm('Replace the current view with '+a.length+' notes from this file?'))return;
+   importFull(a);alert('Imported '+a.length+' notes.');
+  }catch(err){alert('Invalid file — expected a full database export (JSON array).');}};
+ r.readAsText(f);
+};
+document.getElementById('cloudbtn').onclick=pullNow;
+
+boot();
+</script>
+</body>
+</html>
