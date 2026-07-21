@@ -87,6 +87,16 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .pbtn.p-low.on{background:#3a7d5c;color:#fff;border-color:transparent}
 .pbtn.p-mid.on{background:#c98a2b;color:#1a1200;border-color:transparent}
 .pbtn.p-high.on{background:#c9453f;color:#fff;border-color:transparent}
+.colr{display:flex;gap:5px;align-items:center;margin-top:4px;flex-wrap:wrap}
+.sw{width:17px;height:17px;border-radius:50%;cursor:pointer;border:2px solid transparent;box-sizing:border-box;transition:.1s;flex:none}
+.sw:hover{transform:scale(1.18)}
+.sw.on{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.28)}
+.sw.none{display:flex;align-items:center;justify-content:center;background:var(--bg2);color:#6b77a3;font-size:11px;border:1px solid var(--line)}
+.sw.none.on{border-color:#fff;color:#fff}
+.card.colored{background:color-mix(in srgb,var(--cc) 10%,var(--card));box-shadow:inset 4px 0 0 var(--cc)}
+.card.colored:hover{background:color-mix(in srgb,var(--cc) 15%,var(--card2))}
+.cfsw{display:inline-block;width:13px;height:13px;border-radius:50%;vertical-align:middle}
+.chip.cf.on{border-color:#fff;color:#fff;background:#3a4780}
 .tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .tag{font-size:11px;color:var(--mut)}
 .tg{cursor:pointer}.tg:hover{color:var(--pi)}
@@ -156,6 +166,7 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
  <div class="row"><span class="lbl">Phase</span><div class="chips" id="phases"></div><span class="lbl" style="margin-left:10px">Show</span><div class="chips" id="flagf"></div></div>
  <div class="row"><span class="lbl">Interest</span><div class="chips" id="ratef"></div><span class="lbl" style="margin-left:10px">Doability</span><div class="chips" id="dof"></div></div>
  <div class="row"><span class="lbl">Priority</span><div class="chips" id="priof"></div></div>
+ <div class="row"><span class="lbl">Color</span><div class="chips" id="colorf"></div></div>
  <div class="row"><span class="lbl">Tags</span><div class="chips" id="tagtop"></div><span style="position:relative;display:inline-block"><input id="tagq" class="tagq" placeholder="search tags…"><div id="tagac" class="tagac"></div></span></div>
 </div>
 <div class="wrap"><div class="grid" id="grid"></div></div>
@@ -170,7 +181,7 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
  <label>Tags (comma-separated)</label><input type="text" id="n_tags" placeholder="ai, saas, side-hustle">
  <div class="mrow"><span class="mbtn primary" id="nsave">Add note</span><span class="mbtn" onclick="document.getElementById('nov').classList.remove('show')">Cancel</span></div>
 </div></div>
-<footer>Data (notes + your annotations) is stored in one cloud store and loaded at page open — <b>this HTML holds no data</b>. ＋ add notes · ✎ edit · 🗃 archive · 🗑 trash · ♥ favorite · ★ Interest &amp; Doability · Priority · #tags (click to filter, ✕ to remove, + tag to add). <b>Export all</b> = full backup; <b>Import</b> = restore/replace. ☁ = sync status.</footer>
+<footer>Data (notes + your annotations) is stored in one cloud store and loaded at page open — <b>this HTML holds no data</b>. ＋ add notes · ✎ edit · 🗃 archive · 🗑 trash · ♥ favorite · ★ Interest &amp; Doability · Priority · 🎨 color · #tags (click to filter, ✕ to remove, + tag to add). <b>Export all</b> = full backup; <b>Import</b> = restore/replace. ☁ = sync status.</footer>
 <script>
 const DEFAULT_BIN="019f84a8-fd16-7c77-b353-1f177cbad91c";
 let BIN_ID=localStorage.getItem('pdb_binid')||DEFAULT_BIN;
@@ -185,10 +196,12 @@ async function supaPush(){setLbl("busy","Saving…");try{const r=await fetch(SUP
 const BASE_URL="./data.json";
 const B_CACHE="pdb_base_v1", O_CACHE="pdb_overlay_v1";
 const CATS=["Project Idea", "Business/Money", "Tool", "Method", "Work/Skill", "Resource"], COL={"Project Idea": "var(--pi)", "Business/Money": "var(--bm)", "Tool": "var(--tl)", "Method": "var(--me)", "Work/Skill": "var(--ws)", "Resource": "var(--rs)"}, LAB={"Project Idea": "Project Ideas", "Business/Money": "Business / Money", "Tool": "Tools", "Method": "Methods", "Work/Skill": "Work / Skills", "Resource": "Resources"}, CATDESC={"Project Idea": "App, website & service ideas", "Business/Money": "Monetization, trading, e-commerce", "Tool": "Software, libraries, APIs", "Method": "How-tos, tactics, processes", "Work/Skill": "Skills & career moves", "Resource": "Reference & leads"}, PHASES=["Idea", "Research", "Execution"];
+const COLORS=[{key:'red',hex:'#ef5350',name:'Red'},{key:'orange',hex:'#ff8a3d',name:'Orange'},{key:'amber',hex:'#f7b731',name:'Amber'},{key:'yellow',hex:'#f4d03f',name:'Yellow'},{key:'lime',hex:'#a3d63b',name:'Lime'},{key:'green',hex:'#4caf6d',name:'Green'},{key:'teal',hex:'#25b8a5',name:'Teal'},{key:'cyan',hex:'#31c5e8',name:'Cyan'},{key:'blue',hex:'#4d8bf0',name:'Blue'},{key:'indigo',hex:'#7c74f2',name:'Indigo'},{key:'purple',hex:'#b06cf0',name:'Purple'},{key:'pink',hex:'#f062a8',name:'Pink'}];
+const CMAP={};COLORS.forEach(c=>CMAP[c.key]=c.hex);
 let BASE=[];               // immutable catalog (from data.json, served by Netlify)
 let O={ann:{},ed:{},add:[],del:[]};  // your changes only (tiny, synced to bin)
 let DB=[];                 // merged view = BASE + O
-let fc="all",fp="all",fstar=false,farch=false,ftrash=false,fmin=0,fdo=0,fprio="all",ftag="all",fq="";
+let fc="all",fp="all",fstar=false,farch=false,ftrash=false,fmin=0,fdo=0,fprio="all",fcolor="all",ftag="all",fq="";
 let editingId=null,syncTimer=null;
 const cloudLbl=document.getElementById('cloudlbl');
 function setLbl(cls,txt){cloudLbl.className=cls||'';cloudLbl.textContent=txt||'Cloud';}
@@ -224,7 +237,7 @@ function importFull(arr){
  arr.forEach(it=>{seen.add(it.id);const b=bm[it.id];
   if(!b){O2.add.push(it);return;}
   if((it.title||'')!==(b.title||'')||(it.summary||'')!==(b.summary||''))O2.ed[it.id]={title:it.title,summary:it.summary};
-  const a={};['star','rating','doability','prio','arch','trash'].forEach(k=>{if(it[k])a[k]=it[k];});if((it.tags||[]).join('|')!==(b.tags||[]).join('|'))a.tags=it.tags||[];if(Object.keys(a).length)O2.ann[it.id]=a;});
+  const a={};['star','rating','doability','prio','arch','trash','color'].forEach(k=>{if(it[k])a[k]=it[k];});if((it.tags||[]).join('|')!==(b.tags||[]).join('|'))a.tags=it.tags||[];if(Object.keys(a).length)O2.ann[it.id]=a;});
  BASE.forEach(b=>{if(!seen.has(b.id))O2.del.push(b.id);});
  O=O2;saveO();rebuild();render();
 }
@@ -259,6 +272,9 @@ function buildStaticChips(){
  doEl.innerHTML=`<div class="chip dorate on" data-d="0">Any</div>`+[1,2,3,4,5].map(n=>`<div class="chip dorate" data-d="${n}">${n===5?'5★':n+'★+'}</div>`).join('');
  doEl.onclick=e=>{const d=e.target.dataset.d;if(d===undefined)return;fdo=+d;[...doEl.children].forEach(x=>x.classList.toggle('on',+x.dataset.d===fdo));render();};
  prioEl.onclick=e=>{const pr=e.target.dataset.pr;if(pr===undefined)return;fprio=pr;[...prioEl.children].forEach(x=>x.classList.toggle('on',x.dataset.pr===fprio));render();};
+ const colorEl=document.getElementById('colorf');
+ colorEl.innerHTML=`<div class="chip cf on" data-cf="all">Any</div>`+COLORS.map(c=>`<div class="chip cf" data-cf="${c.key}" title="${c.name}"><span class="cfsw" style="background:${c.hex}"></span></div>`).join('')+`<div class="chip cf" data-cf="none">None</div>`;
+ colorEl.onclick=e=>{const el=e.target.closest('.cf');if(!el||el.dataset.cf===undefined)return;fcolor=el.dataset.cf;[...colorEl.children].forEach(x=>x.classList.toggle('on',x.dataset.cf===fcolor));render();};
  catsEl.onclick=e=>{if(!e.target.dataset.c)return;fc=e.target.dataset.c;[...catsEl.children].forEach(x=>x.classList.toggle('on',x.dataset.c===fc));render();};
  document.getElementById('tagtop').onclick=e=>{const el=e.target.closest('.tagc');if(!el)return;const v=el.dataset.tag;const nt=(v==='__all')?'all':dec(v);ftag=(ftag===nt)?'all':nt;render();};
  const tq=document.getElementById('tagq'),ac=document.getElementById('tagac');
@@ -292,6 +308,7 @@ function match(e){
  if(fmin>0&&(e.rating||0)<fmin)return false;
  if(fdo>0&&(e.doability||0)<fdo)return false;
  if(fprio!=='all'&&(e.prio||'')!==fprio)return false;
+ if(fcolor!=='all'){if(fcolor==='none'){if(e.color)return false;}else if((e.color||'')!==fcolor)return false;}
  if(ftrash){if(!e.trash)return false;}else{if(e.trash)return false;if(farch){if(!e.arch)return false;}else{if(e.arch)return false;}}
  if(ftag!=='all'&&!(e.tags||[]).includes(ftag))return false;
  if(fq){const h=(e.title+' '+(e.summary||'')+' '+(e.from||'')+' '+(e.tags||[]).join(' ')+' '+(e.labels||[]).join(' ')).toLowerCase();if(!h.includes(fq))return false;}
@@ -300,7 +317,7 @@ function match(e){
 const grid=document.getElementById('grid');
 function cardHTML(e,c){
  const sum=e.summary||'';const clip=sum.length>160?'clip':'';
- return `<div class="card ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''}" data-id="${e.id}">
+ return `<div class="card ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
     <span class="ttl" data-exp="1">${esc(e.title)}</span>
     <span class="badge" style="background:${COL[c]||'#888'}22;color:${COL[c]||'#aaa'}">${(e.phase||'').toUpperCase()}</span>
@@ -314,6 +331,7 @@ function cardHTML(e,c){
    <div class="rate"><span class="rlab">Interest</span>${[1,2,3,4,5].map(n=>`<span class="rstar ${(e.rating||0)>=n?'on':''}" data-rate="${e.id}:${n}">${(e.rating||0)>=n?'★':'☆'}</span>`).join('')}${e.rating?`<span class="rclear" data-rate="${e.id}:0">clear</span>`:''}</div>
    <div class="rate"><span class="rlab">Doability</span>${[1,2,3,4,5].map(n=>`<span class="dostar ${(e.doability||0)>=n?'on':''}" data-do="${e.id}:${n}">${(e.doability||0)>=n?'★':'☆'}</span>`).join('')}${e.doability?`<span class="rclear" data-do="${e.id}:0">clear</span>`:''}</div>
    <div class="prio"><span class="rlab">Priority</span>${['low','mid','high'].map(pv=>`<span class="pbtn p-${pv} ${e.prio===pv?'on':''}" data-prio="${e.id}:${pv}">${pv}</span>`).join('')}</div>
+   <div class="colr"><span class="rlab">Color</span>${COLORS.map(c=>`<span class="sw ${e.color===c.key?'on':''}" data-color="${e.id}:${c.key}" title="${c.name}" style="background:${c.hex}"></span>`).join('')}<span class="sw none ${e.color?'':'on'}" data-color="${e.id}:" title="No color">⊘</span></div>
    <div class="tags">${(e.tags||[]).map(t=>`<span class="pill"><span class="tg" data-tag="${enc(t)}">#${esc(t)}</span><x data-id="${e.id}" data-rt="${enc(t)}">✕</x></span>`).join('')}<span class="addl" data-add="${e.id}">+ tag</span></div>
    <div class="meta">${e.from?'from &ldquo;'+esc(e.from)+'&rdquo; · ':''}${esc(e.date||'')}${e.trash?` · <span class="revert" data-del="${e.id}">delete forever</span>`:''}</div>
   </div>`;
@@ -343,6 +361,7 @@ grid.onclick=e=>{
  if(t.dataset.rate){const[id,n]=t.dataset.rate.split(':');const cur=byId(id).rating||0;setAnn(id,{rating:cur===+n?0:+n});return;}
  if(t.dataset.do){const[id,n]=t.dataset.do.split(':');const cur=byId(id).doability||0;setAnn(id,{doability:cur===+n?0:+n});return;}
  if(t.dataset.prio){const[id,pv]=t.dataset.prio.split(':');const cur=byId(id).prio||'';setAnn(id,{prio:cur===pv?'':pv});return;}
+ if(t.dataset.color!==undefined){const[id,key]=t.dataset.color.split(':');const cur=byId(id).color||'';setAnn(id,{color:cur===(key||'')?'':(key||'')});return;}
  if(t.dataset.tag){ftag=dec(t.dataset.tag);render();return;}
  if(t.dataset.rt){const id=t.dataset.id,tg=dec(t.dataset.rt);setAnn(id,{tags:(byId(id).tags||[]).filter(x=>x!==tg)});return;}
  if(t.dataset.add){openInput(t,t.dataset.add);return;}
