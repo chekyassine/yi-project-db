@@ -97,6 +97,12 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .card.colored:hover{background:color-mix(in srgb,var(--cc) 15%,var(--card2))}
 .cfsw{display:inline-block;width:13px;height:13px;border-radius:50%;vertical-align:middle}
 .chip.cf.on{border-color:#fff;color:#fff;background:#3a4780}
+.swtrig{width:18px;height:18px;border-radius:50%;cursor:pointer;border:2px solid rgba(255,255,255,.18);box-sizing:border-box;flex:none;transition:.1s}
+.swtrig:hover{transform:scale(1.15)}
+.swtrig.none{background:conic-gradient(from 90deg,#ef5350,#ff8a3d,#f4d03f,#a3d63b,#4caf6d,#25b8a5,#31c5e8,#4d8bf0,#7c74f2,#b06cf0,#f062a8,#ef5350);border-color:transparent}
+.swpop{display:none;gap:5px;align-items:center;flex-wrap:wrap}
+.colr.open .swpop{display:flex}
+.colr.open .swtrig{box-shadow:0 0 0 2px rgba(255,255,255,.3)}
 .tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .tag{font-size:11px;color:var(--mut)}
 .tg{cursor:pointer}.tg:hover{color:var(--pi)}
@@ -331,7 +337,7 @@ function cardHTML(e,c){
    <div class="rate"><span class="rlab">Interest</span>${[1,2,3,4,5].map(n=>`<span class="rstar ${(e.rating||0)>=n?'on':''}" data-rate="${e.id}:${n}">${(e.rating||0)>=n?'★':'☆'}</span>`).join('')}${e.rating?`<span class="rclear" data-rate="${e.id}:0">clear</span>`:''}</div>
    <div class="rate"><span class="rlab">Doability</span>${[1,2,3,4,5].map(n=>`<span class="dostar ${(e.doability||0)>=n?'on':''}" data-do="${e.id}:${n}">${(e.doability||0)>=n?'★':'☆'}</span>`).join('')}${e.doability?`<span class="rclear" data-do="${e.id}:0">clear</span>`:''}</div>
    <div class="prio"><span class="rlab">Priority</span>${['low','mid','high'].map(pv=>`<span class="pbtn p-${pv} ${e.prio===pv?'on':''}" data-prio="${e.id}:${pv}">${pv}</span>`).join('')}</div>
-   <div class="colr"><span class="rlab">Color</span>${COLORS.map(c=>`<span class="sw ${e.color===c.key?'on':''}" data-color="${e.id}:${c.key}" title="${c.name}" style="background:${c.hex}"></span>`).join('')}<span class="sw none ${e.color?'':'on'}" data-color="${e.id}:" title="No color">⊘</span></div>
+   <div class="colr"><span class="rlab">Color</span><span class="swtrig ${e.color&&CMAP[e.color]?'':'none'}" data-colorpick="${e.id}" title="Set color"${e.color&&CMAP[e.color]?` style="background:${CMAP[e.color]}"`:''}></span><span class="swpop">${COLORS.map(c=>`<span class="sw ${e.color===c.key?'on':''}" data-color="${e.id}:${c.key}" title="${c.name}" style="background:${c.hex}"></span>`).join('')}<span class="sw none ${e.color?'':'on'}" data-color="${e.id}:" title="No color">⊘</span></span></div>
    <div class="tags">${(e.tags||[]).map(t=>`<span class="pill"><span class="tg" data-tag="${enc(t)}">#${esc(t)}</span><x data-id="${e.id}" data-rt="${enc(t)}">✕</x></span>`).join('')}<span class="addl" data-add="${e.id}">+ tag</span></div>
    <div class="meta">${e.from?'from &ldquo;'+esc(e.from)+'&rdquo; · ':''}${esc(e.date||'')}${e.trash?` · <span class="revert" data-del="${e.id}">delete forever</span>`:''}</div>
   </div>`;
@@ -361,6 +367,7 @@ grid.onclick=e=>{
  if(t.dataset.rate){const[id,n]=t.dataset.rate.split(':');const cur=byId(id).rating||0;setAnn(id,{rating:cur===+n?0:+n});return;}
  if(t.dataset.do){const[id,n]=t.dataset.do.split(':');const cur=byId(id).doability||0;setAnn(id,{doability:cur===+n?0:+n});return;}
  if(t.dataset.prio){const[id,pv]=t.dataset.prio.split(':');const cur=byId(id).prio||'';setAnn(id,{prio:cur===pv?'':pv});return;}
+ if(t.dataset.colorpick){const c=t.closest('.colr');if(c)c.classList.toggle('open');return;}
  if(t.dataset.color!==undefined){const[id,key]=t.dataset.color.split(':');const cur=byId(id).color||'';setAnn(id,{color:cur===(key||'')?'':(key||'')});return;}
  if(t.dataset.tag){ftag=dec(t.dataset.tag);render();return;}
  if(t.dataset.rt){const id=t.dataset.id,tg=dec(t.dataset.rt);setAnn(id,{tags:(byId(id).tags||[]).filter(x=>x!==tg)});return;}
