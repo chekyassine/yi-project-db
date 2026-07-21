@@ -54,7 +54,6 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .card.starred{border-color:#7a2340}
 .card.archived{opacity:.55}.card.archived:hover{opacity:1}
 .card.trashed{opacity:.6}.card.trashed:hover{opacity:1}
-.card.prio-high{border-color:#7a2f2c}.card.prio-mid{border-color:#6e5320}.card.prio-low{border-color:#2f5a45}
 .card.editing{border-color:var(--pi);background:var(--card2)}
 .archbtn.on{color:var(--rs)}
 .delbtn:hover{color:#ff6b6b}
@@ -93,8 +92,10 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .sw.on{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.28)}
 .sw.none{display:flex;align-items:center;justify-content:center;background:var(--bg2);color:#6b77a3;font-size:11px;border:1px solid var(--line)}
 .sw.none.on{border-color:#fff;color:#fff}
-.card.colored{background:color-mix(in srgb,var(--cc) 10%,var(--card));box-shadow:inset 4px 0 0 var(--cc)}
-.card.colored:hover{background:color-mix(in srgb,var(--cc) 15%,var(--card2))}
+.card.colored{background:color-mix(in srgb,var(--cc) 24%,var(--card));box-shadow:inset 4px 0 0 var(--cc)}
+.card.colored:hover{background:color-mix(in srgb,var(--cc) 32%,var(--card2))}
+.card.colored .sum.clip:after{background:linear-gradient(transparent,color-mix(in srgb,var(--cc) 24%,var(--card)))}
+.card.colored:hover .sum.clip:after{background:linear-gradient(transparent,color-mix(in srgb,var(--cc) 32%,var(--card2)))}
 .cfsw{display:inline-block;width:13px;height:13px;border-radius:50%;vertical-align:middle}
 .chip.cf.on{border-color:#fff;color:#fff;background:#3a4780}
 .swtrig{width:18px;height:18px;border-radius:50%;cursor:pointer;border:2px solid rgba(255,255,255,.18);box-sizing:border-box;flex:none;transition:.1s}
