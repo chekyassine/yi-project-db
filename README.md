@@ -11,8 +11,8 @@ Static app (index.html) + base catalog (data.json). Your annotations sync to a c
 (Until filled, it uses the jsonblob fallback.)
 
 ## GitHub + auto-deploy
-1. Create a repo, push this folder (index.html, data.json, supabase.sql, README.md).
-2. Cloudflare Dashboard → Workers & Pages → Create Application → Pages → Connect to Git → pick the repo. Leave Build command blank, Build output directory = repo root (`/`).
-3. Every `git push` now auto-deploys. No more drag-drop.
+1. Create a repo, push this folder.
+2. Add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` to your GitHub Repository Secrets.
+3. Every `git push` to `main` now auto-deploys via GitHub Actions to Cloudflare Pages.
 
 Note: the anon key is public by design; fine given no-security. `Export all` = full backup anytime.
