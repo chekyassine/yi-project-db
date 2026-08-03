@@ -193,21 +193,19 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
 const DEFAULT_BIN="019f84a8-fd16-7c77-b353-1f177cbad91c";
 let BIN_ID=localStorage.getItem('pdb_binid')||DEFAULT_BIN;
 function binURL(){return 'https://jsonblob.com/api/jsonBlob/'+BIN_ID;}
-async function createBin(){try{const r=await fetch('https://jsonblob.com/api/jsonBlob',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(O)});const loc=r.headers.get('Location');const id=loc?loc.split('/').pop():null;if(id){BIN_ID=id;localStorage.setItem('pdb_binid',id);}return id;}catch(e){return null;}}
+async function createBin(){try{const r=await fetch('https://jsonblob.com/api/jsonBlob',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(DB)});const loc=r.headers.get('Location');const id=loc?loc.split('/').pop():null;if(id){BIN_ID=id;localStorage.setItem('pdb_binid',id);}return id;}catch(e){return null;}}
 /* ===== Supabase (durable store). Paste your Project URL + anon key below to switch from jsonblob. ===== */
 const SUPA={url:"https://xusrtrlwtwtkwmznmahd.supabase.co", key:"sb_publishable_saqnGeDV96Gyldrs4CFQjw_MI-Zqsr4"};
 function supaOn(){return SUPA.url&&SUPA.key&&!SUPA.url.includes("YOUR_");}
 function supaHdr(){return {apikey:SUPA.key,Authorization:"Bearer "+SUPA.key,"Content-Type":"application/json"};}
-async function supaGet(){try{const r=await fetch(SUPA.url+"/rest/v1/overlay?id=eq.main&select=data",{headers:supaHdr(),cache:"no-store"});if(!r.ok)return undefined;const a=await r.json();return a[0]?a[0].data:{ann:{},ed:{},add:[],del:[]};}catch(e){return undefined;}}
-async function supaPush(){setLbl("busy","Saving…");try{const r=await fetch(SUPA.url+"/rest/v1/overlay",{method:"POST",headers:Object.assign(supaHdr(),{Prefer:"resolution=merge-duplicates"}),body:JSON.stringify([{id:"main",data:O}])});if(!r.ok)throw 0;setLbl("ok","Synced");}catch(e){setLbl("err","Offline");}}
+async function supaGet(){try{const r=await fetch(SUPA.url+"/rest/v1/overlay?id=eq.main&select=data",{headers:supaHdr(),cache:"no-store"});if(!r.ok)return undefined;const a=await r.json();return a[0]?a[0].data:null;}catch(e){return undefined;}}
+async function supaPush(){setLbl("busy","Saving…");try{const r=await fetch(SUPA.url+"/rest/v1/overlay",{method:"POST",headers:Object.assign(supaHdr(),{Prefer:"resolution=merge-duplicates"}),body:JSON.stringify([{id:"main",data:DB}])});if(!r.ok)throw 0;setLbl("ok","Synced");}catch(e){setLbl("err","Offline");}}
 const BASE_URL="./data.json";
-const B_CACHE="pdb_base_v1", O_CACHE="pdb_overlay_v1";
+const DB_CACHE="pdb_db_v2";
 const CATS=["Project Idea", "Business/Money", "Tool", "Method", "Work/Skill", "Resource"], COL={"Project Idea": "var(--pi)", "Business/Money": "var(--bm)", "Tool": "var(--tl)", "Method": "var(--me)", "Work/Skill": "var(--ws)", "Resource": "var(--rs)"}, LAB={"Project Idea": "Project Ideas", "Business/Money": "Business / Money", "Tool": "Tools", "Method": "Methods", "Work/Skill": "Work / Skills", "Resource": "Resources"}, CATDESC={"Project Idea": "App, website & service ideas", "Business/Money": "Monetization, trading, e-commerce", "Tool": "Software, libraries, APIs", "Method": "How-tos, tactics, processes", "Work/Skill": "Skills & career moves", "Resource": "Reference & leads"}, PHASES=["Idea", "Research", "Execution"];
 const COLORS=[{key:'red',hex:'#ef5350',name:'Red'},{key:'orange',hex:'#ff8a3d',name:'Orange'},{key:'amber',hex:'#f7b731',name:'Amber'},{key:'yellow',hex:'#f4d03f',name:'Yellow'},{key:'lime',hex:'#a3d63b',name:'Lime'},{key:'green',hex:'#4caf6d',name:'Green'},{key:'teal',hex:'#25b8a5',name:'Teal'},{key:'cyan',hex:'#31c5e8',name:'Cyan'},{key:'blue',hex:'#4d8bf0',name:'Blue'},{key:'indigo',hex:'#7c74f2',name:'Indigo'},{key:'purple',hex:'#b06cf0',name:'Purple'},{key:'pink',hex:'#f062a8',name:'Pink'}];
 const CMAP={};COLORS.forEach(c=>CMAP[c.key]=c.hex);
-let BASE=[];               // immutable catalog (from data.json, served by Netlify)
-let O={ann:{},ed:{},add:[],del:[]};  // your changes only (tiny, synced to bin)
-let DB=[];                 // merged view = BASE + O
+let DB=[];                 // full database (array of notes, single source of truth)
 let fc="all",fp="all",fstar=false,farch=false,ftrash=false,fmin=0,fdo=0,fprio="all",fcolor="all",ftag="all",fq="";
 let editingId=null,syncTimer=null;
 const cloudLbl=document.getElementById('cloudlbl');
@@ -217,52 +215,47 @@ function enc(s){return encodeURIComponent(s);} function dec(s){return decodeURIC
 function byId(id){return DB.find(x=>x.id===id);}
 function uid(){return 'U'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
 function today(){return new Date().toISOString().slice(0,10);}
-function added(id){return O.add.some(a=>a.id===id);}
 function normO(o){o=o||{};return {ann:o.ann||{},ed:o.ed||{},add:o.add||[],del:o.del||[]};}
 
-/* ---- merge base + overlay into the DB view ---- */
-function rebuild(){
- const del=new Set(O.del);DB=[];
- BASE.forEach(b=>{if(del.has(b.id))return;const it=Object.assign({},b);const ed=O.ed[b.id];if(ed){if(ed.title)it.title=ed.title;if(ed.summary!=null)it.summary=ed.summary;}Object.assign(it,O.ann[b.id]||{});DB.push(it);});
- O.add.forEach(a=>{if(del.has(a.id))return;DB.push(Object.assign({},a));});
-}
-
-/* ---- sync: base from Netlify, overlay (small) from bin ---- */
+/* ---- sync from cloud ---- */
 async function grab(url){try{const r=await fetch(url,{headers:{'Accept':'application/json'},cache:'no-store'});if(!r.ok)return null;return await r.json();}catch(e){return null;}}
-async function pushBin(){if(supaOn())return supaPush();setLbl('busy','Saving…');try{let r=await fetch(binURL(),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(O)});if(r.status===404){const id=await createBin();if(id)r=await fetch(binURL(),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(O)});}if(!r.ok)throw new Error('HTTP '+r.status);setLbl('ok','Synced');}catch(e){setLbl('err','Offline');}}
+async function pushBin(){if(supaOn())return supaPush();setLbl('busy','Saving…');try{let r=await fetch(binURL(),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(DB)});if(r.status===404){const id=await createBin();if(id)r=await fetch(binURL(),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(DB)});}if(!r.ok)throw new Error('HTTP '+r.status);setLbl('ok','Synced');}catch(e){setLbl('err','Offline');}}
 function scheduleSync(){setLbl('busy','…');clearTimeout(syncTimer);syncTimer=setTimeout(pushBin,1000);}
-function saveO(){localStorage.setItem(O_CACHE,JSON.stringify(O));scheduleSync();}
-async function pullNow(){setLbl('busy','Syncing…');if(supaOn()){const d=await supaGet();if(d!==undefined){O=normO(d);localStorage.setItem(O_CACHE,JSON.stringify(O));rebuild();render();setLbl('ok','Synced');}else setLbl('err','Offline');return;}const o=await grab(binURL());if(o&&typeof o==='object'&&!Array.isArray(o)){O=normO(o);localStorage.setItem(O_CACHE,JSON.stringify(O));rebuild();render();setLbl('ok','Synced');}else{await pushBin();}}
+function saveDB(){localStorage.setItem(DB_CACHE,JSON.stringify(DB));scheduleSync();}
+async function pullNow(){setLbl('busy','Syncing…');if(supaOn()){const d=await supaGet();if(d!==undefined&&Array.isArray(d)){DB=d;localStorage.setItem(DB_CACHE,JSON.stringify(DB));render();setLbl('ok','Synced');}else setLbl('err','Offline');return;}const o=await grab(binURL());if(o&&Array.isArray(o)){DB=o;localStorage.setItem(DB_CACHE,JSON.stringify(DB));render();setLbl('ok','Synced');}else{await pushBin();}}
 
-/* ---- mutators: write to overlay, never to base ---- */
-function setAnn(id,ch){if(added(id)){Object.assign(O.add.find(x=>x.id===id),ch);}else{O.ann[id]=Object.assign(O.ann[id]||{},ch);}saveO();rebuild();render();}
-function setEdit(id,title,summary){if(added(id)){const a=O.add.find(x=>x.id===id);a.title=title;a.summary=summary;}else{O.ed[id]={title,summary};}saveO();rebuild();render();}
-function delForever(id){if(added(id))O.add=O.add.filter(x=>x.id!==id);else if(!O.del.includes(id))O.del.push(id);delete O.ann[id];delete O.ed[id];saveO();rebuild();render();}
-function addNote(it){O.add.unshift(it);saveO();rebuild();render();}
-function importFull(arr){
- const bm={};BASE.forEach(b=>bm[b.id]=b);const seen=new Set();const O2={ann:{},ed:{},add:[],del:[]};
- arr.forEach(it=>{seen.add(it.id);const b=bm[it.id];
-  if(!b){O2.add.push(it);return;}
-  if((it.title||'')!==(b.title||'')||(it.summary||'')!==(b.summary||''))O2.ed[it.id]={title:it.title,summary:it.summary};
-  const a={};['star','rating','doability','prio','arch','trash','color'].forEach(k=>{if(it[k])a[k]=it[k];});if((it.tags||[]).join('|')!==(b.tags||[]).join('|'))a.tags=it.tags||[];if(Object.keys(a).length)O2.ann[it.id]=a;});
- BASE.forEach(b=>{if(!seen.has(b.id))O2.del.push(b.id);});
- O=O2;saveO();rebuild();render();
-}
+/* ---- mutators: write to db ---- */
+function setAnn(id,ch){const it=byId(id);if(it)Object.assign(it,ch);saveDB();render();}
+function setEdit(id,title,summary){const it=byId(id);if(it){it.title=title;it.summary=summary;}saveDB();render();}
+function delForever(id){DB=DB.filter(x=>x.id!==id);saveDB();render();}
+function addNote(it){DB.unshift(it);saveDB();render();}
+function importFull(arr){DB=arr;saveDB();render();}
 
 async function boot(){
  setLbl('busy','Loading…');
- let base=await grab(BASE_URL);
- if(!(Array.isArray(base)&&base.length)){const c=localStorage.getItem(B_CACHE);if(c){try{base=JSON.parse(c);}catch(e){}}}
- BASE=Array.isArray(base)?base:[];
- if(BASE.length)localStorage.setItem(B_CACHE,JSON.stringify(BASE));
- let ov=null,reachable=false,missing=false;
- if(supaOn()){const d=await supaGet();if(d!==undefined){reachable=true;ov=d;}}
- else{try{const r=await fetch(binURL(),{headers:{'Accept':'application/json'},cache:'no-store'});reachable=true;if(r.status===404)missing=true;else if(r.ok){const j=await r.json();if(j&&typeof j==='object'&&!Array.isArray(j))ov=j;}}catch(e){reachable=false;}}
- if(!ov){const c=localStorage.getItem(O_CACHE);if(c){try{ov=JSON.parse(c);}catch(e){}}}
- O=normO(ov);
- buildStaticChips(); rebuild(); render();
- if(missing){await pushBin();}
- else setLbl(reachable?'ok':'err', reachable?'Synced':'Offline');
+ let dbData=null, reachable=false, isMigration=false;
+ if(supaOn()){const d=await supaGet();if(d!==undefined){reachable=true;dbData=d;}}
+ else{try{const r=await fetch(binURL(),{headers:{'Accept':'application/json'},cache:'no-store'});reachable=true;if(r.ok)dbData=await r.json();}catch(e){reachable=false;}}
+ 
+ if(dbData && Array.isArray(dbData)){
+  DB=dbData;
+ } else {
+  isMigration=true;
+  let base=await grab(BASE_URL);
+  if(!Array.isArray(base)) base=[];
+  let oldO=normO(dbData);
+  if(!dbData){const c=localStorage.getItem('pdb_overlay_v1');if(c){try{oldO=normO(JSON.parse(c));}catch(e){}}}
+  const del=new Set(oldO.del); DB=[];
+  base.forEach(b=>{if(del.has(b.id))return;const it=Object.assign({},b);const ed=oldO.ed[b.id];if(ed){if(ed.title)it.title=ed.title;if(ed.summary!=null)it.summary=ed.summary;}Object.assign(it,oldO.ann[b.id]||{});DB.push(it);});
+  oldO.add.forEach(a=>{if(del.has(a.id))return;DB.push(Object.assign({},a));});
+ }
+ 
+ if(!DB.length){const c=localStorage.getItem(DB_CACHE);if(c){try{DB=JSON.parse(c);}catch(e){}}}
+ if(DB.length)localStorage.setItem(DB_CACHE,JSON.stringify(DB));
+ 
+ buildStaticChips(); render();
+ if(isMigration && reachable) await pushBin();
+ setLbl(reachable?'ok':'err', reachable?'Synced':'Offline');
 }
 
 /* ---- filter chips ---- */
