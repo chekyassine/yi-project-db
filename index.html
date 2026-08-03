@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YI's Project Database</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f1428">
 <style>
 :root{
  --bg:#0f1428; --bg2:#161d38; --card:#1c2444; --card2:#222c52;
@@ -436,6 +438,36 @@ document.getElementById('cloudbtn').onclick=pullNow;
  window.addEventListener('scroll',()=>{ if(!ticking){ requestAnimationFrame(upd); ticking=true; } },{passive:true});
 })();
 
+// Register Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW reg fail:', err));
+  });
+}
+
+// Handle PWA Web Share Target
+function handleSharedData() {
+  const params = new URLSearchParams(window.location.search);
+  const sTitle = params.get('share_title');
+  const sText = params.get('share_text');
+  const sUrl = params.get('share_url');
+  
+  if (sTitle || sText || sUrl) {
+    let combinedText = '';
+    if (sText) combinedText += sText + '\n';
+    if (sUrl && (!sText || !sText.includes(sUrl))) combinedText += sUrl;
+    
+    document.getElementById('n_title').value = sTitle || '';
+    document.getElementById('n_sum').value = combinedText.trim();
+    document.getElementById('n_tags').value = 'shared';
+    ov.classList.add('show');
+    document.getElementById('n_title').focus();
+    
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+}
+
+handleSharedData();
 boot();
 </script>
 </body>

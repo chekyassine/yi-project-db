@@ -1,0 +1,26 @@
+{
+  "name": "YI's Project Database",
+  "short_name": "YI's DB",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f1428",
+  "theme_color": "#0f1428",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "192x192 512x512 any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "share_target": {
+    "action": "./index.html",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "share_title",
+      "text": "share_text",
+      "url": "share_url"
+    }
+  }
+}

@@ -3,11 +3,11 @@
 Context for AI sessions. Read this first; it should let you skip re-deriving the architecture.
 
 ## What it is
-A single **static HTML app** (`index.html`, self-contained HTML+CSS+JS) that displays ~318 project ideas/tools/methods (originally extracted from Google Keep) with search, filters, and per-card annotations. Live at **https://yi-project-db.netlify.app**.
+A single **static HTML app** (`index.html`, self-contained HTML+CSS+JS) that displays ~318 project ideas/tools/methods (originally extracted from Google Keep) with search, filters, and per-card annotations. Live at **https://yi-project-db.pages.dev** (or custom domain).
 
 ## Stack & hosting
 - **Repo (source of truth):** `github.com/chekyassine/yi-project-db`, branch `main` (public).
-- **Hosting:** Netlify project `yi-project-db` — **auto-deploys on every push to `main`** (no build command; publish dir = repo root). A push = a live deploy within ~1 min.
+- **Hosting:** Cloudflare Pages project `yi-project-db` — **auto-deploys on every push to `main`** (no build command; publish dir = repo root). A push = a live deploy within ~1 min.
 - **Database:** Supabase project `yi-project-db` (org `squarepack`), URL `https://xusrtrlwtwtkwmznmahd.supabase.co`. Table `overlay(id text pk, data jsonb)`. RLS on with anon full read/write (intentionally no auth for now). The **anon/publishable key is embedded in `index.html`** (`const SUPA={url,key}` in `<script>`) and is **public by design** — safe. There's a jsonblob fallback + self-heal if `SUPA` is blank.
 
 ## Files
@@ -46,7 +46,7 @@ Search; filters for category / phase / favorites / archived / trash / interest(�
 - **New per-note annotation field:** add to the `setAnn` write path + read it as `e.<field>` in `cardHTML` (merge is automatic via `rebuild`), add to `match()` if filterable, and add to the `importFull` copied-keys list so it survives export/import.
 
 ## Workflow & verification
-- Loop: **edit → `git commit` → `git push origin main` → Netlify auto-deploy**. Surface the diff and confirm before pushing anything non-trivial (push = live deploy). Git identity + HTTPS push auth are configured on the maintainer's machine; `gh` CLI is **not** installed.
+- Loop: **edit → `git commit` → `git push origin main` → Cloudflare Pages auto-deploy**. Surface the diff and confirm before pushing anything non-trivial (push = live deploy). Git identity + HTTPS push auth are configured on the maintainer's machine; `gh` CLI is **not** installed.
 - **Verify UI changes in a browser before pushing.** Opening `index.html` from disk still runs live (it connects to Supabase and loads real data).
 - **Do NOT pollute production data when testing:** clicking a real control calls `setAnn` → syncs to Supabase. To test the render/filter path safely, inject values onto `DB` in the page console and call `render()` (NOT `rebuild()`, which regenerates `DB` from base+overlay and wipes injected values). To test a real click path, stub `pushBin`/`scheduleSync`, snapshot `O`, act, then restore `O` and `rebuild()`.
 

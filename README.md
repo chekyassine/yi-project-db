@@ -12,7 +12,7 @@ Static app (index.html) + base catalog (data.json). Your annotations sync to a c
 
 ## GitHub + auto-deploy
 1. Create a repo, push this folder (index.html, data.json, supabase.sql, README.md).
-2. Netlify → Add new project → Import from Git → pick the repo. Publish dir = repo root.
+2. Cloudflare Dashboard → Workers & Pages → Create Application → Pages → Connect to Git → pick the repo. Leave Build command blank, Build output directory = repo root (`/`).
 3. Every `git push` now auto-deploys. No more drag-drop.
 
 Note: the anon key is public by design; fine given no-security. `Export all` = full backup anytime.
