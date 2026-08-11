@@ -321,7 +321,7 @@ function cardHTML(e,c){
  const sum=e.summary||'';const clip=sum.length>160?'clip':'';
  return `<div class="card ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
-    <span class="ttl" data-exp="1">${esc(e.title)}</span>
+    <span class="ttl" data-exp="1">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
     <span class="badge" style="background:${COL[c]||'#888'}22;color:${COL[c]||'#aaa'}">${(e.phase||'').toUpperCase()}</span>
     <span class="icons">
      <span class="ic" data-edit="${e.id}" title="Edit">✎</span>
@@ -357,6 +357,17 @@ function render(){
 
 grid.onclick=e=>{
  const t=e.target; if(t.closest('.editing'))return;
+ const card = t.closest('.card');
+ if (card) {
+   const id = card.dataset.id;
+   const it = byId(id);
+   if (it && it.is_new) {
+     delete it.is_new;
+     saveDB();
+     const badge = card.querySelector('.new-badge');
+     if (badge) badge.remove();
+   }
+ }
  if(t.dataset.star){setAnn(t.dataset.star,{star:!byId(t.dataset.star).star});return;}
  if(t.dataset.arch){setAnn(t.dataset.arch,{arch:!byId(t.dataset.arch).arch});return;}
  if(t.dataset.trash){setAnn(t.dataset.trash,{trash:!byId(t.dataset.trash).trash});return;}
@@ -457,12 +468,25 @@ function handleSharedData() {
     if (sText) combinedText += sText + '\n';
     if (sUrl && (!sText || !sText.includes(sUrl))) combinedText += sUrl;
     
-    document.getElementById('n_title').value = sTitle || '';
-    document.getElementById('n_sum').value = combinedText.trim();
-    document.getElementById('n_tags').value = 'shared';
-    ov.classList.add('show');
-    document.getElementById('n_title').focus();
+    const title = sTitle || 'Shared Note';
+    const summary = combinedText.trim();
     
+    // Auto-save the shared note immediately with the is_new flag
+    const it={
+      id: uid(),
+      title: title,
+      category: 'Resource', // Default category for shared items
+      phase: 'Idea',
+      summary: summary,
+      tags: ['shared'],
+      from: '',
+      date: today(),
+      source_note: '(shared from device)',
+      is_new: true
+    };
+    addNote(it);
+    
+    // Clear URL so it doesn't trigger again on refresh
     window.history.replaceState({}, document.title, window.location.pathname);
   }
 }
