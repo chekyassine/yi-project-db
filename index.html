@@ -170,7 +170,7 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
  <div class="htop">
   <div>
    <h1>YI's Project Database</h1>
-   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.3</span></div>
+   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.4</span></div>
   </div>
   <div class="io">
    <span class="btn" id="viewbtn" title="Toggle List/Grid View">⊞ Grid</span>
@@ -521,13 +521,13 @@ function handleSharedData() {
     if (sText) combinedText += sText + '\n';
     if (sUrl && (!sText || !sText.includes(sUrl))) combinedText += sUrl;
     
-    const title = sTitle || 'Shared Note';
+    const fallbackTitle = sTitle || 'Shared Note';
     const summary = combinedText.trim();
     
     // Auto-save the shared note immediately with the is_new flag
     const it={
       id: uid(),
-      title: title,
+      title: sUrl ? 'Unwrapping link...' : fallbackTitle,
       category: 'Resource', // Default category for shared items
       phase: 'Idea',
       summary: summary,
@@ -538,6 +538,31 @@ function handleSharedData() {
       is_new: true
     };
     addNote(it);
+    
+    // If there is a URL, attempt to fetch its metadata using our Cloudflare Function
+    if (sUrl) {
+      fetch('/api/unwrap?url=' + encodeURIComponent(sUrl))
+        .then(r => r.json())
+        .then(data => {
+          if (data.title) {
+            it.title = data.title;
+            // If we didn't have user-provided text, use the description
+            if (data.description && (!sText || sText.trim() === '')) {
+              it.summary = data.description + '\n\n' + sUrl;
+            }
+            it.updated = today();
+          } else {
+            it.title = fallbackTitle;
+          }
+          saveDB();
+          render();
+        })
+        .catch(e => {
+          it.title = fallbackTitle;
+          saveDB();
+          render();
+        });
+    }
     
     // Clear URL so it doesn't trigger again on refresh
     window.history.replaceState({}, document.title, window.location.pathname);
