@@ -526,10 +526,39 @@ function setEdit(id,nt,ns){
 }
 function openEditor(card,id){
  const e=byId(id);editingId=id;card.classList.add('editing','open');
- card.innerHTML=`<input class="edit-t" value="${esc(e.title)}"><textarea class="edit-s">${esc(e.summary||'')}</textarea>
-  <div class="ebtns"><span class="ebtn save" data-do="save">Save</span><span class="ebtn" data-do="cancel">Cancel</span></div>`;
- const ti=card.querySelector('.edit-t'),su=card.querySelector('.edit-s');ti.focus();
- card.querySelector('.ebtns').onclick=ev=>{const d=ev.target.dataset.do;if(!d)return;
+ 
+ const ctop = card.querySelector('.ctop');
+ const ttl = ctop.querySelector('.ttl');
+ const sum = card.querySelector('.sum');
+ 
+ ttl.style.display = 'none';
+ if(sum) sum.style.display = 'none';
+ 
+ const ti = document.createElement('input');
+ ti.className = 'edit-t';
+ ti.value = e.title;
+ ti.style.flex = '1';
+ ti.style.width = '100%';
+ ti.style.margin = '0 8px 0 0';
+ ttl.after(ti);
+ 
+ const su = document.createElement('textarea');
+ su.className = 'edit-s';
+ su.value = e.summary || '';
+ su.style.marginTop = '8px';
+ su.style.display = 'block';
+ if (sum) { sum.after(su); } 
+ else { ctop.after(su); }
+ 
+ const ebtns = document.createElement('div');
+ ebtns.className = 'ebtns';
+ ebtns.innerHTML = `<span class="ebtn save" data-do="save">Save</span><span class="ebtn" data-do="cancel">Cancel</span>`;
+ ebtns.style.display = 'block';
+ su.after(ebtns);
+ 
+ ti.focus();
+ 
+ ebtns.onclick=ev=>{const d=ev.target.dataset.do;if(!d)return;
   if(d==='save'){editingId=null;setEdit(id,ti.value.trim()||e.title,su.value.trim());}
   else{editingId=null;render();}};
  ti.onkeydown=ev=>{if(ev.key==='Escape'){editingId=null;render();}};
