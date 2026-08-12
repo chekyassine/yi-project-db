@@ -30,7 +30,7 @@
       "files": [
         {
           "name": "images",
-          "accept": ["image/*"]
+          "accept": ["image/*", "video/*", ".mp4", ".mov"]
         }
       ]
     }
