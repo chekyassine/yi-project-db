@@ -65,14 +65,14 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .archbtn.on{color:var(--rs)}
 .delbtn:hover{color:#ff6b6b}
 .heartbtn.on{color:#ff5c7a}
-.ctop{display:flex;align-items:flex-start;gap:6px;flex-wrap:wrap}
-.dot{width:11px;height:11px;border-radius:50%;margin-top:5px;flex:none}
-.ttl{font-weight:650;font-size:15.5px;line-height:1.3;flex:1 1 100%;padding-right:4px;cursor:pointer;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.badge{font-size:10px;font-weight:700;letter-spacing:.4px;padding:3px 8px;border-radius:20px;white-space:nowrap;order:2;flex:1 1 auto;min-width:0;max-width:70%}
+.ctop{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;gap:6px;align-items:start}
+.dot{width:11px;height:11px;border-radius:50%;margin-top:5px;grid-column:1;grid-row:1}
+.ttl{grid-column:2;grid-row:1;font-weight:650;font-size:15.5px;line-height:1.3;padding-right:4px;cursor:pointer;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{grid-column:1;grid-row:2;font-size:10px;font-weight:700;letter-spacing:.4px;padding:3px 8px;border-radius:20px;white-space:nowrap;min-width:0;max-width:70%}
 .mobile-summary{display:none}
-.icons{display:flex;gap:6px;flex:1 1 auto;flex-wrap:wrap;align-items:center;justify-content:flex-end;order:3;margin-top:2px;min-width:0}
-.ic{cursor:pointer;font-size:22px;line-height:1;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;color:#454f77;transition:.12s;user-select:none}
-.ic:hover{transform:scale(1.1);color:#aab6e0;background:rgba(255,255,255,.08)}
+.icons{display:flex;gap:6px;grid-column:2;grid-row:2;justify-self:end;align-items:center;min-width:0}
+.ic{cursor:pointer;font-size:24px;line-height:1;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;color:#454f77;transition:.12s;user-select:none}
+.ic:hover{transform:scale(1.08);color:#aab6e0;background:rgba(255,255,255,.08)}
 .sum{color:#c4cdea;font-size:13px;line-height:1.5;max-height:4.5em;overflow:hidden;position:relative;cursor:pointer;white-space:pre-wrap}
 .card.open .sum{max-height:none}
 .sum.clip:after{content:"";position:absolute;bottom:0;left:0;right:0;height:1.4em;background:linear-gradient(transparent,var(--card))}
@@ -175,8 +175,8 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .linp{font-size:11px;background:var(--bg2);border:1px solid #4a5788;color:var(--ink);padding:3px 8px;border-radius:20px;outline:none;width:110px}
 .meta{font-size:11px;color:#5f6b96}
 .revert{cursor:pointer;text-decoration:underline;color:#8a6b6b}.revert:hover{color:#ff9a9a}
-.edit-t{width:100%;font-weight:650;font-size:15.5px;background:var(--bg2);border:1px solid #4a5788;color:var(--ink);border-radius:8px;padding:7px 9px;outline:none}
-.edit-s{width:100%;font-size:13px;line-height:1.5;background:var(--bg2);border:1px solid #4a5788;color:var(--ink);border-radius:8px;padding:8px 9px;outline:none;resize:vertical;min-height:120px;font-family:inherit}
+.edit-t{width:100%;font-weight:650;font-size:16px;background:var(--bg2);border:1px solid #4a5788;color:var(--ink);border-radius:8px;padding:12px 14px;outline:none}
+.edit-s{width:100%;font-size:15px;line-height:1.6;background:var(--bg2);border:1px solid #4a5788;color:var(--ink);border-radius:8px;padding:12px 14px;outline:none;resize:vertical;min-height:120px;font-family:inherit}
 .edit-t:focus,.edit-s:focus{border-color:var(--pi)}
 .ebtns{display:flex;gap:8px}
 .ebtn{cursor:pointer;font-size:12px;padding:6px 13px;border-radius:8px;border:1px solid var(--line);background:var(--bg2);color:var(--mut)}
@@ -525,7 +525,7 @@ function cardHTML(e,c=e.category||'Other',display='card'){
  if(showTags) compactItems.push(...(e.tags||[]).slice(0,3).map(t=>`<span class="compact-item">#${esc(t)}</span>`));
  return `<div class="card ${display==='zoom'?'zoom-card':''} ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
-    <span class="ttl" style="cursor:pointer" onclick="openCard(this.closest('.card'), '${e.id}')">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
+    <span class="ttl" title="${esc(e.title)}" style="cursor:pointer" onclick="openCard(this.closest('.card'), '${e.id}')">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
     <span class="badge" style="background:${COL[c]||'#888'}22;color:${COL[c]||'#aaa'}">${(e.category||e.phase||'').toUpperCase()}</span>
     <span class="icons">
      <span class="ic archivebtn" data-arch="${e.id}" title="${e.arch?'Unarchive':'Archive'}">${e.arch?'⇪':'🗃'}</span>
