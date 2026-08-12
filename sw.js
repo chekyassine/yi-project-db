@@ -1,4 +1,4 @@
-const CACHE_NAME = 'yi-db-v1';
+const CACHE_NAME = 'yi-db-v2';
 const ASSETS = [
   '/',
   '/index.html',

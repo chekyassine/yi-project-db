@@ -20,7 +20,7 @@
     }
   ],
   "share_target": {
-    "action": "/share",
+    "action": "https://yi-project-db.pages.dev/share",
     "method": "POST",
     "enctype": "multipart/form-data",
     "params": {
