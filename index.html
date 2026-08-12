@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <title>YI's Project Database</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -197,9 +197,11 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
 .two{display:flex;gap:12px}.two>div{flex:1}
 
 @media (max-width: 768px) {
-  header { padding: 15px 20px; }
-  .bar { padding: 10px 20px; }
-  .card { padding: 15px; }
+  body { overflow-x: hidden; width: 100%; position: relative; }
+  header { padding: 15px 15px; }
+  .bar { padding: 10px 15px; }
+  .card { padding: 12px; }
+  .grid { grid-template-columns: 1fr; gap: 12px; }
   .list-view .ctop { min-width: 100%; }
 }
 </style>
