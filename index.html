@@ -170,9 +170,10 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
  <div class="htop">
   <div>
    <h1>YI's Project Database</h1>
-   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.5</span></div>
+   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.6</span></div>
   </div>
   <div class="io">
+   <span class="btn" id="resetbtn" title="Reset all filters and sorting">↺ Reset Filters</span>
    <span class="btn" id="viewbtn" title="Toggle List/Grid View">⊞ Grid</span>
    <span class="btn primary" id="newbtn">＋ New note</span>
    <span class="btn" id="cloudbtn" title="Auto-synced — click to refresh from cloud">☁ <span id="cloudlbl">Cloud</span></span>
@@ -225,6 +226,11 @@ const CMAP={};COLORS.forEach(c=>CMAP[c.key]=c.hex);
 let DB=[];                 // full database (array of notes, single source of truth)
 let fc="all",fp="all",fstar=false,farch=false,ftrash=false,fmin=0,fdo=0,fprio="all",fcolor="all",ftag="all",fq="";
 let sortKey=null, sortDesc=true, isList=false;
+const defaultState = {fc,fp,fstar,farch,ftrash,fmin,fdo,fprio,fcolor,ftag,fq,sortKey,sortDesc,isList};
+function loadState(){try{const s=JSON.parse(localStorage.getItem('pdb_state'));if(s){fc=s.fc??fc;fp=s.fp??fp;fstar=s.fstar??fstar;farch=s.farch??farch;ftrash=s.ftrash??ftrash;fmin=s.fmin??fmin;fdo=s.fdo??fdo;fprio=s.fprio??fprio;fcolor=s.fcolor??fcolor;ftag=s.ftag??ftag;fq=s.fq??fq;sortKey=s.sortKey??sortKey;sortDesc=s.sortDesc??sortDesc;isList=s.isList??isList;}}catch(e){}}
+function saveState(){localStorage.setItem('pdb_state',JSON.stringify({fc,fp,fstar,farch,ftrash,fmin,fdo,fprio,fcolor,ftag,fq,sortKey,sortDesc,isList}));}
+function resetState(){localStorage.removeItem('pdb_state');Object.assign(window,defaultState);document.getElementById('q').value='';document.getElementById('tagq').value='';const vb=document.getElementById('viewbtn');if(vb)vb.textContent='⊞ Grid';document.getElementById('grid').classList.remove('list-view');document.querySelectorAll('.sortbtn').forEach(x=>{x.classList.remove('on');x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim())+' ⇕';});render();}
+loadState();
 let editingId=null,syncTimer=null;
 const cloudLbl=document.getElementById('cloudlbl');
 function setLbl(cls,txt){cloudLbl.className=cls||'';cloudLbl.textContent=txt||'Cloud';}
@@ -277,6 +283,9 @@ async function boot(){
   handleSharedData();
  }
  
+ document.getElementById('q').value = fq; // restore search box
+ const resetbtn=document.getElementById('resetbtn'); if(resetbtn) resetbtn.onclick=resetState;
+ 
  buildStaticChips(); render();
  if(isMigration && reachable) await pushBin();
  setLbl(reachable?'ok':'err', reachable?'Synced':'Offline');
@@ -321,7 +330,12 @@ function buildStaticChips(){
   };
  });
  const vb=document.getElementById('viewbtn');
- if(vb) vb.onclick=()=>{isList=!isList;vb.textContent=isList?'≡ List':'⊞ Grid';document.getElementById('grid').classList.toggle('list-view',isList);};
+ if(vb) {
+  vb.textContent=isList?'≡ List':'⊞ Grid';
+  document.getElementById('grid').classList.toggle('list-view',isList);
+  document.querySelectorAll('.sortbtn').forEach(x=>{x.classList.toggle('on',x.dataset.sort===sortKey);if(x.dataset.sort===sortKey)x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim()) + (sortDesc?' ▼':' ▲');});
+  vb.onclick=()=>{isList=!isList;saveState();vb.textContent=isList?'≡ List':'⊞ Grid';document.getElementById('grid').classList.toggle('list-view',isList);};
+ }
 }
 function refreshCats(){
  const cnt={};CATS.forEach(c=>cnt[c]=0);let live=0;DB.forEach(e=>{if(e.trash)return;live++;if(cnt[e.category]!==undefined)cnt[e.category]++;});
@@ -411,7 +425,9 @@ function render(){
  }
  grid.innerHTML=html;
  if(editingId){const card=grid.querySelector(`.card[data-id="${editingId}"]`);if(card)openEditor(card,editingId);}
+ saveState();
 }
+
 
 grid.onclick=e=>{
  const t=e.target; if(t.closest('.editing'))return;
