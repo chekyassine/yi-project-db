@@ -195,6 +195,13 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
 .mbtn:hover{filter:brightness(1.12)}
 .x{margin-left:auto;cursor:pointer;color:var(--mut);font-size:20px}
 .two{display:flex;gap:12px}.two>div{flex:1}
+
+@media (max-width: 768px) {
+  header { padding: 15px 20px; }
+  .bar { padding: 10px 20px; }
+  .card { padding: 15px; }
+  .list-view .ctop { min-width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -214,9 +221,10 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
 </div>
 
 <div id="app">
- <div class="htop">
-  <div>
-   <h1>YI's Project Database</h1>
+ <header>
+  <div class="htop">
+   <div>
+    <h1>YI's Project Database</h1>
    <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.9</span></div>
   </div>
   <div class="io">
@@ -550,13 +558,53 @@ function openEditor(card,id){
  if (sum) { sum.after(su); } 
  else { ctop.after(su); }
  
+ const imgCtnr = document.createElement('div');
+ imgCtnr.style.marginTop = '6px';
+ su.after(imgCtnr);
+ 
+ const attCtnr = document.createElement('div');
+ attCtnr.style.marginTop = '6px';
+ attCtnr.innerHTML = `<label class="btn" style="cursor:pointer;padding:4px 10px;font-size:12px;background:#2a2f4c;border:1px solid #3c4260">📷 Attach Image<input type="file" style="display:none" accept="image/*" class="edit-img" multiple></label>`;
+ imgCtnr.after(attCtnr);
+ 
  const ebtns = document.createElement('div');
  ebtns.className = 'ebtns';
  ebtns.innerHTML = `<span class="ebtn save" data-do="save">Save</span><span class="ebtn" data-do="cancel">Cancel</span>`;
  ebtns.style.display = 'block';
- su.after(ebtns);
+ attCtnr.after(ebtns);
  
  ti.focus();
+ 
+ const bindImgs = () => {
+   const renderImgList = () => `<div class="edit-img-list" style="display:flex;gap:4px;flex-wrap:wrap;">${(e.images||[]).map((u,i)=>`<div style="position:relative"><img src="${esc(u)}" style="height:40px;border-radius:4px"><span class="rm-img" data-idx="${i}" style="position:absolute;top:-4px;right:-4px;background:red;color:white;border-radius:50%;width:16px;height:16px;text-align:center;line-height:14px;cursor:pointer;font-size:10px">✕</span></div>`).join('')}</div>`;
+   imgCtnr.innerHTML = renderImgList();
+   imgCtnr.querySelectorAll('.rm-img').forEach(btn => {
+     btn.onclick = (ev) => {
+       ev.stopPropagation();
+       e.images.splice(btn.dataset.idx, 1);
+       e.updated = today();
+       saveDB();
+       bindImgs();
+     };
+   });
+ };
+ bindImgs();
+ 
+ attCtnr.querySelector('.edit-img').onchange = async (ev) => {
+    const files = Array.from(ev.target.files);
+    if (!files.length) return;
+    setLbl("busy", "Uploading...");
+    try {
+      const urls = await Promise.all(files.map(uploadImageToSupabase));
+      e.images = (e.images || []).concat(urls);
+      e.updated = today();
+      saveDB();
+      bindImgs();
+      setLbl("ok", "Saved");
+    } catch(err) {
+      setLbl("err", "Upload Failed");
+    }
+ };
  
  ebtns.onclick=ev=>{const d=ev.target.dataset.do;if(!d)return;
   if(d==='save'){editingId=null;setEdit(id,ti.value.trim()||e.title,su.value.trim());}
