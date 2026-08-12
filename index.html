@@ -32,7 +32,9 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 #q{flex:1;min-width:220px;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:11px 14px;border-radius:10px;font-size:15px;outline:none}
 #q:focus{border-color:var(--pi)}
 .chips{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
-.lbl{font-size:11px;color:#5f6b96;text-transform:uppercase;letter-spacing:1px;margin-right:2px}
+.lbl{font-size:11px;color:#5f6b96;text-transform:uppercase;letter-spacing:1px;margin-right:2px;display:inline-flex;align-items:center}
+.sortbtn{cursor:pointer;font-size:12px;color:#4a5788;margin-left:5px;user-select:none;display:inline-block;transition:.1s}
+.sortbtn:hover,.sortbtn.on{color:var(--pi)}
 .chip{cursor:pointer;user-select:none;padding:6px 12px;border-radius:20px;font-size:13px;background:var(--bg2);border:1px solid var(--line);color:var(--mut);transition:.15s}
 .chip:hover{color:var(--ink)}
 .chip.on{color:#fff;border-color:transparent}
@@ -133,6 +135,15 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .ebtn{cursor:pointer;font-size:12px;padding:6px 13px;border-radius:8px;border:1px solid var(--line);background:var(--bg2);color:var(--mut)}
 .ebtn.save{background:var(--pi);color:#fff;border-color:transparent}
 .ebtn:hover{filter:brightness(1.1)}
+.list-view{grid-template-columns:1fr}
+.list-view .card{flex-direction:row;align-items:center;padding:8px 12px;gap:12px;flex-wrap:wrap}
+.list-view .sum{display:none}
+.list-view .ctop{flex:1;min-width:300px;margin:0}
+.list-view .rate{margin:0}
+.list-view .prio{margin:0}
+.list-view .colr{margin:0}
+.list-view .tags{margin:0;max-width:250px;overflow:hidden;flex-wrap:nowrap}
+.list-view .meta{margin:0;margin-left:auto}
 .sec{grid-column:1/-1;margin:20px 0 2px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);font-weight:700;display:flex;align-items:center;gap:10px}
 .sec .ln{flex:1;height:1px;background:var(--line)}
 .empty{color:var(--mut);padding:40px;text-align:center;grid-column:1/-1}
@@ -162,6 +173,7 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
    <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.2</span></div>
   </div>
   <div class="io">
+   <span class="btn" id="viewbtn" title="Toggle List/Grid View">⊞ Grid</span>
    <span class="btn primary" id="newbtn">＋ New note</span>
    <span class="btn" id="cloudbtn" title="Auto-synced — click to refresh from cloud">☁ <span id="cloudlbl">Cloud</span></span>
    <span class="btn" id="exp">⬇ Export all</span>
@@ -173,11 +185,12 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
 </header>
 <div class="bar">
  <div class="row"><input id="q" placeholder="Search titles, ideas, tags, labels…  (press / )"><span class="count" id="count"></span></div>
- <div class="row"><span class="lbl">Category</span><div class="chips" id="cats"></div></div>
- <div class="row"><span class="lbl">Phase</span><div class="chips" id="phases"></div><span class="lbl" style="margin-left:10px">Show</span><div class="chips" id="flagf"></div></div>
- <div class="row"><span class="lbl">Interest</span><div class="chips" id="ratef"></div><span class="lbl" style="margin-left:10px">Doability</span><div class="chips" id="dof"></div></div>
- <div class="row"><span class="lbl">Priority</span><div class="chips" id="priof"></div></div>
- <div class="row"><span class="lbl">Color</span><div class="chips" id="colorf"></div></div>
+ <div class="row"><span class="lbl">Category <span class="sortbtn" data-sort="category">⇕</span></span><div class="chips" id="cats"></div></div>
+ <div class="row"><span class="lbl">Phase <span class="sortbtn" data-sort="phase">⇕</span></span><div class="chips" id="phases"></div><span class="lbl" style="margin-left:10px">Show</span><div class="chips" id="flagf"></div></div>
+ <div class="row"><span class="lbl">Interest <span class="sortbtn" data-sort="rating">⇕</span></span><div class="chips" id="ratef"></div><span class="lbl" style="margin-left:10px">Doability <span class="sortbtn" data-sort="doability">⇕</span></span><div class="chips" id="dof"></div></div>
+ <div class="row"><span class="lbl">Priority <span class="sortbtn" data-sort="prio">⇕</span></span><div class="chips" id="priof"></div></div>
+ <div class="row"><span class="lbl">Color <span class="sortbtn" data-sort="color">⇕</span></span><div class="chips" id="colorf"></div></div>
+ <div class="row"><span class="lbl">Dates <span class="sortbtn" data-sort="date" title="Creation Date" style="margin:0 8px">Created ⇕</span> <span class="sortbtn" data-sort="updated" title="Last Updated">Updated ⇕</span></span></div>
  <div class="row"><span class="lbl">Tags</span><div class="chips" id="tagtop"></div><span style="position:relative;display:inline-block"><input id="tagq" class="tagq" placeholder="search tags…"><div id="tagac" class="tagac"></div></span></div>
 </div>
 <div class="wrap"><div class="grid" id="grid"></div></div>
@@ -211,6 +224,7 @@ const COLORS=[{key:'red',hex:'#ef5350',name:'Red'},{key:'orange',hex:'#ff8a3d',n
 const CMAP={};COLORS.forEach(c=>CMAP[c.key]=c.hex);
 let DB=[];                 // full database (array of notes, single source of truth)
 let fc="all",fp="all",fstar=false,farch=false,ftrash=false,fmin=0,fdo=0,fprio="all",fcolor="all",ftag="all",fq="";
+let sortKey=null, sortDesc=true, isList=false;
 let editingId=null,syncTimer=null;
 const cloudLbl=document.getElementById('cloudlbl');
 function setLbl(cls,txt){cloudLbl.className=cls||'';cloudLbl.textContent=txt||'Cloud';}
@@ -229,10 +243,10 @@ function saveDB(){localStorage.setItem(DB_CACHE,JSON.stringify(DB));scheduleSync
 async function pullNow(){setLbl('busy','Syncing…');if(supaOn()){const d=await supaGet();if(d!==undefined&&Array.isArray(d)){DB=d;localStorage.setItem(DB_CACHE,JSON.stringify(DB));render();setLbl('ok','Synced');}else setLbl('err','Offline');return;}const o=await grab(binURL());if(o&&Array.isArray(o)){DB=o;localStorage.setItem(DB_CACHE,JSON.stringify(DB));render();setLbl('ok','Synced');}else{await pushBin();}}
 
 /* ---- mutators: write to db ---- */
-function setAnn(id,ch){const it=byId(id);if(it)Object.assign(it,ch);saveDB();render();}
-function setEdit(id,title,summary){const it=byId(id);if(it){it.title=title;it.summary=summary;}saveDB();render();}
+function setAnn(id,ch){const it=byId(id);if(it){Object.assign(it,ch);it.updated=today();}saveDB();render();}
+function setEdit(id,title,summary){const it=byId(id);if(it){it.title=title;it.summary=summary;it.updated=today();}saveDB();render();}
 function delForever(id){DB=DB.filter(x=>x.id!==id);saveDB();render();}
-function addNote(it){DB.unshift(it);saveDB();render();}
+function addNote(it){it.updated=today();if(!it.date)it.date=today();DB.unshift(it);saveDB();render();}
 function importFull(arr){DB=arr;saveDB();render();}
 
 async function boot(){
@@ -288,6 +302,20 @@ function buildStaticChips(){
  tq.onblur=()=>setTimeout(()=>{ac.style.display='none';},150);
  qEl.oninput=()=>{fq=qEl.value.toLowerCase().trim();render();};
  document.onkeydown=e=>{if(e.key==='/'&&document.activeElement.tagName!=='INPUT'&&document.activeElement.tagName!=='TEXTAREA'){e.preventDefault();qEl.focus();}};
+ document.querySelectorAll('.sortbtn').forEach(btn=>{
+  btn.onclick=()=>{
+   const k=btn.dataset.sort;
+   if(sortKey===k) sortDesc=!sortDesc;
+   else {sortKey=k;sortDesc=true;}
+   document.querySelectorAll('.sortbtn').forEach(x=>{
+    x.classList.toggle('on',x.dataset.sort===sortKey);
+    x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim()) + (x.dataset.sort===sortKey ? (sortDesc?' ▼':' ▲') : ' ⇕');
+   });
+   render();
+  };
+ });
+ const vb=document.getElementById('viewbtn');
+ if(vb) vb.onclick=()=>{isList=!isList;vb.textContent=isList?'≡ List':'⊞ Grid';document.getElementById('grid').classList.toggle('list-view',isList);};
 }
 function refreshCats(){
  const cnt={};CATS.forEach(c=>cnt[c]=0);let live=0;DB.forEach(e=>{if(e.trash)return;live++;if(cnt[e.category]!==undefined)cnt[e.category]++;});
@@ -337,22 +365,40 @@ function cardHTML(e,c){
    <div class="prio"><span class="rlab">Priority</span>${['low','mid','high'].map(pv=>`<span class="pbtn p-${pv} ${e.prio===pv?'on':''}" data-prio="${e.id}:${pv}">${pv}</span>`).join('')}</div>
    <div class="colr"><span class="rlab">Color</span><span class="swtrig ${e.color&&CMAP[e.color]?'':'none'}" data-colorpick="${e.id}" title="Set color"${e.color&&CMAP[e.color]?` style="background:${CMAP[e.color]}"`:''}></span><span class="swpop">${COLORS.map(c=>`<span class="sw ${e.color===c.key?'on':''}" data-color="${e.id}:${c.key}" title="${c.name}" style="background:${c.hex}"></span>`).join('')}<span class="sw none ${e.color?'':'on'}" data-color="${e.id}:" title="No color">⊘</span></span></div>
    <div class="tags">${(e.tags||[]).map(t=>`<span class="pill"><span class="tg" data-tag="${enc(t)}">#${esc(t)}</span><x data-id="${e.id}" data-rt="${enc(t)}">✕</x></span>`).join('')}<span class="addl" data-add="${e.id}">+ tag</span></div>
-   <div class="meta">${e.from?'from &ldquo;'+esc(e.from)+'&rdquo; · ':''}${esc(e.date||'')}${e.trash?` · <span class="revert" data-del="${e.id}">delete forever</span>`:''}</div>
+   <div class="meta">${e.from?'from &ldquo;'+esc(e.from)+'&rdquo; · ':''}Created ${esc(e.date||'')} ${e.updated?' · Upd '+esc(e.updated):''}${e.trash?` · <span class="revert" data-del="${e.id}">delete forever</span>`:''}</div>
   </div>`;
 }
 function render(){
  refreshCats(); renderTagBar();
- const list=DB.filter(match);
+ let list=DB.filter(match);
+ if(sortKey){
+  list.sort((a,b)=>{
+   let va=a[sortKey], vb=b[sortKey];
+   if(sortKey==='prio'){const pm={'high':3,'mid':2,'low':1};va=pm[va]||0;vb=pm[vb]||0;}
+   if(sortKey==='phase'){const phm={'Idea':1,'Research':2,'Execution':3};va=phm[va]||0;vb=phm[vb]||0;}
+   if(va==null)va='';if(vb==null)vb='';
+   if(va<vb) return sortDesc?1:-1;
+   if(va>vb) return sortDesc?-1:1;
+   return 0;
+  });
+ }
  document.getElementById('count').textContent=list.length+' shown';
  if(!DB.length){grid.innerHTML='<div class="empty">Loading… if this stays empty, the cloud store may be unreachable — try Import, or the ☁ refresh.</div>';return;}
  if(!list.length){grid.innerHTML='<div class="empty">No matches. Adjust search or filters.</div>';return;}
- const bycat={};CATS.forEach(c=>bycat[c]=[]);const other=[];
- list.forEach(e=>{(bycat[e.category]||other).push(e);});
- const order=fc==='all'?CATS:[fc];let html='';
- order.forEach(c=>{const items=bycat[c];if(!items||!items.length)return;
-  html+=`<div class="sec"><span style="color:${COL[c]}">●</span> ${LAB[c]} <span class="ln"></span> <span style="color:var(--mut)">${items.length}</span></div>`;
-  items.forEach(e=>{html+=cardHTML(e,c);});});
- if(fc==='all'&&other.length){html+=`<div class="sec">Other <span class="ln"></span> ${other.length}</div>`;other.forEach(e=>html+=cardHTML(e,e.category));}
+ let html='';
+ if(sortKey && sortKey!=='category'){
+  html+=`<div class="sec">Sorted by ${sortKey} <span class="ln"></span> ${list.length}</div>`;
+  list.forEach(e=>{html+=cardHTML(e,e.category||'Other');});
+ } else {
+  const bycat={};CATS.forEach(c=>bycat[c]=[]);const other=[];
+  list.forEach(e=>{(bycat[e.category]||other).push(e);});
+  let order=fc==='all'?[...CATS]:[fc];
+  if(sortKey==='category' && !sortDesc) order.reverse();
+  order.forEach(c=>{const items=bycat[c];if(!items||!items.length)return;
+   html+=`<div class="sec"><span style="color:${COL[c]}">●</span> ${LAB[c]} <span class="ln"></span> <span style="color:var(--mut)">${items.length}</span></div>`;
+   items.forEach(e=>{html+=cardHTML(e,c);});});
+  if(fc==='all'&&other.length){html+=`<div class="sec">Other <span class="ln"></span> ${other.length}</div>`;other.forEach(e=>html+=cardHTML(e,e.category||'Other'));}
+ }
  grid.innerHTML=html;
  if(editingId){const card=grid.querySelector(`.card[data-id="${editingId}"]`);if(card)openEditor(card,editingId);}
 }
