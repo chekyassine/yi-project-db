@@ -489,7 +489,7 @@ function cardHTML(e,c=e.category||'Other',display='card'){
  return `<div class="card ${display==='zoom'?'zoom-card':''} ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
     <span class="ttl" style="cursor:pointer" onclick="openCard(this.closest('.card'), '${e.id}')">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
-    <span class="badge" style="background:${COL[c]||'#888'}22;color:${COL[c]||'#aaa'}">${(e.phase||'').toUpperCase()}</span>
+    <span class="badge" style="background:${COL[c]||'#888'}22;color:${COL[c]||'#aaa'}">${(e.category||e.phase||'').toUpperCase()}</span>
     <span class="icons">
      <span class="ic archivebtn" data-arch="${e.id}" title="${e.arch?'Unarchive':'Archive'}">${e.arch?'⇪':'🗃'}</span>
      <span class="ic delbtn" data-trash="${e.id}" title="${e.trash?'Restore':'Move to trash'}">${e.trash?'♻':'🗑'}</span>
