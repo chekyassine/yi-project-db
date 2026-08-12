@@ -23,6 +23,7 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .io{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
 .btn{cursor:pointer;background:var(--bg2);border:1px solid var(--line);color:var(--mut);padding:8px 13px;border-radius:9px;font-size:13px}
 .btn:hover{color:var(--ink);border-color:#4a5788}
+.btn.on{background:var(--pi);color:#fff;border-color:transparent}
 .btn.primary{background:var(--pi);color:#fff;border-color:transparent}
 .stats{display:flex;gap:20px;margin-top:14px;flex-wrap:wrap}
 .stat{font-size:13px;color:var(--mut)} .stat b{color:var(--ink);font-size:16px}
@@ -107,6 +108,11 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .card.colored:hover{background:color-mix(in srgb,var(--cc) 32%,var(--card2))}
 .card.colored .sum.clip:after{background:linear-gradient(transparent,color-mix(in srgb,var(--cc) 24%,var(--card)))}
 .card.colored:hover .sum.clip:after{background:linear-gradient(transparent,color-mix(in srgb,var(--cc) 32%,var(--card2)))}
+.grid.compact .card:not(.zoom-card):not(.editing) img,
+.list-view .card:not(.zoom-card):not(.editing) img{display:none!important}
+.grid.compact .card:not(.zoom-card):not(.editing) .compact-info{display:flex;flex-wrap:wrap;gap:.45em;align-items:center;margin-top:8px;}
+.grid.compact .card:not(.zoom-card):not(.editing) .compact-item{font-size:11px;padding:.35em .7em;border-radius:999px;background:rgba(255,255,255,.08);color:var(--mut);display:inline-flex;align-items:center;gap:4px;}
+.grid.compact .card:not(.zoom-card):not(.editing) .compact-item.color{width:16px;height:16px;border-radius:50%;padding:0;}
 .cfsw{display:inline-block;width:13px;height:13px;border-radius:50%;vertical-align:middle}
 .chip.cf.on{border-color:#fff;color:#fff;background:#3a4780}
 .swtrig{width:18px;height:18px;border-radius:50%;cursor:pointer;border:2px solid rgba(255,255,255,.18);box-sizing:border-box;flex:none;transition:.1s}
@@ -151,6 +157,7 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 #lightbox img { max-width:100%; max-height:90vh; object-fit:contain; border-radius:8px; margin-top:20px; }
 #lightbox .close-lb { position:absolute; top:20px; right:20px; color:#fff; font-size:40px; cursor:pointer; }
 .tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.compact-info{display:none}
 .tag{font-size:11px;color:var(--mut)}
 .tg{cursor:pointer}.tg:hover{color:var(--pi)}
 .chip.tagc.on{background:#37507a;color:#fff;border-color:transparent}
@@ -222,8 +229,16 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
   .card:not(.zoom-card):not(.editing) .tags,
   .card:not(.zoom-card):not(.editing) .meta{display:none}
   .card:not(.zoom-card):not(.editing) .sum{max-height:3em;font-size:14px}
-  .grid:not(.list-view) .card:not(.zoom-card):not(.editing) img{display:none!important}
-  .card:not(.zoom-card):not(.editing) img{width:100%;height:220px;object-fit:cover!important;object-position:top!important;border-radius:11px!important;margin-top:2px!important}
+  .grid.compact .card:not(.zoom-card):not(.editing) .sum,
+  .grid.compact .card:not(.zoom-card):not(.editing) .rate,
+  .grid.compact .card:not(.zoom-card):not(.editing) .prio,
+  .grid.compact .card:not(.zoom-card):not(.editing) .choice,
+  .grid.compact .card:not(.zoom-card):not(.editing) .colr,
+  .grid.compact .card:not(.zoom-card):not(.editing) .tags,
+  .grid.compact .card:not(.zoom-card):not(.editing) .meta{display:none!important}
+  .grid.compact .card:not(.zoom-card):not(.editing) .compact-info{display:flex;flex-wrap:wrap;gap:.45em;align-items:center;margin-top:8px;}
+  .grid.compact .card:not(.zoom-card):not(.editing) .compact-item{font-size:11px;padding:.35em .7em;border-radius:999px;background:rgba(255,255,255,.08);color:var(--mut);display:inline-flex;align-items:center;gap:4px;}
+  .grid.compact .card:not(.zoom-card):not(.editing) .compact-item.color{width:16px;height:16px;border-radius:50%;padding:0;}
   .mobile-summary{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
   .mobile-summary span{font-size:11px;padding:4px 8px;border-radius:20px;background:var(--bg2);color:var(--mut);border:1px solid var(--line)}
   .mobile-summary .mobile-category{color:var(--ink);border-color:color-mix(in srgb,var(--mobile-cat) 50%,var(--line));background:color-mix(in srgb,var(--mobile-cat) 15%,var(--bg2))}
@@ -276,11 +291,12 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
   <div class="htop">
    <div>
     <h1>YI's Project Database</h1>
-   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.2.3</span></div>
+   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.2.4</span></div>
   </div>
   <div class="io">
    <span class="btn" id="resetbtn" title="Reset all filters and sorting">↺ Reset Filters</span>
    <span class="btn" id="viewbtn" title="Toggle List/Grid View">⊞ Grid</span>
+   <span class="btn" id="compactbtn" title="Toggle compact card view">☰ Compact</span>
    <span class="btn primary" id="newbtn">＋ New note</span>
    <span class="btn" id="cloudbtn" title="Auto-synced — click to refresh from cloud">☁ <span id="cloudlbl">Cloud</span></span>
    <span class="btn" id="exp">⬇ Export all</span>
@@ -331,11 +347,11 @@ const COLORS=[{key:'red',hex:'#ef5350',name:'Red'},{key:'orange',hex:'#ff8a3d',n
 const CMAP={};COLORS.forEach(c=>CMAP[c.key]=c.hex);
 let DB=[];                 // full database (array of notes, single source of truth)
 let fc="all",fp="all",fstar=false,farch=false,ftrash=false,fmin=0,fdo=0,fprio="all",fcolor="all",ftag="all",fq="";
-let sortKey='updated', sortDesc=true, isList=false;
-const defaultState = {fc,fp,fstar,farch,ftrash,fmin,fdo,fprio,fcolor,ftag,fq,sortKey,sortDesc,isList};
-function loadState(){try{const s=JSON.parse(localStorage.getItem('pdb_state'));if(s){fc=s.fc??fc;fp=s.fp??fp;fstar=s.fstar??fstar;farch=s.farch??farch;ftrash=s.ftrash??ftrash;fmin=s.fmin??fmin;fdo=s.fdo??fdo;fprio=s.fprio??fprio;fcolor=s.fcolor??fcolor;ftag=s.ftag??ftag;fq=s.fq??fq;sortKey=s.sortKey===undefined?sortKey:s.sortKey;sortDesc=s.sortDesc??sortDesc;isList=s.isList??isList;}}catch(e){}}
-function saveState(){localStorage.setItem('pdb_state',JSON.stringify({fc,fp,fstar,farch,ftrash,fmin,fdo,fprio,fcolor,ftag,fq,sortKey,sortDesc,isList}));}
-function resetState(){localStorage.removeItem('pdb_state');fc="all";fp="all";fstar=false;farch=false;ftrash=false;fmin=0;fdo=0;fprio="all";fcolor="all";ftag="all";fq="";sortKey='updated';sortDesc=true;isList=false;document.getElementById('q').value='';document.getElementById('tagq').value='';const vb=document.getElementById('viewbtn');if(vb)vb.textContent='⊞ Grid';document.getElementById('grid').classList.remove('list-view');document.querySelectorAll('.sortbtn').forEach(x=>{x.classList.remove('on');x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim())+' ⇕';});render();}
+let sortKey='updated', sortDesc=true, isList=false, isCompact=false;
+const defaultState = {fc,fp,fstar,farch,ftrash,fmin,fdo,fprio,fcolor,ftag,fq,sortKey,sortDesc,isList,isCompact};
+function loadState(){try{const s=JSON.parse(localStorage.getItem('pdb_state'));if(s){fc=s.fc??fc;fp=s.fp??fp;fstar=s.fstar??fstar;farch=s.farch??farch;ftrash=s.ftrash??ftrash;fmin=s.fmin??fmin;fdo=s.fdo??fdo;fprio=s.fprio??fprio;fcolor=s.fcolor??fcolor;ftag=s.ftag??ftag;fq=s.fq??fq;sortKey=s.sortKey===undefined?sortKey:s.sortKey;sortDesc=s.sortDesc??sortDesc;isList=s.isList??isList;isCompact=s.isCompact??isCompact;}}catch(e){}}
+function saveState(){localStorage.setItem('pdb_state',JSON.stringify({fc,fp,fstar,farch,ftrash,fmin,fdo,fprio,fcolor,ftag,fq,sortKey,sortDesc,isList,isCompact}));}
+function resetState(){localStorage.removeItem('pdb_state');fc="all";fp="all";fstar=false;farch=false;ftrash=false;fmin=0;fdo=0;fprio="all";fcolor="all";ftag="all";fq="";sortKey='updated';sortDesc=true;isList=false;isCompact=false;document.getElementById('q').value='';document.getElementById('tagq').value='';const vb=document.getElementById('viewbtn');if(vb)vb.textContent='⊞ Grid';const cb=document.getElementById('compactbtn');if(cb)cb.classList.remove('on');document.getElementById('grid').classList.remove('list-view');document.getElementById('grid').classList.remove('compact');document.querySelectorAll('.sortbtn').forEach(x=>{x.classList.remove('on');x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim())+' ⇕';});render();}
 loadState();
 let editingId=null,detailedViewId=null,syncTimer=null;
 const cloudLbl=document.getElementById('cloudlbl');
@@ -446,11 +462,16 @@ function buildStaticChips(){
   };
  });
  const vb=document.getElementById('viewbtn');
+ const cb=document.getElementById('compactbtn');
  if(vb) {
   vb.textContent=isList?'≡ List':'⊞ Grid';
   document.getElementById('grid').classList.toggle('list-view',isList);
   document.querySelectorAll('.sortbtn').forEach(x=>{x.classList.toggle('on',x.dataset.sort===sortKey);if(x.dataset.sort===sortKey)x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim()) + (sortDesc?' ▼':' ▲');});
-  vb.onclick=()=>{isList=!isList;saveState();vb.textContent=isList?'≡ List':'⊞ Grid';document.getElementById('grid').classList.toggle('list-view',isList);};
+  vb.onclick=()=>{isList=!isList;saveState();vb.textContent=isList?'≡ List':'⊞ Grid';document.getElementById('grid').classList.toggle('list-view',isList);render();};
+ }
+ if(cb){
+  cb.classList.toggle('on', isCompact);
+  cb.onclick=()=>{isCompact=!isCompact;saveState();cb.classList.toggle('on', isCompact);render();};
  }
 }
 function refreshCats(){
@@ -500,6 +521,7 @@ function cardHTML(e,c=e.category||'Other',display='card'){
    ${imgs}
    ${sum?`<div class="sum ${clip}" data-exp="1" style="cursor:pointer" onclick="openCard(this.closest('.card'), '${e.id}')">${linkify(sum)}</div>`:`<div class="sum placeholder" style="opacity:0.4;font-style:italic;cursor:pointer" onclick="openCard(this.closest('.card'), '${e.id}')">Add description...</div>`}
    <div class="mobile-summary"><span class="mobile-category" style="--mobile-cat:${COL[c]||'#888'}">${esc(e.category||'Uncategorized')}</span>${e.prio?`<span>${esc(e.prio)} priority</span>`:''}${(e.tags||[]).slice(0,2).map(t=>`<span>#${esc(t)}</span>`).join('')}</div>
+   <div class="compact-info">${e.phase?`<span class="compact-item">${esc(e.phase)}</span>`:''}${e.prio?`<span class="compact-item">${esc(e.prio)}</span>`:''}${e.rating?`<span class="compact-item icon" title="Interest">★${e.rating}</span>`:''}${e.doability?`<span class="compact-item icon" title="Doability">⚡${e.doability}</span>`:''}${e.color?`<span class="compact-item color" style="background:${CMAP[e.color]||'#777'}"></span>`:''}${(e.tags||[]).slice(0,3).map(t=>`<span class="compact-item">#${esc(t)}</span>`).join('')}</div>
    <div class="rate"><span class="rlab">Interest</span>${[1,2,3,4,5].map(n=>`<span class="rstar ${(e.rating||0)>=n?'on':''}" data-rate="${e.id}:${n}">${(e.rating||0)>=n?'★':'☆'}</span>`).join('')}${e.rating?`<span class="rclear" data-rate="${e.id}:0">clear</span>`:''}</div>
    <div class="rate"><span class="rlab">Doability</span>${[1,2,3,4,5].map(n=>`<span class="dostar ${(e.doability||0)>=n?'on':''}" data-do="${e.id}:${n}">${(e.doability||0)>=n?'★':'☆'}</span>`).join('')}${e.doability?`<span class="rclear" data-do="${e.id}:0">clear</span>`:''}</div>
    <div class="prio"><span class="rlab">Priority</span>${['low','mid','high'].map(pv=>`<span class="pbtn p-${pv} ${e.prio===pv?'on':''}" data-prio="${e.id}:${pv}">${pv}</span>`).join('')}</div>
@@ -512,6 +534,7 @@ function cardHTML(e,c=e.category||'Other',display='card'){
 }
 function render(){
  refreshCats(); renderTagBar();
+ document.getElementById('grid').classList.toggle('compact', isCompact);
  let list=DB.filter(match);
  if(sortKey){
   list.sort((a,b)=>{
