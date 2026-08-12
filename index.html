@@ -816,7 +816,11 @@ async function handleSharedData() {
     if (sText) combinedText += sText + '\n';
     if (sUrl && (!sText || !sText.includes(sUrl))) combinedText += sUrl;
     
-    const fallbackTitle = sTitle || 'Shared Note';
+    let fallbackTitle = sTitle || 'Shared Note';
+    if (fallbackTitle.trim().startsWith('http')) {
+      fallbackTitle = 'Shared Note';
+    }
+    
     const summary = combinedText.trim();
     
     // Auto-save the shared note immediately with the is_new flag
@@ -859,7 +863,7 @@ async function handleSharedData() {
       fetch('/api/unwrap?url=' + encodeURIComponent(sUrl))
         .then(r => r.json())
         .then(data => {
-          if (data.title) {
+          if (data.title && !data.title.trim().startsWith('http')) {
             it.title = data.title;
             // If we didn't have user-provided text, use the description
             if (data.description && (!sText || sText.trim() === '')) {
