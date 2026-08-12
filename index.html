@@ -170,7 +170,7 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
  <div class="htop">
   <div>
    <h1>YI's Project Database</h1>
-   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.6</span></div>
+   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.7</span></div>
   </div>
   <div class="io">
    <span class="btn" id="resetbtn" title="Reset all filters and sorting">↺ Reset Filters</span>
@@ -372,7 +372,7 @@ function cardHTML(e,c){
  const sum=e.summary||'';const clip=sum.length>160?'clip':'';
  return `<div class="card ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
-    <span class="ttl" data-exp="1">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
+    <span class="ttl" data-edit="${e.id}">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
     <span class="badge" style="background:${COL[c]||'#888'}22;color:${COL[c]||'#aaa'}">${(e.phase||'').toUpperCase()}</span>
     <span class="icons">
      <span class="ic" data-edit="${e.id}" title="Edit">✎</span>
@@ -565,6 +565,10 @@ function handleSharedData() {
     };
     addNote(it);
     
+    // Automatically enter "zoom/edit" mode so user can add more info
+    editingId = it.id;
+    render();
+    
     // If there is a URL, attempt to fetch its metadata using our Cloudflare Function
     if (sUrl) {
       fetch('/api/unwrap?url=' + encodeURIComponent(sUrl))
@@ -581,12 +585,23 @@ function handleSharedData() {
             it.title = fallbackTitle;
           }
           saveDB();
-          render();
+          
+          if (editingId === it.id) {
+            const card = document.querySelector(`.card[data-id="${it.id}"]`);
+            if (card) {
+               const ti = card.querySelector('.edit-t');
+               const su = card.querySelector('.edit-s');
+               if (ti && ti.value === 'Unwrapping link...') ti.value = it.title;
+               if (su && su.value.trim() === summary) su.value = it.summary;
+            }
+          } else {
+            render();
+          }
         })
         .catch(e => {
           it.title = fallbackTitle;
           saveDB();
-          render();
+          if (editingId !== it.id) render();
         });
     }
     
