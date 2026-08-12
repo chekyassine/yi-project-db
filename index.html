@@ -430,15 +430,16 @@ function cardHTML(e,c){
  const imgs = (e.images||[]).map(url => `<img src="${esc(url)}" onclick="openLightbox('${esc(url)}'); event.stopPropagation();" style="width:100%; object-fit:contain; border-radius:6px; margin-top:8px; display:block; cursor:pointer;">`).join('');
  return `<div class="card ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
-    <span class="ttl" style="cursor:pointer" onclick="openDetailedView('${e.id}')">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
+    <span class="ttl" style="cursor:pointer" onclick="openEditor(this.closest('.card'), '${e.id}')">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
     <span class="badge" style="background:${COL[c]||'#888'}22;color:${COL[c]||'#aaa'}">${(e.phase||'').toUpperCase()}</span>
     <span class="icons">
      <span class="ic archivebtn" data-arch="${e.id}" title="${e.arch?'Unarchive':'Archive'}">${e.arch?'⇪':'🗃'}</span>
      <span class="ic delbtn" data-trash="${e.id}" title="${e.trash?'Restore':'Move to trash'}">${e.trash?'♻':'🗑'}</span>
      <span class="ic heartbtn ${e.star?'on':''}" data-star="${e.id}" title="${e.star?'Unfavorite':'Favorite'}">${e.star?'♥':'♡'}</span>
+     <span class="ic" onclick="openDetailedView('${e.id}')" title="Zoom Mode" style="color:var(--pi)">⤢</span>
     </span></div>
    ${imgs}
-   ${sum?`<div class="sum ${clip}" data-exp="1" style="cursor:pointer" onclick="openDetailedView('${e.id}')">${linkify(sum)}</div>`:''}
+   ${sum?`<div class="sum ${clip}" data-exp="1" style="cursor:pointer" onclick="openEditor(this.closest('.card'), '${e.id}')">${linkify(sum)}</div>`:`<div class="sum placeholder" style="opacity:0.4;font-style:italic;cursor:pointer" onclick="openEditor(this.closest('.card'), '${e.id}')">Add description...</div>`}
    <div class="rate"><span class="rlab">Interest</span>${[1,2,3,4,5].map(n=>`<span class="rstar ${(e.rating||0)>=n?'on':''}" data-rate="${e.id}:${n}">${(e.rating||0)>=n?'★':'☆'}</span>`).join('')}${e.rating?`<span class="rclear" data-rate="${e.id}:0">clear</span>`:''}</div>
    <div class="rate"><span class="rlab">Doability</span>${[1,2,3,4,5].map(n=>`<span class="dostar ${(e.doability||0)>=n?'on':''}" data-do="${e.id}:${n}">${(e.doability||0)>=n?'★':'☆'}</span>`).join('')}${e.doability?`<span class="rclear" data-do="${e.id}:0">clear</span>`:''}</div>
    <div class="prio"><span class="rlab">Priority</span>${['low','mid','high'].map(pv=>`<span class="pbtn p-${pv} ${e.prio===pv?'on':''}" data-prio="${e.id}:${pv}">${pv}</span>`).join('')}</div>
@@ -482,6 +483,8 @@ function render(){
   if(fc==='all'&&other.length){html+=`<div class="sec">Other <span class="ln"></span> ${other.length}</div>`;other.forEach(e=>html+=cardHTML(e,e.category||'Other'));}
  }
  grid.innerHTML=html;
+ if(editingId){const card=grid.querySelector(`.card[data-id="${editingId}"]`);if(card)openEditor(card,editingId);}
+ saveState();
 }
 
 
@@ -506,12 +509,32 @@ grid.onclick=e=>{
  if(tgt.dataset.prio){const[id,pv]=tgt.dataset.prio.split(':');const cur=byId(id).prio||'';setAnn(id,{prio:cur===pv?'':pv});return;}
  if(tgt.dataset.colorpick){const c=tgt.closest('.colr');if(c)c.classList.toggle('open');return;}
  if(tgt.dataset.color!==undefined){const[id,key]=tgt.dataset.color.split(':');const cur=byId(id).color||'';setAnn(id,{color:cur===(key||'')?'':(key||'')});return;}
- if(tgt.dataset.tag){ftag=dec(tgt.dataset.tag);render();return;}
+if(tgt.dataset.tag){ftag=dec(tgt.dataset.tag);render();return;}
  if(tgt.dataset.rt){const id=tgt.dataset.id,tg=dec(tgt.dataset.rt);setAnn(id,{tags:(byId(id).tags||[]).filter(x=>x!==tg)});return;}
  if(tgt.dataset.add){openInput(tgt,tgt.dataset.add);return;}
  if(tgt.dataset.del){const o=byId(tgt.dataset.del);if(confirm('Permanently delete "'+o.title+'"? This cannot be undone.'))delForever(tgt.dataset.del);return;}
  if(tgt.closest('.delbtn')){const id=tgt.closest('.delbtn').dataset.trash;const e=byId(id);if(e){e.trash=!e.trash;e.updated=today();saveDB();render();}}
 };
+
+function setEdit(id,nt,ns){
+ const e=byId(id);if(!e)return;
+ if(nt!==e.title||ns!==e.summary){
+  e.title=nt;e.summary=ns;e.updated=today();
+  saveDB();
+ }
+ render();
+}
+function openEditor(card,id){
+ const e=byId(id);editingId=id;card.classList.add('editing','open');
+ card.innerHTML=`<input class="edit-t" value="${esc(e.title)}"><textarea class="edit-s">${esc(e.summary||'')}</textarea>
+  <div class="ebtns"><span class="ebtn save" data-do="save">Save</span><span class="ebtn" data-do="cancel">Cancel</span></div>`;
+ const ti=card.querySelector('.edit-t'),su=card.querySelector('.edit-s');ti.focus();
+ card.querySelector('.ebtns').onclick=ev=>{const d=ev.target.dataset.do;if(!d)return;
+  if(d==='save'){editingId=null;setEdit(id,ti.value.trim()||e.title,su.value.trim());}
+  else{editingId=null;render();}};
+ ti.onkeydown=ev=>{if(ev.key==='Escape'){editingId=null;render();}};
+ su.onkeydown=ev=>{if(ev.key==='Escape'){editingId=null;render();}};
+}
 
 function openLightbox(src) {
   const lb = document.getElementById('lightbox');
