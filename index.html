@@ -110,6 +110,38 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .swpop{display:none;gap:5px;align-items:center;flex-wrap:wrap}
 .colr.open .swpop{display:flex}
 .colr.open .swtrig{box-shadow:0 0 0 2px rgba(255,255,255,.3)}
+.card.open .edit-t, .card.open .edit-s, .card.open .ebtns {display:block;}
+
+/* Modal Detailed View */
+.dv-overlay {
+  display:none; position:fixed; z-index:9990; left:0; top:0; width:100%; height:100%;
+  background:rgba(15,20,40,0.85); backdrop-filter:blur(5px);
+  justify-content:center; align-items:center; padding:20px; box-sizing:border-box;
+}
+.dv-modal {
+  background:#1a1f35; width:100%; max-width:800px; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,0.5);
+  display:flex; flex-direction:column; max-height:90vh; overflow-y:auto; position:relative;
+}
+.dv-close {
+  position:absolute; top:15px; right:15px; font-size:24px; color:#888; cursor:pointer; z-index:10; width:32px; height:32px; text-align:center; line-height:32px; border-radius:50%; background:rgba(255,255,255,0.05);
+}
+.dv-close:hover { color:#fff; background:rgba(255,255,255,0.1); }
+.dv-content { padding:30px; display:flex; flex-direction:column; gap:20px; }
+.dv-title { font-size:28px; font-weight:700; color:#fff; background:transparent; border:none; outline:none; width:100%; font-family:inherit; resize:none; padding:0; }
+.dv-title::placeholder { color:#555; }
+.dv-summary { font-size:16px; line-height:1.6; color:#ccc; background:transparent; border:none; outline:none; width:100%; font-family:inherit; min-height:150px; resize:vertical; padding:0; margin-top:10px; }
+.dv-summary::placeholder { color:#555; }
+.dv-meta { background:#131726; padding:20px; border-radius:8px; display:flex; flex-direction:column; gap:15px; margin-top:10px;}
+.dv-meta .row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.dv-meta .lbl { width:100px; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#888; }
+.dv-meta .chip { cursor:pointer; padding:4px 10px; border-radius:20px; background:#2a2f4c; font-size:12px; color:#ccc; border:1px solid transparent; user-select:none; }
+.dv-meta .chip.on { background:var(--pi); color:#fff; }
+.dv-meta .chip:hover { border-color:#555; }
+
+/* Lightbox */
+#lightbox { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.9); text-align:center; padding:20px; box-sizing:border-box; }
+#lightbox img { max-width:100%; max-height:90vh; object-fit:contain; border-radius:8px; margin-top:20px; }
+#lightbox .close-lb { position:absolute; top:20px; right:20px; color:#fff; font-size:40px; cursor:pointer; }
 .tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .tag{font-size:11px;color:var(--mut)}
 .tg{cursor:pointer}.tg:hover{color:var(--pi)}
@@ -166,7 +198,22 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
 </style>
 </head>
 <body>
-<header>
+
+<div id="lightbox" onclick="this.style.display='none'">
+  <div class="close-lb">✕</div>
+  <img id="lb-img">
+</div>
+
+<div id="dv-overlay" class="dv-overlay" onmousedown="if(event.target===this)closeDetailedView()">
+  <div class="dv-modal">
+    <div class="dv-close" onclick="closeDetailedView()">✕</div>
+    <div class="dv-content" id="dv-content">
+      <!-- Injected dynamically -->
+    </div>
+  </div>
+</div>
+
+<div id="app">
  <div class="htop">
   <div>
    <h1>YI's Project Database</h1>
@@ -380,19 +427,18 @@ const grid=document.getElementById('grid');
 function linkify(t){return esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:var(--pi)">$1</a>');}
 function cardHTML(e,c){
  const sum=e.summary||'';const clip=sum.length>160?'clip':'';
- const imgs = (e.images||[]).map(url => `<img src="${esc(url)}" style="max-width:100%;border-radius:6px;margin-top:8px;display:block">`).join('');
+ const imgs = (e.images||[]).map(url => `<img src="${esc(url)}" onclick="openLightbox('${esc(url)}'); event.stopPropagation();" style="width:100%; object-fit:contain; border-radius:6px; margin-top:8px; display:block; cursor:pointer;">`).join('');
  return `<div class="card ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
-    <span class="ttl" data-edit="${e.id}">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
+    <span class="ttl" style="cursor:pointer" onclick="openDetailedView('${e.id}')">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
     <span class="badge" style="background:${COL[c]||'#888'}22;color:${COL[c]||'#aaa'}">${(e.phase||'').toUpperCase()}</span>
     <span class="icons">
-     <span class="ic" data-edit="${e.id}" title="Edit">✎</span>
-     <span class="ic archbtn ${e.arch?'on':''}" data-arch="${e.id}" title="${e.arch?'Unarchive':'Archive'}">🗃</span>
+     <span class="ic archivebtn" data-arch="${e.id}" title="${e.arch?'Unarchive':'Archive'}">${e.arch?'⇪':'🗃'}</span>
      <span class="ic delbtn" data-trash="${e.id}" title="${e.trash?'Restore':'Move to trash'}">${e.trash?'♻':'🗑'}</span>
      <span class="ic heartbtn ${e.star?'on':''}" data-star="${e.id}" title="${e.star?'Unfavorite':'Favorite'}">${e.star?'♥':'♡'}</span>
     </span></div>
    ${imgs}
-   ${sum?`<div class="sum ${clip}" data-exp="1">${linkify(sum)}</div>`:''}
+   ${sum?`<div class="sum ${clip}" data-exp="1" style="cursor:pointer" onclick="openDetailedView('${e.id}')">${linkify(sum)}</div>`:''}
    <div class="rate"><span class="rlab">Interest</span>${[1,2,3,4,5].map(n=>`<span class="rstar ${(e.rating||0)>=n?'on':''}" data-rate="${e.id}:${n}">${(e.rating||0)>=n?'★':'☆'}</span>`).join('')}${e.rating?`<span class="rclear" data-rate="${e.id}:0">clear</span>`:''}</div>
    <div class="rate"><span class="rlab">Doability</span>${[1,2,3,4,5].map(n=>`<span class="dostar ${(e.doability||0)>=n?'on':''}" data-do="${e.id}:${n}">${(e.doability||0)>=n?'★':'☆'}</span>`).join('')}${e.doability?`<span class="rclear" data-do="${e.id}:0">clear</span>`:''}</div>
    <div class="prio"><span class="rlab">Priority</span>${['low','mid','high'].map(pv=>`<span class="pbtn p-${pv} ${e.prio===pv?'on':''}" data-prio="${e.id}:${pv}">${pv}</span>`).join('')}</div>
@@ -436,8 +482,6 @@ function render(){
   if(fc==='all'&&other.length){html+=`<div class="sec">Other <span class="ln"></span> ${other.length}</div>`;other.forEach(e=>html+=cardHTML(e,e.category||'Other'));}
  }
  grid.innerHTML=html;
- if(editingId){const card=grid.querySelector(`.card[data-id="${editingId}"]`);if(card)openEditor(card,editingId);}
- saveState();
 }
 
 
@@ -454,46 +498,100 @@ grid.onclick=e=>{
      if (badge) badge.remove();
    }
  }
- if(t.dataset.star){setAnn(t.dataset.star,{star:!byId(t.dataset.star).star});return;}
- if(t.dataset.arch){setAnn(t.dataset.arch,{arch:!byId(t.dataset.arch).arch});return;}
- if(t.dataset.trash){setAnn(t.dataset.trash,{trash:!byId(t.dataset.trash).trash});return;}
- if(t.dataset.rate){const[id,n]=t.dataset.rate.split(':');const cur=byId(id).rating||0;setAnn(id,{rating:cur===+n?0:+n});return;}
- if(t.dataset.do){const[id,n]=t.dataset.do.split(':');const cur=byId(id).doability||0;setAnn(id,{doability:cur===+n?0:+n});return;}
- if(t.dataset.prio){const[id,pv]=t.dataset.prio.split(':');const cur=byId(id).prio||'';setAnn(id,{prio:cur===pv?'':pv});return;}
- if(t.dataset.colorpick){const c=t.closest('.colr');if(c)c.classList.toggle('open');return;}
- if(t.dataset.color!==undefined){const[id,key]=t.dataset.color.split(':');const cur=byId(id).color||'';setAnn(id,{color:cur===(key||'')?'':(key||'')});return;}
- if(t.dataset.tag){ftag=dec(t.dataset.tag);render();return;}
- if(t.dataset.rt){const id=t.dataset.id,tg=dec(t.dataset.rt);setAnn(id,{tags:(byId(id).tags||[]).filter(x=>x!==tg)});return;}
- if(t.dataset.add){openInput(t,t.dataset.add);return;}
- if(t.dataset.edit){editingId=t.dataset.edit;openEditor(t.closest('.card'),editingId);return;}
- if(t.dataset.del){const o=byId(t.dataset.del);if(confirm('Permanently delete "'+o.title+'"? This cannot be undone.'))delForever(t.dataset.del);return;}
- if(t.dataset.exp){const card=t.closest('.card');card.classList.toggle('open');const sm=card.querySelector('.sum');if(sm)sm.classList.toggle('clip');}
+ const tgt = e.target;
+ if(tgt.dataset.star){setAnn(tgt.dataset.star,{star:!byId(tgt.dataset.star).star});return;}
+ if(tgt.dataset.arch){setAnn(tgt.dataset.arch,{arch:!byId(tgt.dataset.arch).arch});return;}
+ if(tgt.dataset.rate){const[id,n]=tgt.dataset.rate.split(':');const cur=byId(id).rating||0;setAnn(id,{rating:cur===+n?0:+n});return;}
+ if(tgt.dataset.do){const[id,n]=tgt.dataset.do.split(':');const cur=byId(id).doability||0;setAnn(id,{doability:cur===+n?0:+n});return;}
+ if(tgt.dataset.prio){const[id,pv]=tgt.dataset.prio.split(':');const cur=byId(id).prio||'';setAnn(id,{prio:cur===pv?'':pv});return;}
+ if(tgt.dataset.colorpick){const c=tgt.closest('.colr');if(c)c.classList.toggle('open');return;}
+ if(tgt.dataset.color!==undefined){const[id,key]=tgt.dataset.color.split(':');const cur=byId(id).color||'';setAnn(id,{color:cur===(key||'')?'':(key||'')});return;}
+ if(tgt.dataset.tag){ftag=dec(tgt.dataset.tag);render();return;}
+ if(tgt.dataset.rt){const id=tgt.dataset.id,tg=dec(tgt.dataset.rt);setAnn(id,{tags:(byId(id).tags||[]).filter(x=>x!==tg)});return;}
+ if(tgt.dataset.add){openInput(tgt,tgt.dataset.add);return;}
+ if(tgt.dataset.del){const o=byId(tgt.dataset.del);if(confirm('Permanently delete "'+o.title+'"? This cannot be undone.'))delForever(tgt.dataset.del);return;}
+ if(tgt.closest('.delbtn')){const id=tgt.closest('.delbtn').dataset.trash;const e=byId(id);if(e){e.trash=!e.trash;e.updated=today();saveDB();render();}}
 };
-function openEditor(card,id){
- const e=byId(id);editingId=id;card.classList.add('editing','open');
- const renderImgList = () => `<div class="edit-img-list" style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px">${(e.images||[]).map((u,i)=>`<div style="position:relative"><img src="${esc(u)}" style="height:40px;border-radius:4px"><span class="rm-img" data-idx="${i}" style="position:absolute;top:-4px;right:-4px;background:red;color:white;border-radius:50%;width:16px;height:16px;text-align:center;line-height:14px;cursor:pointer;font-size:10px">✕</span></div>`).join('')}</div>`;
- 
- card.innerHTML=`<input class="edit-t" value="${esc(e.title)}"><textarea class="edit-s">${esc(e.summary||'')}</textarea>
-  <div id="img-ctnr-${id}"></div>
-  <div style="margin-top:6px"><label class="btn" style="cursor:pointer;padding:4px 10px;font-size:12px;background:#2a2f4c;border:1px solid #3c4260">📷 Attach Image<input type="file" style="display:none" accept="image/*" class="edit-img" multiple></label></div>
-  <div class="ebtns"><span class="ebtn save" data-do="save">Save</span><span class="ebtn" data-do="cancel">Cancel</span></div>`;
- const ti=card.querySelector('.edit-t'),su=card.querySelector('.edit-s');ti.focus();
- 
- const bindImgs = () => {
-   const ctnr = card.querySelector(`#img-ctnr-${id}`);
-   ctnr.innerHTML = renderImgList();
-   ctnr.querySelectorAll('.rm-img').forEach(btn => {
-     btn.onclick = () => {
-       e.images.splice(btn.dataset.idx, 1);
-       e.updated = today();
-       saveDB();
-       bindImgs();
-     };
-   });
- };
- bindImgs();
- 
- card.querySelector('.edit-img').onchange = async (ev) => {
+
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lb-img').src = src;
+  lb.style.display = 'block';
+}
+
+function closeDetailedView() {
+  document.getElementById('dv-overlay').style.display = 'none';
+  editingId = null;
+  // If they were editing something, re-render grid
+  render();
+}
+
+function openDetailedView(id) {
+  const e = byId(id);
+  if (!e) return;
+  editingId = id;
+  const overlay = document.getElementById('dv-overlay');
+  const content = document.getElementById('dv-content');
+  
+  const renderImgList = () => `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">${(e.images||[]).map((u,i)=>`<div style="position:relative"><img src="${esc(u)}" onclick="openLightbox('${esc(u)}')"" style="height:80px;border-radius:4px;cursor:pointer;object-fit:cover"><span class="rm-img" data-idx="${i}" style="position:absolute;top:-8px;right:-8px;background:#ef5350;color:white;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;cursor:pointer;font-size:12px;box-shadow:0 2px 5px rgba(0,0,0,0.5)">✕</span></div>`).join('')}</div>`;
+  
+  content.innerHTML = `
+    <textarea class="dv-title" id="dv-title-inp" placeholder="Note Title">${esc(e.title)}</textarea>
+    
+    <div id="dv-img-ctnr"></div>
+    <div><label class="btn" style="cursor:pointer;padding:6px 12px;font-size:12px;background:#2a2f4c;border:1px solid #3c4260;border-radius:6px;display:inline-block">📷 Attach Image<input type="file" style="display:none" accept="image/*" id="dv-edit-img" multiple></label></div>
+    
+    <textarea class="dv-summary" id="dv-summary-inp" placeholder="Add a summary or details...">${esc(e.summary||'')}</textarea>
+    
+    <div class="dv-meta">
+      <div class="row"><span class="lbl">Category</span><div class="tags">${CATS.map(c=>`<span class="chip ${e.category===c?'on':''}" data-cat="${c}">${c}</span>`).join('')}</div></div>
+      <div class="row"><span class="lbl">Phase</span><div class="tags">${PHASES.map(p=>`<span class="chip ${e.phase===p?'on':''}" data-phase="${p}">${p}</span>`).join('')}</div></div>
+      <div class="row"><span class="lbl">Priority</span><div class="tags">${['low','mid','high'].map(p=>`<span class="chip ${e.prio===p?'on':''}" data-prio="${p}">${p}</span>`).join('')}</div></div>
+      <div class="row"><span class="lbl">Color</span><div class="tags"><span class="chip ${!e.color?'on':''}" data-color="">None</span>${COLORS.map(c=>`<span class="chip ${e.color===c.key?'on':''}" data-color="${c.key}" style="border-left:4px solid ${c.hex}">${c.name}</span>`).join('')}</div></div>
+    </div>
+  `;
+  
+  overlay.style.display = 'flex';
+  
+  // Auto-resize textareas
+  const titleInp = document.getElementById('dv-title-inp');
+  const sumInp = document.getElementById('dv-summary-inp');
+  const autoResize = (el) => { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; };
+  titleInp.oninput = () => autoResize(titleInp);
+  sumInp.oninput = () => autoResize(sumInp);
+  setTimeout(() => { autoResize(titleInp); autoResize(sumInp); }, 10);
+  
+  // Save on blur or keydown
+  const saveChanges = () => {
+    const nt = titleInp.value.trim();
+    const ns = sumInp.value.trim();
+    if (nt !== e.title || ns !== e.summary) {
+      e.title = nt || e.title; // fallback
+      e.summary = ns;
+      e.updated = today();
+      saveDB();
+    }
+  };
+  titleInp.onblur = saveChanges;
+  sumInp.onblur = saveChanges;
+  
+  // Image bindings
+  const bindImgs = () => {
+    const ctnr = document.getElementById('dv-img-ctnr');
+    ctnr.innerHTML = renderImgList();
+    ctnr.querySelectorAll('.rm-img').forEach(btn => {
+      btn.onclick = (ev) => {
+        ev.stopPropagation();
+        e.images.splice(btn.dataset.idx, 1);
+        e.updated = today();
+        saveDB();
+        bindImgs();
+      };
+    });
+  };
+  bindImgs();
+  
+  document.getElementById('dv-edit-img').onchange = async (ev) => {
     const files = Array.from(ev.target.files);
     if (!files.length) return;
     setLbl("busy", "Uploading...");
@@ -507,14 +605,22 @@ function openEditor(card,id){
     } catch(err) {
       setLbl("err", "Upload Failed");
     }
- };
- 
- card.querySelector('.ebtns').onclick=ev=>{const d=ev.target.dataset.do;if(!d)return;
-  if(d==='save'){editingId=null;setEdit(id,ti.value.trim()||e.title,su.value.trim());}
-  else{editingId=null;render();}};
- ti.onkeydown=ev=>{if(ev.key==='Escape'){editingId=null;render();}};
- su.onkeydown=ev=>{if(ev.key==='Escape'){editingId=null;render();}};
+  };
+  
+  // Meta chips interactions
+  content.querySelectorAll('.chip').forEach(chip => {
+    chip.onclick = () => {
+      if(chip.dataset.cat !== undefined) { e.category = chip.dataset.cat; }
+      else if(chip.dataset.phase !== undefined) { e.phase = chip.dataset.phase; }
+      else if(chip.dataset.prio !== undefined) { e.prio = chip.dataset.prio; }
+      else if(chip.dataset.color !== undefined) { e.color = chip.dataset.color || null; }
+      e.updated = today();
+      saveDB();
+      openDetailedView(id); // Re-render modal to update active chips
+    };
+  });
 }
+
 function openInput(anchor,id){
  const inp=document.createElement('input');inp.className='linp';inp.placeholder='tag + Enter';
  anchor.replaceWith(inp);inp.focus();
@@ -628,8 +734,8 @@ async function handleSharedData() {
     addNote(it);
     
     // Automatically enter "zoom/edit" mode so user can add more info
-    editingId = it.id;
     render();
+    openDetailedView(it.id);
     
     if (files.length > 0) {
       setLbl("busy", "Uploading image...");
@@ -640,7 +746,7 @@ async function handleSharedData() {
             if (it.title === 'Shared Image') it.title = validUrls.length > 1 ? 'Screenshots' : 'Screenshot';
             it.updated = today();
             saveDB();
-            if (editingId !== it.id) render();
+            if (editingId === it.id) openDetailedView(it.id); else render();
          }
          setLbl("ok", "Synced");
       });
