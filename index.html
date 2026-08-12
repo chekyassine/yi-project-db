@@ -246,6 +246,7 @@ async function pullNow(){setLbl('busy','Syncing…');if(supaOn()){const d=await 
 function setAnn(id,ch){const it=byId(id);if(it){Object.assign(it,ch);it.updated=today();}saveDB();render();}
 function setEdit(id,title,summary){const it=byId(id);if(it){it.title=title;it.summary=summary;it.updated=today();}saveDB();render();}
 function delForever(id){DB=DB.filter(x=>x.id!==id);saveDB();render();}
+window.emptyTrash = function(){if(confirm('Permanently delete all items in the trash?')){DB=DB.filter(x=>!x.trash);saveDB();render();}};
 function addNote(it){it.updated=today();if(!it.date)it.date=today();DB.unshift(it);saveDB();render();}
 function importFull(arr){DB=arr;saveDB();render();}
 
@@ -392,6 +393,9 @@ function render(){
  if(!DB.length){grid.innerHTML='<div class="empty">Loading… if this stays empty, the cloud store may be unreachable — try Import, or the ☁ refresh.</div>';return;}
  if(!list.length){grid.innerHTML='<div class="empty">No matches. Adjust search or filters.</div>';return;}
  let html='';
+ if(ftrash && list.length){
+    html+=`<div class="sec" style="justify-content:space-between;border-bottom:1px dashed var(--line);padding-bottom:10px;margin-bottom:15px"><span><span style="color:#ff6b6b">🗑</span> Trash</span> <button class="btn" style="padding:4px 10px;font-size:11px;color:#ff6b6b;border-color:#5a2b35" onclick="emptyTrash()">Empty Trash</button></div>`;
+  }
  if(sortKey && sortKey!=='category'){
   html+=`<div class="sec">Sorted by ${sortKey} <span class="ln"></span> ${list.length}</div>`;
   list.forEach(e=>{html+=cardHTML(e,e.category||'Other');});
