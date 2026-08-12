@@ -227,9 +227,9 @@ let DB=[];                 // full database (array of notes, single source of tr
 let fc="all",fp="all",fstar=false,farch=false,ftrash=false,fmin=0,fdo=0,fprio="all",fcolor="all",ftag="all",fq="";
 let sortKey=null, sortDesc=true, isList=false;
 const defaultState = {fc,fp,fstar,farch,ftrash,fmin,fdo,fprio,fcolor,ftag,fq,sortKey,sortDesc,isList};
-function loadState(){try{const s=JSON.parse(localStorage.getItem('pdb_state'));if(s){fc=s.fc??fc;fp=s.fp??fp;fstar=s.fstar??fstar;farch=s.farch??farch;ftrash=s.ftrash??ftrash;fmin=s.fmin??fmin;fdo=s.fdo??fdo;fprio=s.fprio??fprio;fcolor=s.fcolor??fcolor;ftag=s.ftag??ftag;fq=s.fq??fq;sortKey=s.sortKey??sortKey;sortDesc=s.sortDesc??sortDesc;isList=s.isList??isList;}}catch(e){}}
+function loadState(){try{const s=JSON.parse(localStorage.getItem('pdb_state'));if(s){fc=s.fc??fc;fp=s.fp??fp;fstar=s.fstar??fstar;farch=s.farch??farch;ftrash=s.ftrash??ftrash;fmin=s.fmin??fmin;fdo=s.fdo??fdo;fprio=s.fprio??fprio;fcolor=s.fcolor??fcolor;ftag=s.ftag??ftag;fq=s.fq??fq;sortKey=s.sortKey===undefined?sortKey:s.sortKey;sortDesc=s.sortDesc??sortDesc;isList=s.isList??isList;}}catch(e){}}
 function saveState(){localStorage.setItem('pdb_state',JSON.stringify({fc,fp,fstar,farch,ftrash,fmin,fdo,fprio,fcolor,ftag,fq,sortKey,sortDesc,isList}));}
-function resetState(){localStorage.removeItem('pdb_state');Object.assign(window,defaultState);document.getElementById('q').value='';document.getElementById('tagq').value='';const vb=document.getElementById('viewbtn');if(vb)vb.textContent='⊞ Grid';document.getElementById('grid').classList.remove('list-view');document.querySelectorAll('.sortbtn').forEach(x=>{x.classList.remove('on');x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim())+' ⇕';});render();}
+function resetState(){localStorage.removeItem('pdb_state');fc="all";fp="all";fstar=false;farch=false;ftrash=false;fmin=0;fdo=0;fprio="all";fcolor="all";ftag="all";fq="";sortKey=null;sortDesc=true;isList=false;document.getElementById('q').value='';document.getElementById('tagq').value='';const vb=document.getElementById('viewbtn');if(vb)vb.textContent='⊞ Grid';document.getElementById('grid').classList.remove('list-view');document.querySelectorAll('.sortbtn').forEach(x=>{x.classList.remove('on');x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim())+' ⇕';});render();}
 loadState();
 let editingId=null,syncTimer=null;
 const cloudLbl=document.getElementById('cloudlbl');
@@ -326,12 +326,16 @@ function buildStaticChips(){
  document.querySelectorAll('.sortbtn').forEach(btn=>{
   btn.onclick=()=>{
    const k=btn.dataset.sort;
-   if(sortKey===k) sortDesc=!sortDesc;
+   if(sortKey===k) {
+     if (sortDesc) sortDesc = false;
+     else sortKey = null;
+   }
    else {sortKey=k;sortDesc=true;}
    document.querySelectorAll('.sortbtn').forEach(x=>{
     x.classList.toggle('on',x.dataset.sort===sortKey);
     x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim()) + (x.dataset.sort===sortKey ? (sortDesc?' ▼':' ▲') : ' ⇕');
    });
+   saveState();
    render();
   };
  });
