@@ -170,7 +170,7 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
  <div class="htop">
   <div>
    <h1>YI's Project Database</h1>
-   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.2</span></div>
+   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.3</span></div>
   </div>
   <div class="io">
    <span class="btn" id="viewbtn" title="Toggle List/Grid View">⊞ Grid</span>
@@ -270,6 +270,11 @@ async function boot(){
  
  if(!DB.length){const c=localStorage.getItem(DB_CACHE);if(c){try{DB=JSON.parse(c);}catch(e){}}}
  if(DB.length)localStorage.setItem(DB_CACHE,JSON.stringify(DB));
+ 
+ // Handle shared data AFTER cloud DB is fully loaded to prevent race conditions
+ if (window.location.search.includes('share_')) {
+  handleSharedData();
+ }
  
  buildStaticChips(); render();
  if(isMigration && reachable) await pushBin();
@@ -539,7 +544,6 @@ function handleSharedData() {
   }
 }
 
-handleSharedData();
 boot();
 </script>
 </body>
