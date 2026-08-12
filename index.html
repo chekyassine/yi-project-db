@@ -92,6 +92,10 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .pbtn.p-low.on{background:#3a7d5c;color:#fff;border-color:transparent}
 .pbtn.p-mid.on{background:#c98a2b;color:#1a1200;border-color:transparent}
 .pbtn.p-high.on{background:#c9453f;color:#fff;border-color:transparent}
+.choice{display:flex;gap:5px;align-items:center;margin-top:4px;flex-wrap:wrap}
+.choicebtn{cursor:pointer;font-size:10.5px;padding:2px 8px;border-radius:20px;border:1px solid var(--line);color:var(--mut);background:var(--bg2);transition:.1s}
+.choicebtn:hover{color:var(--ink);border-color:#5a6795}
+.choicebtn.on{background:#37507a;color:#fff;border-color:transparent}
 .colr{display:flex;gap:5px;align-items:center;margin-top:4px;flex-wrap:wrap}
 .sw{width:17px;height:17px;border-radius:50%;cursor:pointer;border:2px solid transparent;box-sizing:border-box;transition:.1s;flex:none}
 .sw:hover{transform:scale(1.18)}
@@ -127,6 +131,9 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 }
 .dv-close:hover { color:#fff; background:rgba(255,255,255,0.1); }
 .dv-content { padding:30px; display:flex; flex-direction:column; gap:20px; }
+.zoom-card-wrapper{width:min(800px,100%);max-height:90vh;overflow-y:auto;box-sizing:border-box}
+.zoom-card{width:100%;box-sizing:border-box;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.zoom-card .zoom-trigger{display:none}
 .dv-title { font-size:28px; font-weight:700; color:#fff; background:transparent; border:none; outline:none; width:100%; font-family:inherit; resize:none; padding:0; }
 .dv-title::placeholder { color:#555; }
 .dv-summary { font-size:16px; line-height:1.6; color:#ccc; background:transparent; border:none; outline:none; width:100%; font-family:inherit; min-height:150px; resize:vertical; padding:0; margin-top:10px; }
@@ -173,6 +180,7 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .list-view .ctop{flex:1;min-width:300px;margin:0}
 .list-view .rate{margin:0}
 .list-view .prio{margin:0}
+.list-view .choice{margin:0}
 .list-view .colr{margin:0}
 .list-view .tags{margin:0;max-width:250px;overflow:hidden;flex-wrap:nowrap}
 .list-view .meta{margin:0;margin-left:auto}
@@ -214,12 +222,8 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
 </div>
 
 <div id="dv-overlay" class="dv-overlay" onmousedown="if(event.target===this)closeDetailedView()">
-  <div class="dv-modal">
-    <div class="dv-close" onclick="closeDetailedView()">✕</div>
-    <div class="dv-content" id="dv-content">
-      <!-- Injected dynamically -->
-    </div>
-  </div>
+ <div id="dv-content" class="dv-content zoom-card-wrapper"></div>
+ <div class="dv-close" onclick="closeDetailedView()">✕</div>
 </div>
 
 <div id="app">
@@ -282,13 +286,13 @@ const COLORS=[{key:'red',hex:'#ef5350',name:'Red'},{key:'orange',hex:'#ff8a3d',n
 const CMAP={};COLORS.forEach(c=>CMAP[c.key]=c.hex);
 let DB=[];                 // full database (array of notes, single source of truth)
 let fc="all",fp="all",fstar=false,farch=false,ftrash=false,fmin=0,fdo=0,fprio="all",fcolor="all",ftag="all",fq="";
-let sortKey=null, sortDesc=true, isList=false;
+let sortKey='updated', sortDesc=true, isList=false;
 const defaultState = {fc,fp,fstar,farch,ftrash,fmin,fdo,fprio,fcolor,ftag,fq,sortKey,sortDesc,isList};
 function loadState(){try{const s=JSON.parse(localStorage.getItem('pdb_state'));if(s){fc=s.fc??fc;fp=s.fp??fp;fstar=s.fstar??fstar;farch=s.farch??farch;ftrash=s.ftrash??ftrash;fmin=s.fmin??fmin;fdo=s.fdo??fdo;fprio=s.fprio??fprio;fcolor=s.fcolor??fcolor;ftag=s.ftag??ftag;fq=s.fq??fq;sortKey=s.sortKey===undefined?sortKey:s.sortKey;sortDesc=s.sortDesc??sortDesc;isList=s.isList??isList;}}catch(e){}}
 function saveState(){localStorage.setItem('pdb_state',JSON.stringify({fc,fp,fstar,farch,ftrash,fmin,fdo,fprio,fcolor,ftag,fq,sortKey,sortDesc,isList}));}
-function resetState(){localStorage.removeItem('pdb_state');fc="all";fp="all";fstar=false;farch=false;ftrash=false;fmin=0;fdo=0;fprio="all";fcolor="all";ftag="all";fq="";sortKey=null;sortDesc=true;isList=false;document.getElementById('q').value='';document.getElementById('tagq').value='';const vb=document.getElementById('viewbtn');if(vb)vb.textContent='⊞ Grid';document.getElementById('grid').classList.remove('list-view');document.querySelectorAll('.sortbtn').forEach(x=>{x.classList.remove('on');x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim())+' ⇕';});render();}
+function resetState(){localStorage.removeItem('pdb_state');fc="all";fp="all";fstar=false;farch=false;ftrash=false;fmin=0;fdo=0;fprio="all";fcolor="all";ftag="all";fq="";sortKey='updated';sortDesc=true;isList=false;document.getElementById('q').value='';document.getElementById('tagq').value='';const vb=document.getElementById('viewbtn');if(vb)vb.textContent='⊞ Grid';document.getElementById('grid').classList.remove('list-view');document.querySelectorAll('.sortbtn').forEach(x=>{x.classList.remove('on');x.innerHTML=(x.innerHTML.replace(/[⇕▲▼]/g,'').trim())+' ⇕';});render();}
 loadState();
-let editingId=null,syncTimer=null;
+let editingId=null,detailedViewId=null,syncTimer=null;
 const cloudLbl=document.getElementById('cloudlbl');
 function setLbl(cls,txt){cloudLbl.className=cls||'';cloudLbl.textContent=txt||'Cloud';}
 function esc(s){return (s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
@@ -312,8 +316,8 @@ function saveDB(){localStorage.setItem(DB_CACHE,JSON.stringify(DB));scheduleSync
 async function pullNow(){setLbl('busy','Syncing…');if(supaOn()){const d=await supaGet();if(d!==undefined&&Array.isArray(d)){DB=d;localStorage.setItem(DB_CACHE,JSON.stringify(DB));render();setLbl('ok','Synced');}else setLbl('err','Offline');return;}const o=await grab(binURL());if(o&&Array.isArray(o)){DB=o;localStorage.setItem(DB_CACHE,JSON.stringify(DB));render();setLbl('ok','Synced');}else{await pushBin();}}
 
 /* ---- mutators: write to db ---- */
-function setAnn(id,ch){const it=byId(id);if(it){Object.assign(it,ch);it.updated=today();}saveDB();render();}
-function setEdit(id,title,summary){const it=byId(id);if(it){it.title=title;it.summary=summary;it.updated=today();}saveDB();render();}
+function setAnn(id,ch){const it=byId(id);if(it){Object.assign(it,ch);it.updated=today();}saveDB();render();renderDetailedView();}
+function setEdit(id,title,summary){const it=byId(id);if(it){it.title=title;it.summary=summary;it.updated=today();}saveDB();render();renderDetailedView();}
 function delForever(id){DB=DB.filter(x=>x.id!==id);saveDB();render();}
 window.emptyTrash = function(){if(confirm('Permanently delete all items in the trash?')){DB=DB.filter(x=>!x.trash);saveDB();render();}};
 function addNote(it){it.updated=today();if(!it.date)it.date=today();DB.unshift(it);saveDB();render();}
@@ -435,10 +439,10 @@ if(fq){const h=(e.title+' '+(e.summary||'')+' '+(e.from||'')+' '+(e.tags||[]).jo
 }
 const grid=document.getElementById('grid');
 function linkify(t){return esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:var(--pi)">$1</a>');}
-function cardHTML(e,c){
+function cardHTML(e,c=e.category||'Other',display='card'){
  const sum=e.summary||'';const clip=sum.length>160?'clip':'';
  const imgs = (e.images||[]).map(url => `<img src="${esc(url)}" onclick="openLightbox('${esc(url)}'); event.stopPropagation();" style="width:100%; object-fit:contain; border-radius:6px; margin-top:8px; display:block; cursor:pointer;">`).join('');
- return `<div class="card ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
+ return `<div class="card ${display==='zoom'?'zoom-card':''} ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
     <span class="ttl" style="cursor:pointer" onclick="openEditor(this.closest('.card'), '${e.id}')">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
     <span class="badge" style="background:${COL[c]||'#888'}22;color:${COL[c]||'#aaa'}">${(e.phase||'').toUpperCase()}</span>
@@ -446,13 +450,15 @@ function cardHTML(e,c){
      <span class="ic archivebtn" data-arch="${e.id}" title="${e.arch?'Unarchive':'Archive'}">${e.arch?'⇪':'🗃'}</span>
      <span class="ic delbtn" data-trash="${e.id}" title="${e.trash?'Restore':'Move to trash'}">${e.trash?'♻':'🗑'}</span>
      <span class="ic heartbtn ${e.star?'on':''}" data-star="${e.id}" title="${e.star?'Unfavorite':'Favorite'}">${e.star?'♥':'♡'}</span>
-     <span class="ic" onclick="openDetailedView('${e.id}')" title="Zoom Mode" style="color:var(--pi)">⤢</span>
+     <span class="ic zoom-trigger" onclick="openDetailedView('${e.id}')" title="Zoom Mode" style="color:var(--pi)">⤢</span>
     </span></div>
    ${imgs}
    ${sum?`<div class="sum ${clip}" data-exp="1" style="cursor:pointer" onclick="openEditor(this.closest('.card'), '${e.id}')">${linkify(sum)}</div>`:`<div class="sum placeholder" style="opacity:0.4;font-style:italic;cursor:pointer" onclick="openEditor(this.closest('.card'), '${e.id}')">Add description...</div>`}
    <div class="rate"><span class="rlab">Interest</span>${[1,2,3,4,5].map(n=>`<span class="rstar ${(e.rating||0)>=n?'on':''}" data-rate="${e.id}:${n}">${(e.rating||0)>=n?'★':'☆'}</span>`).join('')}${e.rating?`<span class="rclear" data-rate="${e.id}:0">clear</span>`:''}</div>
    <div class="rate"><span class="rlab">Doability</span>${[1,2,3,4,5].map(n=>`<span class="dostar ${(e.doability||0)>=n?'on':''}" data-do="${e.id}:${n}">${(e.doability||0)>=n?'★':'☆'}</span>`).join('')}${e.doability?`<span class="rclear" data-do="${e.id}:0">clear</span>`:''}</div>
    <div class="prio"><span class="rlab">Priority</span>${['low','mid','high'].map(pv=>`<span class="pbtn p-${pv} ${e.prio===pv?'on':''}" data-prio="${e.id}:${pv}">${pv}</span>`).join('')}</div>
+   <div class="choice"><span class="rlab">Phase</span>${PHASES.map(p=>`<span class="choicebtn ${e.phase===p?'on':''}" data-phase="${e.id}:${p}">${p}</span>`).join('')}</div>
+   <div class="choice"><span class="rlab">Category</span>${CATS.map(cat=>`<span class="choicebtn ${e.category===cat?'on':''}" data-cat="${e.id}:${cat}" title="${esc(CATDESC[cat])}">${esc(cat)}</span>`).join('')}</div>
    <div class="colr"><span class="rlab">Color</span><span class="swtrig ${e.color&&CMAP[e.color]?'':'none'}" data-colorpick="${e.id}" title="Set color"${e.color&&CMAP[e.color]?` style="background:${CMAP[e.color]}"`:''}></span><span class="swpop">${COLORS.map(c=>`<span class="sw ${e.color===c.key?'on':''}" data-color="${e.id}:${c.key}" title="${c.name}" style="background:${c.hex}"></span>`).join('')}<span class="sw none ${e.color?'':'on'}" data-color="${e.id}:" title="No color">⊘</span></span></div>
    <div class="tags">${(e.tags||[]).map(t=>`<span class="pill"><span class="tg" data-tag="${enc(t)}">#${esc(t)}</span><x data-id="${e.id}" data-rt="${enc(t)}">✕</x></span>`).join('')}<span class="addl" data-add="${e.id}">+ tag</span></div>
    <div class="meta">${e.from?'from &ldquo;'+esc(e.from)+'&rdquo; · ':''}Created ${esc(e.date||'')} ${e.updated?' · Upd '+esc(e.updated):''}${e.trash?` · <span class="revert" data-del="${e.id}">delete forever</span>`:''}</div>
@@ -498,7 +504,7 @@ function render(){
 }
 
 
-grid.onclick=e=>{
+const handleCardClick = e => {
  const t=e.target; if(t.closest('.editing'))return;
  const card = t.closest('.card');
  if (card) {
@@ -517,6 +523,8 @@ grid.onclick=e=>{
  if(tgt.dataset.rate){const[id,n]=tgt.dataset.rate.split(':');const cur=byId(id).rating||0;setAnn(id,{rating:cur===+n?0:+n});return;}
  if(tgt.dataset.do){const[id,n]=tgt.dataset.do.split(':');const cur=byId(id).doability||0;setAnn(id,{doability:cur===+n?0:+n});return;}
  if(tgt.dataset.prio){const[id,pv]=tgt.dataset.prio.split(':');const cur=byId(id).prio||'';setAnn(id,{prio:cur===pv?'':pv});return;}
+ if(tgt.dataset.cat){const[id,c]=tgt.dataset.cat.split(':');const cur=byId(id).category||'';setAnn(id,{category:cur===c?'':c});return;}
+ if(tgt.dataset.phase){const[id,p]=tgt.dataset.phase.split(':');const cur=byId(id).phase||'';setAnn(id,{phase:cur===p?'':p});return;}
  if(tgt.dataset.colorpick){const c=tgt.closest('.colr');if(c)c.classList.toggle('open');return;}
  if(tgt.dataset.color!==undefined){const[id,key]=tgt.dataset.color.split(':');const cur=byId(id).color||'';setAnn(id,{color:cur===(key||'')?'':(key||'')});return;}
 if(tgt.dataset.tag){ftag=dec(tgt.dataset.tag);render();return;}
@@ -525,6 +533,8 @@ if(tgt.dataset.tag){ftag=dec(tgt.dataset.tag);render();return;}
  if(tgt.dataset.del){const o=byId(tgt.dataset.del);if(confirm('Permanently delete "'+o.title+'"? This cannot be undone.'))delForever(tgt.dataset.del);return;}
  if(tgt.closest('.delbtn')){const id=tgt.closest('.delbtn').dataset.trash;const e=byId(id);if(e){e.trash=!e.trash;e.updated=today();saveDB();render();}}
 };
+grid.onclick = handleCardClick;
+document.getElementById('dv-content').onclick = handleCardClick;
 
 function setEdit(id,nt,ns){
  const e=byId(id);if(!e)return;
@@ -533,6 +543,7 @@ function setEdit(id,nt,ns){
   saveDB();
  }
  render();
+ renderDetailedView();
 }
 function openEditor(card,id){
  const e=byId(id);editingId=id;card.classList.add('editing','open');
@@ -623,104 +634,26 @@ function openLightbox(src) {
 
 function closeDetailedView() {
   document.getElementById('dv-overlay').style.display = 'none';
+  detailedViewId = null;
   editingId = null;
   // If they were editing something, re-render grid
   render();
 }
 
+function renderDetailedView() {
+  if (!detailedViewId) return;
+  const e = byId(detailedViewId);
+  if (!e) { closeDetailedView(); return; }
+  document.getElementById('dv-content').innerHTML = cardHTML(e, e.category || 'Other', 'zoom');
+}
+
 function openDetailedView(id) {
   const e = byId(id);
   if (!e) return;
-  editingId = id;
   const overlay = document.getElementById('dv-overlay');
-  const content = document.getElementById('dv-content');
-  
-  const renderImgList = () => `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">${(e.images||[]).map((u,i)=>`<div style="position:relative"><img src="${esc(u)}" onclick="openLightbox('${esc(u)}')"" style="height:80px;border-radius:4px;cursor:pointer;object-fit:cover"><span class="rm-img" data-idx="${i}" style="position:absolute;top:-8px;right:-8px;background:#ef5350;color:white;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;cursor:pointer;font-size:12px;box-shadow:0 2px 5px rgba(0,0,0,0.5)">✕</span></div>`).join('')}</div>`;
-  
-  content.innerHTML = `
-    <textarea class="dv-title" id="dv-title-inp" placeholder="Note Title">${esc(e.title)}</textarea>
-    
-    <div id="dv-img-ctnr"></div>
-    <div><label class="btn" style="cursor:pointer;padding:6px 12px;font-size:12px;background:#2a2f4c;border:1px solid #3c4260;border-radius:6px;display:inline-block">📷 Attach Image<input type="file" style="display:none" accept="image/*" id="dv-edit-img" multiple></label></div>
-    
-    <textarea class="dv-summary" id="dv-summary-inp" placeholder="Add a summary or details...">${esc(e.summary||'')}</textarea>
-    
-    <div class="dv-meta">
-      <div class="row"><span class="lbl">Category</span><div class="tags">${CATS.map(c=>`<span class="chip ${e.category===c?'on':''}" data-cat="${c}">${c}</span>`).join('')}</div></div>
-      <div class="row"><span class="lbl">Phase</span><div class="tags">${PHASES.map(p=>`<span class="chip ${e.phase===p?'on':''}" data-phase="${p}">${p}</span>`).join('')}</div></div>
-      <div class="row"><span class="lbl">Priority</span><div class="tags">${['low','mid','high'].map(p=>`<span class="chip ${e.prio===p?'on':''}" data-prio="${p}">${p}</span>`).join('')}</div></div>
-      <div class="row"><span class="lbl">Color</span><div class="tags"><span class="chip ${!e.color?'on':''}" data-color="">None</span>${COLORS.map(c=>`<span class="chip ${e.color===c.key?'on':''}" data-color="${c.key}" style="border-left:4px solid ${c.hex}">${c.name}</span>`).join('')}</div></div>
-    </div>
-  `;
-  
+  detailedViewId = id;
+  renderDetailedView();
   overlay.style.display = 'flex';
-  
-  // Auto-resize textareas
-  const titleInp = document.getElementById('dv-title-inp');
-  const sumInp = document.getElementById('dv-summary-inp');
-  const autoResize = (el) => { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; };
-  titleInp.oninput = () => autoResize(titleInp);
-  sumInp.oninput = () => autoResize(sumInp);
-  setTimeout(() => { autoResize(titleInp); autoResize(sumInp); }, 10);
-  
-  // Save on blur or keydown
-  const saveChanges = () => {
-    const nt = titleInp.value.trim();
-    const ns = sumInp.value.trim();
-    if (nt !== e.title || ns !== e.summary) {
-      e.title = nt || e.title; // fallback
-      e.summary = ns;
-      e.updated = today();
-      saveDB();
-    }
-  };
-  titleInp.onblur = saveChanges;
-  sumInp.onblur = saveChanges;
-  
-  // Image bindings
-  const bindImgs = () => {
-    const ctnr = document.getElementById('dv-img-ctnr');
-    ctnr.innerHTML = renderImgList();
-    ctnr.querySelectorAll('.rm-img').forEach(btn => {
-      btn.onclick = (ev) => {
-        ev.stopPropagation();
-        e.images.splice(btn.dataset.idx, 1);
-        e.updated = today();
-        saveDB();
-        bindImgs();
-      };
-    });
-  };
-  bindImgs();
-  
-  document.getElementById('dv-edit-img').onchange = async (ev) => {
-    const files = Array.from(ev.target.files);
-    if (!files.length) return;
-    setLbl("busy", "Uploading...");
-    try {
-      const urls = await Promise.all(files.map(uploadImageToSupabase));
-      e.images = (e.images || []).concat(urls);
-      e.updated = today();
-      saveDB();
-      bindImgs();
-      setLbl("ok", "Saved");
-    } catch(err) {
-      setLbl("err", "Upload Failed");
-    }
-  };
-  
-  // Meta chips interactions
-  content.querySelectorAll('.chip').forEach(chip => {
-    chip.onclick = () => {
-      if(chip.dataset.cat !== undefined) { e.category = chip.dataset.cat; }
-      else if(chip.dataset.phase !== undefined) { e.phase = chip.dataset.phase; }
-      else if(chip.dataset.prio !== undefined) { e.prio = chip.dataset.prio; }
-      else if(chip.dataset.color !== undefined) { e.color = chip.dataset.color || null; }
-      e.updated = today();
-      saveDB();
-      openDetailedView(id); // Re-render modal to update active chips
-    };
-  });
 }
 
 function openInput(anchor,id){

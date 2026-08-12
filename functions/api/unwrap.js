@@ -81,14 +81,9 @@ export async function onRequest(context) {
       }
     }
 
-    // 3. Last resort fallback to URL
-    if (!title || title.trim() === '') {
-      title = targetUrl;
-    }
-
     return new Response(JSON.stringify({
-      title: title.trim(),
-      description: description.trim()
+      title: title ? title.trim() : "",
+      description: description ? description.trim() : ""
     }), {
       headers: { 
         "Content-Type": "application/json",
