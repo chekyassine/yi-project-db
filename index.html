@@ -65,14 +65,14 @@ h1{margin:0;font-size:32px;letter-spacing:.5px}
 .archbtn.on{color:var(--rs)}
 .delbtn:hover{color:#ff6b6b}
 .heartbtn.on{color:#ff5c7a}
-.ctop{display:flex;align-items:flex-start;gap:9px}
+.ctop{display:flex;align-items:flex-start;gap:9px;flex-wrap:wrap}
 .dot{width:11px;height:11px;border-radius:50%;margin-top:5px;flex:none}
-.ttl{font-weight:650;font-size:15.5px;line-height:1.3;flex:1;padding-right:4px;cursor:pointer}
+.ttl{font-weight:650;font-size:15.5px;line-height:1.3;flex:1;padding-right:4px;cursor:pointer;min-width:0}
 .badge{font-size:10px;font-weight:700;letter-spacing:.4px;padding:3px 8px;border-radius:20px;white-space:nowrap;align-self:flex-start}
 .mobile-summary{display:none}
-.icons{display:flex;gap:7px;flex:none;align-items:center}
-.ic{cursor:pointer;font-size:16px;line-height:1;color:#454f77;transition:.12s;user-select:none}
-.ic:hover{transform:scale(1.15);color:#aab6e0}
+.icons{display:flex;gap:10px;flex:none;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+.ic{cursor:pointer;font-size:18px;line-height:1;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;color:#454f77;transition:.12s;user-select:none}
+.ic:hover{transform:scale(1.12);color:#aab6e0;background:rgba(255,255,255,.08)}
 .sum{color:#c4cdea;font-size:13px;line-height:1.5;max-height:4.5em;overflow:hidden;position:relative;cursor:pointer;white-space:pre-wrap}
 .card.open .sum{max-height:none}
 .sum.clip:after{content:"";position:absolute;bottom:0;left:0;right:0;height:1.4em;background:linear-gradient(transparent,var(--card))}
@@ -291,7 +291,7 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
   <div class="htop">
    <div>
     <h1>YI's Project Database</h1>
-   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.2.4</span></div>
+   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.2.5</span></div>
   </div>
   <div class="io">
    <span class="btn" id="resetbtn" title="Reset all filters and sorting">↺ Reset Filters</span>
@@ -343,6 +343,8 @@ async function supaPush(){setLbl("busy","Saving…");try{const r=await fetch(SUP
 const BASE_URL="./data.json";
 const DB_CACHE="pdb_db_v2";
 const CATS=["Project Idea", "Business/Money", "Tool", "Method", "Work/Skill", "Resource"], COL={"Project Idea": "var(--pi)", "Business/Money": "var(--bm)", "Tool": "var(--tl)", "Method": "var(--me)", "Work/Skill": "var(--ws)", "Resource": "var(--rs)"}, LAB={"Project Idea": "Project Ideas", "Business/Money": "Business / Money", "Tool": "Tools", "Method": "Methods", "Work/Skill": "Work / Skills", "Resource": "Resources"}, CATDESC={"Project Idea": "App, website & service ideas", "Business/Money": "Monetization, trading, e-commerce", "Tool": "Software, libraries, APIs", "Method": "How-tos, tactics, processes", "Work/Skill": "Skills & career moves", "Resource": "Reference & leads"}, PHASES=["Idea", "Research", "Execution"];
+const CATEGORY_ATTRS={"Project Idea":{priority:true,interest:true,doability:true,phase:true,color:true,tags:true},"Business/Money":{priority:true,interest:true,doability:true,phase:true,color:true,tags:true},"Tool":{priority:false,interest:true,doability:true,phase:false,color:true,tags:true},"Method":{priority:false,interest:true,doability:true,phase:false,color:true,tags:true},"Work/Skill":{priority:true,interest:true,doability:true,phase:true,color:true,tags:true},"Resource":{priority:false,interest:true,doability:false,phase:false,color:true,tags:true}};
+function attrVisible(cat,attr){const map=CATEGORY_ATTRS[cat]||CATEGORY_ATTRS['Project Idea'];return map[attr]!==undefined?map[attr]:true;}
 const COLORS=[{key:'red',hex:'#ef5350',name:'Red'},{key:'orange',hex:'#ff8a3d',name:'Orange'},{key:'amber',hex:'#f7b731',name:'Amber'},{key:'yellow',hex:'#f4d03f',name:'Yellow'},{key:'lime',hex:'#a3d63b',name:'Lime'},{key:'green',hex:'#4caf6d',name:'Green'},{key:'teal',hex:'#25b8a5',name:'Teal'},{key:'cyan',hex:'#31c5e8',name:'Cyan'},{key:'blue',hex:'#4d8bf0',name:'Blue'},{key:'indigo',hex:'#7c74f2',name:'Indigo'},{key:'purple',hex:'#b06cf0',name:'Purple'},{key:'pink',hex:'#f062a8',name:'Pink'}];
 const CMAP={};COLORS.forEach(c=>CMAP[c.key]=c.hex);
 let DB=[];                 // full database (array of notes, single source of truth)
@@ -508,6 +510,19 @@ function linkify(t){return esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1"
 function cardHTML(e,c=e.category||'Other',display='card'){
  const sum=e.summary||'';const clip=sum.length>160?'clip':'';
  const imgs = (e.images||[]).map(url => `<img src="${esc(url)}" onclick="openLightbox('${esc(url)}'); event.stopPropagation();" style="width:100%;height:220px;object-fit:cover;object-position:top;border-radius:6px;margin-top:8px;display:block;cursor:pointer;">`).join('');
+ const showPriority=attrVisible(c,'priority');
+ const showInterest=attrVisible(c,'interest');
+ const showDoability=attrVisible(c,'doability');
+ const showPhase=attrVisible(c,'phase');
+ const showColor=attrVisible(c,'color');
+ const showTags=attrVisible(c,'tags');
+ const compactItems=[];
+ if(showPhase && e.phase) compactItems.push(`<span class="compact-item">${esc(e.phase)}</span>`);
+ if(showPriority && e.prio) compactItems.push(`<span class="compact-item">${esc(e.prio)}</span>`);
+ if(showInterest && e.rating) compactItems.push(`<span class="compact-item icon" title="Interest">★${e.rating}</span>`);
+ if(showDoability && e.doability) compactItems.push(`<span class="compact-item icon" title="Doability">⚡${e.doability}</span>`);
+ if(showColor && e.color) compactItems.push(`<span class="compact-item color" style="background:${CMAP[e.color]||'#777'}"></span>`);
+ if(showTags) compactItems.push(...(e.tags||[]).slice(0,3).map(t=>`<span class="compact-item">#${esc(t)}</span>`));
  return `<div class="card ${display==='zoom'?'zoom-card':''} ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
     <span class="ttl" style="cursor:pointer" onclick="openCard(this.closest('.card'), '${e.id}')">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
@@ -520,15 +535,15 @@ function cardHTML(e,c=e.category||'Other',display='card'){
     </span></div>
    ${imgs}
    ${sum?`<div class="sum ${clip}" data-exp="1" style="cursor:pointer" onclick="openCard(this.closest('.card'), '${e.id}')">${linkify(sum)}</div>`:`<div class="sum placeholder" style="opacity:0.4;font-style:italic;cursor:pointer" onclick="openCard(this.closest('.card'), '${e.id}')">Add description...</div>`}
-   <div class="mobile-summary"><span class="mobile-category" style="--mobile-cat:${COL[c]||'#888'}">${esc(e.category||'Uncategorized')}</span>${e.prio?`<span>${esc(e.prio)} priority</span>`:''}${(e.tags||[]).slice(0,2).map(t=>`<span>#${esc(t)}</span>`).join('')}</div>
-   <div class="compact-info">${e.phase?`<span class="compact-item">${esc(e.phase)}</span>`:''}${e.prio?`<span class="compact-item">${esc(e.prio)}</span>`:''}${e.rating?`<span class="compact-item icon" title="Interest">★${e.rating}</span>`:''}${e.doability?`<span class="compact-item icon" title="Doability">⚡${e.doability}</span>`:''}${e.color?`<span class="compact-item color" style="background:${CMAP[e.color]||'#777'}"></span>`:''}${(e.tags||[]).slice(0,3).map(t=>`<span class="compact-item">#${esc(t)}</span>`).join('')}</div>
-   <div class="rate"><span class="rlab">Interest</span>${[1,2,3,4,5].map(n=>`<span class="rstar ${(e.rating||0)>=n?'on':''}" data-rate="${e.id}:${n}">${(e.rating||0)>=n?'★':'☆'}</span>`).join('')}${e.rating?`<span class="rclear" data-rate="${e.id}:0">clear</span>`:''}</div>
-   <div class="rate"><span class="rlab">Doability</span>${[1,2,3,4,5].map(n=>`<span class="dostar ${(e.doability||0)>=n?'on':''}" data-do="${e.id}:${n}">${(e.doability||0)>=n?'★':'☆'}</span>`).join('')}${e.doability?`<span class="rclear" data-do="${e.id}:0">clear</span>`:''}</div>
-   <div class="prio"><span class="rlab">Priority</span>${['low','mid','high'].map(pv=>`<span class="pbtn p-${pv} ${e.prio===pv?'on':''}" data-prio="${e.id}:${pv}">${pv}</span>`).join('')}</div>
-   <div class="choice phase-choice"><span class="rlab">Phase</span>${PHASES.map(p=>`<span class="choicebtn ${e.phase===p?'on':''}" data-phase="${e.id}:${p}">${p}</span>`).join('')}</div>
+   <div class="mobile-summary"><span class="mobile-category" style="--mobile-cat:${COL[c]||'#888'}">${esc(e.category||'Uncategorized')}</span>${showPriority&&e.prio?`<span>${esc(e.prio)} priority</span>`:''}${showTags?(e.tags||[]).slice(0,2).map(t=>`<span>#${esc(t)}</span>`).join(''):''}</div>
+   ${compactItems.length?`<div class="compact-info">${compactItems.join('')}</div>`:''}
+   ${showInterest?`<div class="rate"><span class="rlab">Interest</span>${[1,2,3,4,5].map(n=>`<span class="rstar ${(e.rating||0)>=n?'on':''}" data-rate="${e.id}:${n}">${(e.rating||0)>=n?'★':'☆'}</span>`).join('')}${e.rating?`<span class="rclear" data-rate="${e.id}:0">clear</span>`:''}</div>`:''}
+   ${showDoability?`<div class="rate"><span class="rlab">Doability</span>${[1,2,3,4,5].map(n=>`<span class="dostar ${(e.doability||0)>=n?'on':''}" data-do="${e.id}:${n}">${(e.doability||0)>=n?'★':'☆'}</span>`).join('')}${e.doability?`<span class="rclear" data-do="${e.id}:0">clear</span>`:''}</div>`:''}
+   ${showPriority?`<div class="prio"><span class="rlab">Priority</span>${['low','mid','high'].map(pv=>`<span class="pbtn p-${pv} ${e.prio===pv?'on':''}" data-prio="${e.id}:${pv}">${pv}</span>`).join('')}</div>`:''}
+   ${showPhase?`<div class="choice phase-choice"><span class="rlab">Phase</span>${PHASES.map(p=>`<span class="choicebtn ${e.phase===p?'on':''}" data-phase="${e.id}:${p}">${p}</span>`).join('')}</div>`:''}
    <div class="choice category-choice"><span class="rlab">Category</span>${CATS.map(cat=>`<span class="choicebtn ${e.category===cat?'on':''}" data-cat="${e.id}:${cat}" title="${esc(CATDESC[cat])}">${esc(cat)}</span>`).join('')}</div>
-   <div class="colr"><span class="rlab">Color</span><span class="swtrig ${e.color&&CMAP[e.color]?'':'none'}" data-colorpick="${e.id}" title="Set color"${e.color&&CMAP[e.color]?` style="background:${CMAP[e.color]}"`:''}></span><span class="swpop">${COLORS.map(c=>`<span class="sw ${e.color===c.key?'on':''}" data-color="${e.id}:${c.key}" title="${c.name}" style="background:${c.hex}"></span>`).join('')}<span class="sw none ${e.color?'':'on'}" data-color="${e.id}:" title="No color">⊘</span></span></div>
-   <div class="tags">${(e.tags||[]).map(t=>`<span class="pill"><span class="tg" data-tag="${enc(t)}">#${esc(t)}</span><x data-id="${e.id}" data-rt="${enc(t)}">✕</x></span>`).join('')}<span class="addl" data-add="${e.id}">+ tag</span></div>
+   ${showColor?`<div class="colr"><span class="rlab">Color</span><span class="swtrig ${e.color&&CMAP[e.color]?'':'none'}" data-colorpick="${e.id}" title="Set color"${e.color&&CMAP[e.color]?` style="background:${CMAP[e.color]}"`:''}></span><span class="swpop">${COLORS.map(c=>`<span class="sw ${e.color===c.key?'on':''}" data-color="${e.id}:${c.key}" title="${c.name}" style="background:${c.hex}"></span>`).join('')}<span class="sw none ${e.color?'':'on'}" data-color="${e.id}:" title="No color">⊘</span></span></div>`:''}
+   ${showTags?`<div class="tags">${(e.tags||[]).map(t=>`<span class="pill"><span class="tg" data-tag="${enc(t)}">#${esc(t)}</span><x data-id="${e.id}" data-rt="${enc(t)}">✕</x></span>`).join('')}<span class="addl" data-add="${e.id}">+ tag</span></div>`:''}
    <div class="meta">${e.from?'from &ldquo;'+esc(e.from)+'&rdquo; · ':''}Created ${esc(e.date||'')} ${e.updated?' · Upd '+esc(e.updated):''}${e.trash?` · <span class="revert" data-del="${e.id}">delete forever</span>`:''}</div>
   </div>`;
 }
