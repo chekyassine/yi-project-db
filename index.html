@@ -170,7 +170,7 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
  <div class="htop">
   <div>
    <h1>YI's Project Database</h1>
-   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.8</span></div>
+   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.9</span></div>
   </div>
   <div class="io">
    <span class="btn" id="resetbtn" title="Reset all filters and sorting">↺ Reset Filters</span>
@@ -239,6 +239,12 @@ function enc(s){return encodeURIComponent(s);} function dec(s){return decodeURIC
 function byId(id){return DB.find(x=>x.id===id);}
 function uid(){return 'U'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);}
 function today(){return new Date().toISOString().slice(0,10);}
+
+// IndexedDB Helper for SW POST intercept
+function getSharedData(){return new Promise((res,rej)=>{const req=indexedDB.open('yi-db-share',1);req.onsuccess=e=>{const db=e.target.result;if(!db.objectStoreNames.contains('shared'))return res(null);const tx=db.transaction('shared','readonly');const getReq=tx.objectStore('shared').get('latest');getReq.onsuccess=()=>res(getReq.result);getReq.onerror=()=>rej(getReq.error);};req.onerror=()=>rej(req.error);});}
+function clearSharedData(){const req=indexedDB.open('yi-db-share',1);req.onsuccess=e=>{const db=e.target.result;if(db.objectStoreNames.contains('shared'))db.transaction('shared','readwrite').objectStore('shared').delete('latest');};}
+async function uploadImageToSupabase(file){const ext=file.name.split('.').pop()||'png';const filename=`${Date.now()}-${Math.random().toString(36).slice(2,7)}.${ext}`;const res=await fetch(`${SUPA.url}/storage/v1/object/images/${filename}`,{method:'POST',headers:{apikey:SUPA.key,Authorization:"Bearer "+SUPA.key,"Content-Type":file.type},body:file});if(!res.ok)throw new Error("Upload failed");return `${SUPA.url}/storage/v1/object/public/images/${filename}`;}
+
 function normO(o){o=o||{};return {ann:o.ann||{},ed:o.ed||{},add:o.add||[],del:o.del||[]};}
 
 /* ---- sync from cloud ---- */
@@ -280,7 +286,7 @@ async function boot(){
  
  // Handle shared data AFTER cloud DB is fully loaded to prevent race conditions
  if (window.location.search.includes('share_')) {
-  handleSharedData();
+  await handleSharedData();
  }
  
  document.getElementById('q').value = fq; // restore search box
@@ -363,13 +369,14 @@ function match(e){
  if(fcolor!=='all'){if(fcolor==='none'){if(e.color)return false;}else if((e.color||'')!==fcolor)return false;}
  if(ftrash){if(!e.trash)return false;}else{if(e.trash)return false;if(farch){if(!e.arch)return false;}else{if(e.arch)return false;}}
  if(ftag!=='all'&&!(e.tags||[]).includes(ftag))return false;
- if(fq){const h=(e.title+' '+(e.summary||'')+' '+(e.from||'')+' '+(e.tags||[]).join(' ')+' '+(e.labels||[]).join(' ')).toLowerCase();if(!h.includes(fq))return false;}
+if(fq){const h=(e.title+' '+(e.summary||'')+' '+(e.from||'')+' '+(e.tags||[]).join(' ')+' '+(e.labels||[]).join(' ')).toLowerCase();if(!h.includes(fq))return false;}
  return true;
 }
 const grid=document.getElementById('grid');
 function linkify(t){return esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:var(--pi)">$1</a>');}
 function cardHTML(e,c){
  const sum=e.summary||'';const clip=sum.length>160?'clip':'';
+ const imgs = (e.images||[]).map(url => `<img src="${esc(url)}" style="max-width:100%;border-radius:6px;margin-top:8px;display:block">`).join('');
  return `<div class="card ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
     <span class="ttl" data-edit="${e.id}">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
@@ -380,6 +387,7 @@ function cardHTML(e,c){
      <span class="ic delbtn" data-trash="${e.id}" title="${e.trash?'Restore':'Move to trash'}">${e.trash?'♻':'🗑'}</span>
      <span class="ic heartbtn ${e.star?'on':''}" data-star="${e.id}" title="${e.star?'Unfavorite':'Favorite'}">${e.star?'♥':'♡'}</span>
     </span></div>
+   ${imgs}
    ${sum?`<div class="sum ${clip}" data-exp="1">${linkify(sum)}</div>`:''}
    <div class="rate"><span class="rlab">Interest</span>${[1,2,3,4,5].map(n=>`<span class="rstar ${(e.rating||0)>=n?'on':''}" data-rate="${e.id}:${n}">${(e.rating||0)>=n?'★':'☆'}</span>`).join('')}${e.rating?`<span class="rclear" data-rate="${e.id}:0">clear</span>`:''}</div>
    <div class="rate"><span class="rlab">Doability</span>${[1,2,3,4,5].map(n=>`<span class="dostar ${(e.doability||0)>=n?'on':''}" data-do="${e.id}:${n}">${(e.doability||0)>=n?'★':'☆'}</span>`).join('')}${e.doability?`<span class="rclear" data-do="${e.id}:0">clear</span>`:''}</div>
@@ -459,9 +467,44 @@ grid.onclick=e=>{
 };
 function openEditor(card,id){
  const e=byId(id);editingId=id;card.classList.add('editing','open');
+ const renderImgList = () => `<div class="edit-img-list" style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px">${(e.images||[]).map((u,i)=>`<div style="position:relative"><img src="${esc(u)}" style="height:40px;border-radius:4px"><span class="rm-img" data-idx="${i}" style="position:absolute;top:-4px;right:-4px;background:red;color:white;border-radius:50%;width:16px;height:16px;text-align:center;line-height:14px;cursor:pointer;font-size:10px">✕</span></div>`).join('')}</div>`;
+ 
  card.innerHTML=`<input class="edit-t" value="${esc(e.title)}"><textarea class="edit-s">${esc(e.summary||'')}</textarea>
+  <div id="img-ctnr-${id}"></div>
+  <div style="margin-top:6px"><label class="btn" style="cursor:pointer;padding:4px 10px;font-size:12px;background:#2a2f4c;border:1px solid #3c4260">📷 Attach Image<input type="file" style="display:none" accept="image/*" class="edit-img" multiple></label></div>
   <div class="ebtns"><span class="ebtn save" data-do="save">Save</span><span class="ebtn" data-do="cancel">Cancel</span></div>`;
  const ti=card.querySelector('.edit-t'),su=card.querySelector('.edit-s');ti.focus();
+ 
+ const bindImgs = () => {
+   const ctnr = card.querySelector(`#img-ctnr-${id}`);
+   ctnr.innerHTML = renderImgList();
+   ctnr.querySelectorAll('.rm-img').forEach(btn => {
+     btn.onclick = () => {
+       e.images.splice(btn.dataset.idx, 1);
+       e.updated = today();
+       saveDB();
+       bindImgs();
+     };
+   });
+ };
+ bindImgs();
+ 
+ card.querySelector('.edit-img').onchange = async (ev) => {
+    const files = Array.from(ev.target.files);
+    if (!files.length) return;
+    setLbl("busy", "Uploading...");
+    try {
+      const urls = await Promise.all(files.map(uploadImageToSupabase));
+      e.images = (e.images || []).concat(urls);
+      e.updated = today();
+      saveDB();
+      bindImgs();
+      setLbl("ok", "Saved");
+    } catch(err) {
+      setLbl("err", "Upload Failed");
+    }
+ };
+ 
  card.querySelector('.ebtns').onclick=ev=>{const d=ev.target.dataset.do;if(!d)return;
   if(d==='save'){editingId=null;setEdit(id,ti.value.trim()||e.title,su.value.trim());}
   else{editingId=null;render();}};
@@ -531,18 +574,32 @@ if ('serviceWorker' in navigator) {
 }
 
 // Handle PWA Web Share Target
-function handleSharedData() {
+async function handleSharedData() {
   const params = new URLSearchParams(window.location.search);
-  const sTitle = params.get('share_title');
-  const sText = params.get('share_text');
+  let sTitle = params.get('share_title');
+  let sText = params.get('share_text');
   let sUrl = params.get('share_url');
+  let files = [];
+  
+  if (params.get('share_ready') === '1') {
+    try {
+      const data = await getSharedData();
+      if (data) {
+        sTitle = data.title || sTitle;
+        sText = data.text || sText;
+        sUrl = data.url || sUrl;
+        files = data.images || [];
+        clearSharedData();
+      }
+    } catch(e) { console.error("IDB read err", e); }
+  }
   
   if (!sUrl && sText) {
     const match = sText.match(/(https?:\/\/[^\s]+)/);
     if (match) sUrl = match[1];
   }
   
-  if (sTitle || sText || sUrl) {
+  if (sTitle || sText || sUrl || files.length > 0) {
     let combinedText = '';
     if (sText) combinedText += sText + '\n';
     if (sUrl && (!sText || !sText.includes(sUrl))) combinedText += sUrl;
@@ -553,7 +610,7 @@ function handleSharedData() {
     // Auto-save the shared note immediately with the is_new flag
     const it={
       id: uid(),
-      title: sUrl ? 'Unwrapping link...' : fallbackTitle,
+      title: sUrl ? 'Unwrapping link...' : (files.length ? 'Shared Image' : fallbackTitle),
       category: 'Resource', // Default category for shared items
       phase: 'Idea',
       summary: summary,
@@ -561,13 +618,29 @@ function handleSharedData() {
       from: '',
       date: today(),
       source_note: '(shared from device)',
-      is_new: true
+      is_new: true,
+      images: []
     };
     addNote(it);
     
     // Automatically enter "zoom/edit" mode so user can add more info
     editingId = it.id;
     render();
+    
+    if (files.length > 0) {
+      setLbl("busy", "Uploading image...");
+      Promise.all(files.map(f => uploadImageToSupabase(f).catch(()=>null))).then(urls => {
+         const validUrls = urls.filter(u=>u);
+         if (validUrls.length) {
+            it.images = validUrls;
+            if (it.title === 'Shared Image') it.title = validUrls.length > 1 ? 'Screenshots' : 'Screenshot';
+            it.updated = today();
+            saveDB();
+            if (editingId !== it.id) render();
+         }
+         setLbl("ok", "Synced");
+      });
+    }
     
     // If there is a URL, attempt to fetch its metadata using our Cloudflare Function
     if (sUrl) {

@@ -20,12 +20,19 @@
     }
   ],
   "share_target": {
-    "action": "https://yi-project-db.pages.dev/",
-    "method": "GET",
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
     "params": {
       "title": "share_title",
       "text": "share_text",
-      "url": "share_url"
+      "url": "share_url",
+      "files": [
+        {
+          "name": "images",
+          "accept": ["image/*"]
+        }
+      ]
     }
   }
 }
