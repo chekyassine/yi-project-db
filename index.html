@@ -275,7 +275,7 @@ footer{padding:24px 40px;color:#5f6b96;font-size:12px;border-top:1px solid var(-
   <div class="htop">
    <div>
     <h1>YI's Project Database</h1>
-   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.11</span></div>
+   <div class="sub">Ideas, ventures, tools &amp; methods — data lives in the cloud, this page is just the viewer <span style="opacity:0.5;margin-left:4px">v1.2.1</span></div>
   </div>
   <div class="io">
    <span class="btn" id="resetbtn" title="Reset all filters and sorting">↺ Reset Filters</span>
@@ -485,7 +485,7 @@ const grid=document.getElementById('grid');
 function linkify(t){return esc(t).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:var(--pi)">$1</a>');}
 function cardHTML(e,c=e.category||'Other',display='card'){
  const sum=e.summary||'';const clip=sum.length>160?'clip':'';
- const imgs = (e.images||[]).map(url => `<img src="${esc(url)}" onclick="openLightbox('${esc(url)}'); event.stopPropagation();" style="width:100%; object-fit:contain; border-radius:6px; margin-top:8px; display:block; cursor:pointer;">`).join('');
+ const imgs = (e.images||[]).map(url => `<img src="${esc(url)}" onclick="openLightbox('${esc(url)}'); event.stopPropagation();" style="width:100%;max-height:220px;height:auto;object-fit:contain;border-radius:6px;margin-top:8px;display:block;cursor:pointer;">`).join('');
  return `<div class="card ${display==='zoom'?'zoom-card':''} ${e.star?'starred':''} ${e.arch?'archived':''} ${e.trash?'trashed':''} ${e.prio?'prio-'+e.prio:''} ${e.color&&CMAP[e.color]?'colored':''}" data-id="${e.id}"${e.color&&CMAP[e.color]?` style="--cc:${CMAP[e.color]}"`:''}>
    <div class="ctop"><span class="dot" style="background:${COL[c]||'#888'}"></span>
     <span class="ttl" style="cursor:pointer" onclick="openCard(this.closest('.card'), '${e.id}')">${e.is_new ? '<span class="badge new-badge" style="background:#ffcb45;color:#3a2c00;margin-right:6px">NEW</span>' : ''}${esc(e.title)}</span>
